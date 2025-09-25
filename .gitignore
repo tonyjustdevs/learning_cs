@@ -5,6 +5,7 @@
 
 # tonys
 /tptmp
+/.venv
 # dotenv files
 .env
 
