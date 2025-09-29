@@ -1,0 +1,3 @@
+[submodule "textbooks/cs13net9"]
+	path = textbooks/cs13net9
+	url = https://github.com/markjprice/cs13net9.git
