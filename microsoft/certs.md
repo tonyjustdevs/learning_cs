@@ -9,9 +9,9 @@
 - 1.7 [[cert](https://learn.microsoft.com/en-us/users/tonyphung-1698/achievements/fqyezltx)] Trophy - Write Your First Code Using C#
 
 # 2. Create and Run Simple C# Console Applications
-- 2.1 [[cert]()] Install and Configure Visual Studio Code
-- 2.2 [[cert]()] Call Methods From the .NET Class Library Using C#
-- 2.2 [[cert]()] Add Decision Logic to Your Code Using if, else, and else if statements in C#
+- 2.1 [[cert](https://learn.microsoft.com/en-us/users/tonyphung-1698/achievements/fqye2bex)] Install and Configure Visual Studio Code
+- 2.2 [[cert](https://learn.microsoft.com/en-us/users/tonyphung-1698/achievements/zdvjceq2)] Call Methods From the .NET Class Library Using C#
+- 2.2 [[cert](https://learn.microsoft.com/en-us/users/TONYPHUNG-1698/achievements/46BCNZBK)] Add Decision Logic to Your Code Using if, else, and else if statements in C#
 - 2.4 [[cert]()] Store and Iterate Through Sequences of Data Using Arrays and the foreach Statement in C#
 - 2.5 [[cert]()] Create Readable Code with Conventions, Whitespace, and Comments in C#
 - 2.6 [[cert]()] Guided Project - Develop foreach and if-elseif-else Structures to Process Array Data in C#
@@ -47,7 +47,7 @@
 - 5.6 [[cert]()] Trophy - Create Methods in C# Console Applications
 
 # 6.Debug C# Console Applications
-- 6.1 [[cert]()] Review the Principles of Code Debugging and Exception Handling
+- 6.1 [[cert](https://learn.microsoft.com/en-us/users/tonyphung-1698/achievements/378zbmgh)] Review the Principles of Code Debugging and Exception Handling
 - 6.2 [[cert]()] Implement the Visual Studio Code Debugging Tools for C#
 - 6.3 [[cert]()] Implement Exception Handling in C# Console Applications
 - 6.4 [[cert]()] Create and Throw Exceptions in C# Console Applications
