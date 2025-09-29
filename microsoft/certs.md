@@ -1,9 +1,9 @@
 # 0. Foundational C# with Microsoft Certification
 # 1. Write Your First Code Using C#
-- 1.1 [[cert](https://learn.microsoft.com/api/achievements/share/en-us/TONYPHUNG-1698/QSQF6T3E?sharingId=6702D1999D5E1793)] Write Your First C# Code
+- 1.1 [[cert](https://learn.microsoft.com/en-us/users/tonyphung-1698/achievements/qsqf6t3e)] Write Your First C# Code
 - 1.2 [[cert](https://learn.microsoft.com/en-us/users/tonyphung-1698/achievements/fmfggefx)] Store and Retrieve Data Using Literal and Variable Values in C#
-- 1.3 [[cert](https://learn.microsoft.com/api/achievements/share/en-us/TONYPHUNG-1698/YEY9EFWR?sharingId=6702D1999D5E1793)] Perform Basic String Formatting in C#
-- 1.4 [[cert]()] Perform Basic Operations on Numbers in C#
+- 1.3 [[cert](https://learn.microsoft.com/en-us/users/tonyphung-1698/achievements/yey9efwr)] Perform Basic String Formatting in C#
+- 1.4 [[cert](https://learn.microsoft.com/en-us/users/tonyphung-1698/achievements/pgk6kjl4)] Perform Basic Operations on Numbers in C#
 - 1.5 [[cert]()] Guided Project - Calculate and Print Student Grades
 - 1.6 [[cert]()] Guided Project - Calculate Final GPA
 - 1.7 [[cert]()] Trophy - Write Your First Code Using C#
