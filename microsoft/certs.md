@@ -5,8 +5,8 @@
 - 1.3 [[cert](https://learn.microsoft.com/en-us/users/tonyphung-1698/achievements/yey9efwr)] Perform Basic String Formatting in C#
 - 1.4 [[cert](https://learn.microsoft.com/en-us/users/tonyphung-1698/achievements/pgk6kjl4)] Perform Basic Operations on Numbers in C#
 - 1.5 [[cert](https://learn.microsoft.com/en-us/users/tonyphung-1698/achievements/378znjkh)] Guided Project - Calculate and Print Student Grades
-- 1.6 [[cert]()] Guided Project - Calculate Final GPA
-- 1.7 [[cert]()] Trophy - Write Your First Code Using C#
+- 1.6 [[cert](https://learn.microsoft.com/en-us/users/TONYPHUNG-1698/achievements/9R3ANKPU)] Guided Project - Calculate Final GPA
+- 1.7 [[cert](https://learn.microsoft.com/en-us/users/tonyphung-1698/achievements/fqyezltx)] Trophy - Write Your First Code Using C#
 
 # 2. Create and Run Simple C# Console Applications
 - 2.1 [[cert]()] Install and Configure Visual Studio Code
