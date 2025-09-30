@@ -6,6 +6,8 @@
 # tonys
 /tptmp
 /.venv
+/cs13net9*
+
 # dotenv files
 .env
 
