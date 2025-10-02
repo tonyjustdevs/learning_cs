@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "PassingArguments1_2": {
+      "commandName": "Project",
+      "commandLineArgs": "yellow blue 50"
+    }
+  }
+}
