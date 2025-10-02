@@ -1,5 +1,7 @@
 ﻿
 using System.Reflection;
+System.Data.DataSet ds = new();
+HttpClient client = new();
 Assembly? myApp = Assembly.GetEntryAssembly();
 if (myApp is null) return; // If the previous line returned nothing then end the app
 foreach (AssemblyName name in myApp.GetReferencedAssemblies()) // Loop through the assemblies that my app references.
