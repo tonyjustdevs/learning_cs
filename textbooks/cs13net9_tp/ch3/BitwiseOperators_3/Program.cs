@@ -14,3 +14,11 @@ WriteLine($"BinShift Ops| Decimal | Binary   | Exp_Dec | Exp_Bin     |");
 WriteLine($"x << 3      | {x << 3,7} | {x << 3:B8} | [80]    | [0101-0000] |");    // 0000-1010 (10)   <<3  -> 0101-0000 (16+64=80): Left-shift x by 3 bit columns.
 WriteLine($"x * 8       | {x * 8,7} | {x * 8:B8} | [80]    | [0101-0000] |");       // 0101-0000 (10*8): Multiply x by 8.
 WriteLine($"y >> 1      | {y >> 1,7} | {y >> 1:B8} | [3]     | [0000-0011] |");        // 0000-0110 (6)    >>1  -> 0000-0011 (1+2=3): Right-shift y by 1 bit column.
+
+
+WriteLine();
+WriteLine($"BinShift Ops| Decimal | Binary   | Exp_Dec | Exp_Bin     |");
+WriteLine($"x << 4      | {x << 4,7} | {x << 4:B8} | [160]   | [1010-0000] |");
+
+// tp testing, in theory: 10 * 16 or <<4 << [10*(16)=160]: 0000-1010 {<< 4} -> 1010-0000 = (128 + 32) = 160;
+
