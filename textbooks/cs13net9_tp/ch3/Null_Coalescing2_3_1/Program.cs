@@ -1,6 +1,7 @@
 ﻿
 // 1.  get [authorName] str
 string? authorName = GetAuthorName(false);
+//string? authorName = GetAuthorName();
 
 // 2.  null-coalesc logic
 // 2a. return [authorName.Length]   if not  [null]
@@ -11,12 +12,4 @@ int authorNameLength = authorName?.Length ?? 69;
 authorName ??= "mystery man";
 
 // 4. print
-Console.WriteLine("{0}, {1}", authorName, authorNameLength);
-string? GetAuthorName(bool isAuth = true)
-{
-	if (isAuth)
-	{
-		return "old buddy";
-	}
-	return null;
-}
+WriteLine("{0}, {1}", authorName, authorNameLength);
