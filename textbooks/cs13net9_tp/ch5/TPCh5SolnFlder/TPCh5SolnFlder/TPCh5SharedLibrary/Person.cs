@@ -4,6 +4,6 @@ public class Person
 {
     #region Fields: state and data of person
     public string? name;
-    public int age;
+    public DateTimeOffset dob;
     #endregion
 }
