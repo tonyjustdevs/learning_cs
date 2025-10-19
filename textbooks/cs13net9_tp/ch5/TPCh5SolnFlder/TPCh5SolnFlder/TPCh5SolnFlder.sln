@@ -5,6 +5,8 @@ VisualStudioVersion = 17.14.36603.0 d17.14
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TPCh5SharedLibrary", "TPCh5SharedLibrary\TPCh5SharedLibrary.csproj", "{8B65A660-1665-407D-8CF0-0BDF1F4FE56B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TPPeopleApp", "TPPeopleApp\TPPeopleApp.csproj", "{F1A1F410-317F-4762-BE71-AA21EFC76D58}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{8B65A660-1665-407D-8CF0-0BDF1F4FE56B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8B65A660-1665-407D-8CF0-0BDF1F4FE56B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8B65A660-1665-407D-8CF0-0BDF1F4FE56B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F1A1F410-317F-4762-BE71-AA21EFC76D58}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F1A1F410-317F-4762-BE71-AA21EFC76D58}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F1A1F410-317F-4762-BE71-AA21EFC76D58}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F1A1F410-317F-4762-BE71-AA21EFC76D58}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
