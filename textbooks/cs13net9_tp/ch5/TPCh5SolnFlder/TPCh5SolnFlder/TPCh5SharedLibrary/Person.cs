@@ -6,6 +6,8 @@ public class Person
     public string? name;
     public DateTimeOffset dob;
     public WondersOfSydney wonder;
+    public CoolPlaces bucketlist;
+    public Pets pets;
     //public enum wonder;
     #endregion
 }
