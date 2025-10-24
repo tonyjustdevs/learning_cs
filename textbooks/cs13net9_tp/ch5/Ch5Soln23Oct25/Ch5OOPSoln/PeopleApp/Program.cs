@@ -1,4 +1,6 @@
-﻿using TP.SharedNamespace;
+﻿using System.Globalization;
+using TP.SharedNamespace;
+using Env =System.Environment;
 
 Person p1 = new();
 p1.Name = "mary";
@@ -25,9 +27,35 @@ var kiddos_IESTR = p1.Children.Select(kiddo => kiddo.Name); // IEnumerable<strin
 //Console.WriteLine(typeof(kiddos_IESTR)); only works on types
 //Console.WriteLine(kiddos_IESTR.GetType());
 var kiddos_str = string.Join(", ", kiddos_IESTR);
-Console.Write($"{kiddos_str}]");
-//  - .select ... LINQ
-//  - .JOIN ??
+Console.Write($"{kiddos_str}]\n");
+BankAccount ba1 = new();
+ba1.Balance = 69m;
+Console.WriteLine($"ba1.bal: [{ba1.Balance}], BA.ir: [{BankAccount.InterestRate}] (pre)");
+BankAccount.InterestRate = 1/3m;
+Console.WriteLine($"ba1.bal: [{ba1.Balance}], BA.ir: [{BankAccount.InterestRate}] (pos)");
+//In Program.cs, add statements to set the shared interest rate,
+//and then create two instances of the BankAccount type
 
+Console.WriteLine($"Person.Species: [{Person.Species}]");
 
+Console.WriteLine();
+Console.WriteLine($"Env.OSVersion: {Env.OSVersion}");
+Console.WriteLine($"Env.CurrentDirectory: {Env.CurrentDirectory}");
+Console.WriteLine($"Env.MachineName: {Env.MachineName}");
 
+// 1. add class templates to existing soln 'Ch5OOPSoln'
+// 2. create project 'SharedLibraryProjectNet9'
+// 3. rename Class1.cs -> Book.cs
+// 4. create Class Book with required mbrs and non-required mbrs
+// 5. create Book instance in PeopleApp/Program.cs
+
+Book HarryPotter = new()
+{
+    BookName = "Harry Potter & The Silver Camry",
+    ISBN = 100
+};
+Console.WriteLine();
+Console.WriteLine($"BookName: {HarryPotter.BookName}");
+Console.WriteLine($"ISBN: {HarryPotter.ISBN}");
+
+// 6. create 'constant' field: Species 
