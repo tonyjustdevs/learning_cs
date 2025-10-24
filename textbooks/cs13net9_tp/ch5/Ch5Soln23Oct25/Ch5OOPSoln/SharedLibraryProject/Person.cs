@@ -36,5 +36,9 @@ public class Person
     // 8.1  Name="Unknown"
     // 8.2  Instantiated =...;
 
+    public void WriteToConsole()
+    {
+        Console.WriteLine($"{Name} is born on {DOB:dddd}!");
+    }
 
 }

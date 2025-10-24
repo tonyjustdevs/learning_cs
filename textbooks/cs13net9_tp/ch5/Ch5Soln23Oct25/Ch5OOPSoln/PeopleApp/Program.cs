@@ -92,3 +92,12 @@ LordOfTheRings.ISBN= 420;
 Book2 SchindlersList = new("SchindlersList",666); // constructor
 Console.WriteLine($"SchindlersList.BookName: {SchindlersList.BookName}");
 Console.WriteLine($"SchindlersList.ISBN: {SchindlersList.ISBN}");
+
+// 1. add methods region to Person cls
+
+
+// 2. add a void method
+// 3. add a str method
+// 4. run each method
+Console.Write($"Running Person instance method p1.WriteToConsole()...: ");
+p1.WriteToConsole();
