@@ -99,5 +99,6 @@ Console.WriteLine($"SchindlersList.ISBN: {SchindlersList.ISBN}");
 // 2. add a void method
 // 3. add a str method
 // 4. run each method
-Console.Write($"Running Person instance method p1.WriteToConsole()...: ");
+Console.Write($"Running Person instance void method p1.WriteToConsole()...: ");
 p1.WriteToConsole();
+Console.WriteLine($"Running instance str method p1.GetHomeInformation(): {p1.GetHomeInformation()}");

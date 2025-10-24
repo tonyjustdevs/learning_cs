@@ -41,4 +41,9 @@ public class Person
         Console.WriteLine($"{Name} is born on {DOB:dddd}!");
     }
 
+    public string GetHomeInformation()
+    {
+        return $"{Name} currenty lives in {Planet}.";
+    }
+
 }
