@@ -58,4 +58,13 @@ Console.WriteLine();
 Console.WriteLine($"BookName: {HarryPotter.BookName}");
 Console.WriteLine($"ISBN: {HarryPotter.ISBN}");
 
-// 6. create 'constant' field: Species 
+// 6. ADD CLS MBR:  'constant' field: Species 
+// 7. ADD CLS MBR:  'readonly' field: HomePlanet
+
+Console.WriteLine($"const Person.Species2: {Person.Species2}");
+Console.WriteLine($"reaonly p1.ClosestStar: {p1.ClosestStar}");
+
+// 8.   add constructor with default 2 field values:
+// 8.1  Name="Unknown"
+// 8.2  Instantiated =...;
+
