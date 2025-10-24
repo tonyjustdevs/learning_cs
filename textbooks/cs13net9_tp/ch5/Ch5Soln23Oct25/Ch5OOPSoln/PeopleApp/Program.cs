@@ -1,4 +1,6 @@
 ﻿using System.Globalization;
+using System.Numerics;
+using System.Xml.Linq;
 using TP.SharedNamespace;
 using Env =System.Environment;
 
@@ -75,3 +77,10 @@ Console.WriteLine();
 Console.WriteLine($"regular_person.Name: {regular_person.Name}");
 Console.WriteLine($"regular_person.Instantiated: {regular_person.Instantiated} on {regular_person.Instantiated} [unformated]");
 Console.WriteLine($"regular_person.Instantiated: {regular_person.Instantiated:hh:mm:ss} on {regular_person.Instantiated:dddd} [formated]");
+
+Console.WriteLine();
+
+Person sailor_moon = new("sailor moon","moon");
+Console.WriteLine($"sailor_moon.Name: {sailor_moon.Name} ");
+Console.WriteLine($"sailor_moon.Planet: {sailor_moon.Planet} (via constructor)");
+//Person sailor_moon = new Person {Name="sailor moon", Planet="moon"}; // Object Initializer , NOT constructor
