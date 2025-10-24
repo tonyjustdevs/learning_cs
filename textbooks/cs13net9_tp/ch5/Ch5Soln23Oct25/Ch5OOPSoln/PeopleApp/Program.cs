@@ -84,3 +84,11 @@ Person sailor_moon = new("sailor moon","moon");
 Console.WriteLine($"sailor_moon.Name: {sailor_moon.Name} ");
 Console.WriteLine($"sailor_moon.Planet: {sailor_moon.Planet} (via constructor)");
 //Person sailor_moon = new Person {Name="sailor moon", Planet="moon"}; // Object Initializer , NOT constructor
+
+Book2 LordOfTheRings = new(); //v1: initailisation syntax
+LordOfTheRings.BookName = "LordOfTheRings";
+LordOfTheRings.ISBN= 420;
+
+Book2 SchindlersList = new("SchindlersList",666); // constructor
+Console.WriteLine($"SchindlersList.BookName: {SchindlersList.BookName}");
+Console.WriteLine($"SchindlersList.ISBN: {SchindlersList.ISBN}");

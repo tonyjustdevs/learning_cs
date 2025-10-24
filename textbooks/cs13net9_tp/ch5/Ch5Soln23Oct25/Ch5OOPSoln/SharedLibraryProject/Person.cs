@@ -21,7 +21,7 @@ public class Person
     public const string Species2="homo saps";
     public readonly string? ClosestStar="the sun";
     public readonly DateTime Instantiated;
-    public Person() // default constructor
+    public Person() // default constructor;
     {
         Name = "Unknown";
         Instantiated = DateTime.Now;
