@@ -67,4 +67,11 @@ Console.WriteLine($"reaonly p1.ClosestStar: {p1.ClosestStar}");
 // 8.   add constructor with default 2 field values:
 // 8.1  Name="Unknown"
 // 8.2  Instantiated =...;
+// 8.3  create default person
+// 8.4  + print & validate: [Name] & [Instantiated]
 
+Person regular_person = new();
+Console.WriteLine();
+Console.WriteLine($"regular_person.Name: {regular_person.Name}");
+Console.WriteLine($"regular_person.Instantiated: {regular_person.Instantiated} on {regular_person.Instantiated} [unformated]");
+Console.WriteLine($"regular_person.Instantiated: {regular_person.Instantiated:hh:mm:ss} on {regular_person.Instantiated:dddd} [formated]");

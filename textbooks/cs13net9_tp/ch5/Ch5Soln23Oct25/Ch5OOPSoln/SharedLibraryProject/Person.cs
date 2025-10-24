@@ -17,7 +17,12 @@ public class Person
     // https://learn.microsoft.com/en-us/dotnet/csharp/misc/cs0191?f1url=%3FappId%3Droslyn%26k%3Dk(CS0191)
     public const string Species2="homo saps";
     public readonly string? ClosestStar="the sun";
-
+    public readonly DateTime Instantiated;
+    public Person() // default constructor
+    {
+        Name = "Unknown";
+        Instantiated = DateTime.Now;
+    }
     // 8.1  Name="Unknown"
     // 8.2  Instantiated =...;
 
