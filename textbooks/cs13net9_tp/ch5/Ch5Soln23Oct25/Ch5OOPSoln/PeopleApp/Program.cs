@@ -1,5 +1,6 @@
 ﻿using System.Globalization;
 using System.Numerics;
+using System.Reflection.Metadata;
 using System.Xml.Linq;
 using TP.SharedNamespace;
 using Env =System.Environment;
@@ -102,3 +103,41 @@ Console.WriteLine($"SchindlersList.ISBN: {SchindlersList.ISBN}");
 Console.Write($"Running Person instance void method p1.WriteToConsole()...: ");
 p1.WriteToConsole();
 Console.WriteLine($"Running instance str method p1.GetHomeInformation(): {p1.GetHomeInformation()}");
+
+//WriteLine(p1.OptionalParameters(number: 52.7, command: "Hide!"));
+
+BetterSavingsAccount better_account = new("jason bourne", 420.69M);
+Console.WriteLine(better_account);
+
+p1.Angels = AngelsFlaggedBytes.kim | AngelsFlaggedBytes.ana | AngelsFlaggedBytes.hana | AngelsFlaggedBytes.aira | AngelsFlaggedBytes.jordan;
+Console.WriteLine($"p1.Angels: {p1.Angels} {(int)p1.Angels}");
+
+// add person.field: collection of Angels
+// add angel 1, 2, 3...
+//int some_existing_int_var=123;
+int some_existing_int_var=321;
+int yet_another_existing_int_var=999;
+const int some_vars = 70;
+
+p1.PassingParams(ref some_existing_int_var, out yet_another_existing_int_var, 420, some_vars);
+
+p1.PassingParamsParam("sum[1 to 5][commas]: ", 1, 2, 3, 4, 5); // v1: commas
+Console.WriteLine();
+p1.PassingParamsParam("sum[2,4,6][collection_expression]: ", [2, 4, 6]); // v1:
+
+p1.PassingParamsParam("sum[3,4,5]: ", new int[]{4,5,6}); // v2
+//p1.PassingParamsParam("sum[3,4,5]: ", new List<int> { 4, 5, 6 }); // v3
+p1.FunctionWithParamsKeyword("FParams_1: commas", 10, 11, 12);
+
+//List<int >some_list = new List<int>();
+//abv: 420, bin: 70, cref: 321, dout: 420
+
+//public void PassingParams(ref int c_ref, out int d_out, int a_bv = 0, in int b_in = some_var)
+//{
+//    _ = a_bv; // a: by-value       <-------- c_ref <- some_existing_int_var = 321
+//    d_out = 420;                   <-------- d_out = 420, d_out <- yet_another_existing_int_var
+//    _ = d_out;
+
+//    Console.WriteLine($"abv:{a_bv}, bin:{b_in}, cref:{c_ref}, dout:{d_out}");
+//}     a,b,c=321,d
+//}

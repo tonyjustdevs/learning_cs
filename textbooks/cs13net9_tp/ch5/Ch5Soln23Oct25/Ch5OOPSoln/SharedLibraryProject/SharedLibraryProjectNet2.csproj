@@ -6,6 +6,10 @@
     <Nullable>enable</Nullable>
     <LangVersion>13</LangVersion>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="SavingsAccount.cs" />
+  </ItemGroup>
   <ItemGroup>
 	  <Using Include="System.Console" Static="true" />
   </ItemGroup>
