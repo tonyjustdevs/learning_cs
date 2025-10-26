@@ -148,3 +148,13 @@ var messi = p1.getMessi();
 Console.WriteLine($"messi.ID: {messi.ID}, messi.soccerplayer: {messi.soccerplayer}, messi.val: {messi.valuation}");
 
 
+// anonymouse tuples
+var mate420 = ("mate", 420);
+
+Console.WriteLine("anonymous tuples 1");
+Console.WriteLine($"mate420.Item1: {mate420.Item1}, mate420.Item2: {mate420.Item2}");
+Console.WriteLine("anonymous tuples 2: name inference");
+
+var AnonNamedTuples = (p1.Name, p1.Children.Count);
+
+Console.WriteLine($"AnonNamedTuples.Name: {AnonNamedTuples.Name}, AnonNamedTuples.Count: {AnonNamedTuples.Count}");
