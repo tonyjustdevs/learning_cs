@@ -5,6 +5,9 @@ using System.Xml.Linq;
 using TP.SharedNamespace;
 using Env =System.Environment;
 
+using FruitUnamedTupleAlias = (string, short); // unamed tuple
+using FruitNamedTupleAlias  = (string Fruit, short Number); // unamed tuple
+
 Person p1 = new();
 p1.Name = "mary";
 p1.DOB = new DateTime(1990, 04, 01);
@@ -158,3 +161,17 @@ Console.WriteLine("anonymous tuples 2: name inference");
 var AnonNamedTuples = (p1.Name, p1.Children.Count);
 
 Console.WriteLine($"AnonNamedTuples.Name: {AnonNamedTuples.Name}, AnonNamedTuples.Count: {AnonNamedTuples.Count}");
+
+// create tuples with two aliased tuple types??
+FruitUnamedTupleAlias RandomFruits = ("Rock melon", 222);
+Console.WriteLine($"FruitUnamedTupleAlias obj.Item1: {RandomFruits.Item1}, obj.Item2: {RandomFruits.Item2}"); 
+
+//FruitNamedTupleAlias RandomNamedFruits = (Fruit: "Water melon", Value: 333);
+Console.WriteLine($"FruitNamedTupleAlias obj.Item1: {RandomFruits.Item1}, obj.Item2: {RandomFruits.Item2}");
+//using FruitNamedTupleAlias  = (string Fruit, short Number); // unamed tuple
+FruitNamedTupleAlias NamedFruits = new() {
+    Fruit = "Strawberries", 
+    Number = 321
+};
+
+Console.WriteLine($"Using FruitNamedTupleAlias: obj.Fruit: {NamedFruits.Fruit}, obj.Number: {NamedFruits.Number}") ;
