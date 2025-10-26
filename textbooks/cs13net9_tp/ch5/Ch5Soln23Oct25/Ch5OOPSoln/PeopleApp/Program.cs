@@ -144,6 +144,7 @@ Console.WriteLine($"(string, int) cool_fruits : {cool_fruits}");
 
 Console.WriteLine($"(string FruitName, int FruitNo) NamedTuple: {p1.getFruitNamedTuple()}");
 
-Console.WriteLine($"p1.getMessi(): {p1.getMessi()}");
+var messi = p1.getMessi();
+Console.WriteLine($"messi.ID: {messi.ID}, messi.soccerplayer: {messi.soccerplayer}, messi.val: {messi.valuation}");
 
 
