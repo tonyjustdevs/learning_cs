@@ -8,6 +8,7 @@ using Env =System.Environment;
 using FruitUnamedTupleAlias = (string, short); // unamed tuple
 using FruitNamedTupleAlias  = (string Fruit, short Number); // unamed tuple
 
+using CareerNmTplAlias = (string JobTitle, bool Employed);
 Person p1 = new();
 p1.Name = "mary";
 p1.DOB = new DateTime(1990, 04, 01);
@@ -175,3 +176,17 @@ FruitNamedTupleAlias NamedFruits = new() {
 };
 
 Console.WriteLine($"Using FruitNamedTupleAlias: obj.Fruit: {NamedFruits.Fruit}, obj.Number: {NamedFruits.Number}") ;
+CareerNmTplAlias TonyWorker1 = new("A bum", false);
+Console.WriteLine($"TonyWorker1.JobTitle: {TonyWorker1.JobTitle}, TonyWorker1.Employed: {TonyWorker1.Employed}");
+
+Console.WriteLine();
+CareerNmTplAlias TonyWorker2 = new() { JobTitle="Developer", Employed=true};
+Console.WriteLine($"TonyWorker2.JobTitle: {TonyWorker2.JobTitle}, TonyWorker2.Employed: {TonyWorker2.Employed}");
+
+Console.WriteLine("getMessi() tuple deconstructed:");
+(int ID_INT_Decon, string PLAYER_STR_Decon, long VAL_LNG_DECON) = p1.getMessi();
+Console.WriteLine($"{ID_INT_Decon}, {PLAYER_STR_Decon},{VAL_LNG_DECON}");
+
+
+
+
