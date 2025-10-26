@@ -61,6 +61,12 @@ Console.WriteLine();
 Console.WriteLine($"BookName: {HarryPotter.BookName}");
 Console.WriteLine($"ISBN: {HarryPotter.ISBN}");
 
+Book Spot = new Book
+{
+    BookName = "Spot",
+    ISBN = 59
+};
+
 // 6. ADD CLS MBR:  'constant' field: Species 
 // 7. ADD CLS MBR:  'readonly' field: HomePlanet
 
@@ -128,16 +134,16 @@ p1.PassingParamsParam("sum[2,4,6][collection_expression]: ", [2, 4, 6]); // v1:
 p1.PassingParamsParam("sum[3,4,5]: ", new int[]{4,5,6}); // v2
 //p1.PassingParamsParam("sum[3,4,5]: ", new List<int> { 4, 5, 6 }); // v3
 p1.FunctionWithParamsKeyword("FParams_1: commas", 10, 11, 12);
+p1.FunctionWithParamsKeyword("FParams_2: collection expression", [50,51,52]);
+p1.FunctionWithParamsKeyword("FParams_3: explicty array", new int[] {7,8,9 });
+p1.FunctionWithParamsKeyword("FParams_4: 0", 0);
 
-//List<int >some_list = new List<int>();
-//abv: 420, bin: 70, cref: 321, dout: 420
 
-//public void PassingParams(ref int c_ref, out int d_out, int a_bv = 0, in int b_in = some_var)
-//{
-//    _ = a_bv; // a: by-value       <-------- c_ref <- some_existing_int_var = 321
-//    d_out = 420;                   <-------- d_out = 420, d_out <- yet_another_existing_int_var
-//    _ = d_out;
+(string, int) cool_fruits = p1.getFruitTuple();
+Console.WriteLine($"(string, int) cool_fruits : {cool_fruits}");
 
-//    Console.WriteLine($"abv:{a_bv}, bin:{b_in}, cref:{c_ref}, dout:{d_out}");
-//}     a,b,c=321,d
-//}
+Console.WriteLine($"(string FruitName, int FruitNo) NamedTuple: {p1.getFruitNamedTuple()}");
+
+Console.WriteLine($"p1.getMessi(): {p1.getMessi()}");
+
+

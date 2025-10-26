@@ -11,7 +11,7 @@ public class Person
     public CountryEnumByte? CountryBucketList { get; set; }
     public List<Person> Children = new(); // create object and Children (a_bv pointer to -> List<P> object in memory)
     public const string Species = "homo erecxtus"; // must be avai at compile-time (not always best practice)
-    public readonly string Planet ="earth"; // A readonly field can only take an assignment
+    public readonly string Planet = "earth"; // A readonly field can only take an assignment
     //public readonly string? Planet; // A readonly field can only take an assignment
     //public readonly string HomePlanet = "Earth";
 
@@ -19,8 +19,8 @@ public class Person
     //public const DateTime SomeTime1 = DateTime.UtcNow; // wont work because not compile-time variable
     public readonly DateTime SomeTime2 = DateTime.UtcNow;
     // https://learn.microsoft.com/en-us/dotnet/csharp/misc/cs0191?f1url=%3FappId%3Droslyn%26k%3Dk(CS0191)
-    public const string Species2="homo saps";
-    public readonly string? ClosestStar="the sun";
+    public const string Species2 = "homo saps";
+    public readonly string? ClosestStar = "the sun";
     public readonly DateTime Instantiated;
     public AngelsFlaggedBytes Angels;
     public Angel? FavouriteAngel;
@@ -63,7 +63,7 @@ public class Person
         Console.WriteLine($"abv:{a_bv}, bin:{b_in}, cref:{c_ref}, dout:{d_out}");
     }
 
-    public void PassingParamsParam(string some_text, params int[] some_ints) 
+    public void PassingParamsParam(string some_text, params int[] some_ints)
     {
         Console.Write($"{some_text}");
         int csum = 0;
@@ -72,7 +72,7 @@ public class Person
             csum += v;
             Console.WriteLine($"{v} added. csum = {csum}");
         }
-            Console.Write($"final total: {csum}");
+        Console.Write($"final total: {csum}");
     }
 
     public void FunctionWithParamsKeyword(string datastructure_str_param, params int[] int_list_params)
@@ -88,11 +88,20 @@ public class Person
         Console.WriteLine($"\ntotal: {csum}\n");
     }
 
+    public (string, int) getFruitTuple()
+    {
+        return ("mango", 420);
+    }
+
+    public (string FruitName, int FruitNo) getFruitNamedTuple()
+    {
+        return ("orange", 88);
+    }
+
+    public (int ID, string soccerplayer, long valuation) getMessi(){
+
+        return (10, "messi", 1_000_000_000);
+    }
 
 
-
-
-
-
-    //List<int> some_ints
 }
