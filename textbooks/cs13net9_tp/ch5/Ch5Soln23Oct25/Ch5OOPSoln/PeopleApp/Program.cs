@@ -216,7 +216,7 @@ Console.WriteLine($"AliasedColorNmTPL obj: {a_color_nmtple}");
 //AngelsFlaggedBytes tp_angel_bytes;
 //List<Person> tp_kiddo_list;
 
-// verbose decon
+// decon version 1: verbosely
 p1.DeconPersonObjAngelsKids(out AngelsFlaggedBytes tp_angel_bytes, out List<Person> tp_kiddo_list);
 Console.WriteLine($"tp_angel_bytes from p1.DeconPersonObjAngelsKids(...): {tp_angel_bytes}");
 
@@ -225,5 +225,7 @@ Console.WriteLine($"tp_kiddo_list (type form): {tp_kiddo_list}"); //System.Colle
 Console.WriteLine($"running static method: Person.PrintGenercListKiddoNames(tp_kiddo_list): ");
 Person.PrintGenercListKiddoNames(tp_kiddo_list);
 
-//tonys_angels
-//tonys_kiddos
+// decon version 2: 
+//() p1
+(string? decon_name, DateTime? decon_dob) = p1;
+Console.WriteLine($"v2 decon-bracket-syntax: decon_name: {decon_name}, decon_dob: {decon_dob}");
