@@ -244,4 +244,10 @@ var classy_classer = new MyOtherClass();
 Console.WriteLine("run classy_classer.GoToWork(): ");
 classy_classer.GoToWork();
 
-Console.WriteLine($"p1.Origin_Prop: {p1.Origin_Prop}");
+Console.WriteLine($"p1.Prop1_Origin: {p1.Prop1_Origin}");
+Console.WriteLine($"p1.Prop2_Greeting: {p1.Prop2_Greeting}");
+Console.WriteLine($"p1.Prop3_CalculatedAge: {p1.Prop3_CalculatedAge}");
+
+Console.WriteLine($"(default) p1.FavouritePrimaryColor1:{p1.FavouritePrimaryColor1}");
+
+Console.WriteLine($"(set & getted) p1.FavouritePrimaryColor1:{p1.FavouritePrimaryColor1}");
