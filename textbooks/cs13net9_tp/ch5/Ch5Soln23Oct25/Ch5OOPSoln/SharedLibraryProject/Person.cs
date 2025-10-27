@@ -2,8 +2,8 @@
 using System.Linq.Expressions;
 using System.Net.Http.Headers;
 using TP.SharedNamespace;
-
-public class Person
+    
+public partial class Person
 {
     public string? Name { get; set; }
     public DateTime? DOB { get; set; }
@@ -136,6 +136,13 @@ public class Person
         Console.Write($"{kiddos_str}]\n");
     }
 
+    public void Deconstruct()
+    {
+
+    }
+
+  
+    // partial class
 }
 
 

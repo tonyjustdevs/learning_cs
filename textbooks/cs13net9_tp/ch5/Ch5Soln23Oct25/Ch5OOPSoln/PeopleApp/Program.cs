@@ -216,7 +216,7 @@ Console.WriteLine($"AliasedColorNmTPL obj: {a_color_nmtple}");
 //AngelsFlaggedBytes tp_angel_bytes;
 //List<Person> tp_kiddo_list;
 
-// decon version 1: verbosely
+// decon v1: verbosely
 p1.DeconPersonObjAngelsKids(out AngelsFlaggedBytes tp_angel_bytes, out List<Person> tp_kiddo_list);
 Console.WriteLine($"tp_angel_bytes from p1.DeconPersonObjAngelsKids(...): {tp_angel_bytes}");
 
@@ -225,7 +225,20 @@ Console.WriteLine($"tp_kiddo_list (type form): {tp_kiddo_list}"); //System.Colle
 Console.WriteLine($"running static method: Person.PrintGenercListKiddoNames(tp_kiddo_list): ");
 Person.PrintGenercListKiddoNames(tp_kiddo_list);
 
-// decon version 2: 
+// decon v2 wiht proper types: 
 //() p1
 (string? decon_name, DateTime? decon_dob) = p1;
 Console.WriteLine($"v2 decon-bracket-syntax: decon_name: {decon_name}, decon_dob: {decon_dob}");
+
+// decon v3 with var
+(var decon_name_var, var decon_dob_var) = p1;
+Console.WriteLine($"v3 decon-bracket-syntax-wt-var: decon_name_var: {decon_name_var}, decon_dob_var: {decon_dob_var}");
+
+// decon v4 with var
+var (decon_name_var4, decon_dob_var4) = p1;
+Console.WriteLine($"v4 decon_name: {decon_name_var4}, decon_dob: {decon_dob_var4}");
+
+
+var classy_classer = new MyOtherClass();
+Console.WriteLine("run classy_classer.GoToWork(): ");
+classy_classer.GoToWork();
