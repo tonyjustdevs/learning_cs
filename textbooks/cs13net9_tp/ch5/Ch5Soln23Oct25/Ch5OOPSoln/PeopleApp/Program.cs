@@ -4,14 +4,15 @@ using System.Reflection.Metadata;
 using System.Xml.Linq;
 using TP.SharedNamespace;
 using Env =System.Environment;
-
+using AliasedColorNmTPL = (int colorid, string colorname);
 using FruitUnamedTupleAlias = (string, short); // unamed tuple
 using FruitNamedTupleAlias  = (string Fruit, short Number); // unamed tuple
 
 using CareerNmTplAlias = (string JobTitle, bool Employed);
+using System.Runtime.InteropServices;
 Person p1 = new();
 p1.Name = "mary";
-p1.DOB = new DateTime(1990, 04, 01);
+p1.DOB = new DateTime(2025, 12, 25);
 p1.Country = CountryEnum.Argentina;
 p1.CountryBucketList = CountryEnumByte.UK | CountryEnumByte.Singapore; //40=8+32=2^3+2^5
 
@@ -187,6 +188,27 @@ Console.WriteLine("getMessi() tuple deconstructed:");
 (int ID_INT_Decon, string PLAYER_STR_Decon, long VAL_LNG_DECON) = p1.getMessi();
 Console.WriteLine($"{ID_INT_Decon}, {PLAYER_STR_Decon},{VAL_LNG_DECON}");
 
+// 'out' parameter cannot be initialised
+// 'out` is passed [by-ref] + and [assigned]
 
+string? nameTo=null;
+DateTime? dobTo = null;
+Console.WriteLine($"before decon() nameTo, dobTo: {nameTo}, {dobTo}");
+Console.WriteLine($"og name, dob: {p1.Name},{p1.DOB}");
+p1.Deconstruct(out nameTo, out dobTo);
+Console.WriteLine($"after decon() nameTo, dobTo: {nameTo}, {dobTo}");
 
+// return mult-vals via tuples
+// create fn that creates tuple two 2 retvalues
+// [1] anon cw tupler
+Console.WriteLine($"p1.RandomRGBTupleReturner(): {p1.RandomRGBTupleReturner()}");
+// [2] variable returned tupler
+(int, string) color_str_tpl = p1.RandomRGBTupleReturner();
+// [3] variable returned named tupler
+(int colorid, string colorname) color_named_tpl = p1.RandomRGBTupleReturner();
 
+Console.WriteLine($".colorid:{color_named_tpl.colorid}, .colorname: {color_named_tpl.colorname}");
+// [4] aliased tuple????
+
+AliasedColorNmTPL a_color_nmtple = p1.RandomRGBTupleReturner();
+Console.WriteLine($"AliasedColorNmTPL obj: {a_color_nmtple}");

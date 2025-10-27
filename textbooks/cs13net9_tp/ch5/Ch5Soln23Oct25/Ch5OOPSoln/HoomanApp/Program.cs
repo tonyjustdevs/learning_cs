@@ -1,5 +1,6 @@
 ﻿
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using TP.SharedNamespace;
 
 Hoomans kid2 = new Hoomans() {Name="kid2_nm",Age=2};

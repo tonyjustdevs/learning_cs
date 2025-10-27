@@ -98,11 +98,23 @@ public class Person
         return ("orange", 88);
     }
 
-    public (int ID, string soccerplayer, long valuation) getMessi(){
+    public (int ID, string soccerplayer, long valuation) getMessi()
+    {
 
         return (10, "messi", 1_000_000_000);
     }
 
+    // Deconstructors: Break down this object into parts.
+    public void Deconstruct(out string? nameTo, out DateTime? dobTo)
+    {
+        nameTo = Name;
+        dobTo = DOB;
+    }
 
-
+    public (int, string) RandomRGBTupleReturner()
+    {
+        return (69, "red");
+    }
 }
+
+    
