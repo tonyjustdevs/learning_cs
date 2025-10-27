@@ -212,3 +212,18 @@ Console.WriteLine($".colorid:{color_named_tpl.colorid}, .colorname: {color_named
 
 AliasedColorNmTPL a_color_nmtple = p1.RandomRGBTupleReturner();
 Console.WriteLine($"AliasedColorNmTPL obj: {a_color_nmtple}");
+
+//AngelsFlaggedBytes tp_angel_bytes;
+//List<Person> tp_kiddo_list;
+
+// verbose decon
+p1.DeconPersonObjAngelsKids(out AngelsFlaggedBytes tp_angel_bytes, out List<Person> tp_kiddo_list);
+Console.WriteLine($"tp_angel_bytes from p1.DeconPersonObjAngelsKids(...): {tp_angel_bytes}");
+
+Console.WriteLine($"tp_kiddo_list (type form): {tp_kiddo_list}"); //System.Collections.Generic.List`1[Person]
+
+Console.WriteLine($"running static method: Person.PrintGenercListKiddoNames(tp_kiddo_list): ");
+Person.PrintGenercListKiddoNames(tp_kiddo_list);
+
+//tonys_angels
+//tonys_kiddos

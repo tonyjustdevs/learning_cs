@@ -115,6 +115,27 @@ public class Person
     {
         return (69, "red");
     }
+
+    public void DeconPersonObjAngelsKids(out AngelsFlaggedBytes tonys_angels, out List<Person> tonys_kiddos)
+    {
+        tonys_angels = Angels;
+        tonys_kiddos = Children;
+    }
+
+    public void PrintKiddosNames()
+    {
+        var kiddos_IESTR = Children.Select(kiddo => kiddo.Name);
+        var kiddos_str = string.Join(", ", kiddos_IESTR);
+        Console.Write($"{kiddos_str}]\n");
+    }
+
+    public static void PrintGenercListKiddoNames(List<Person> Children)
+    {
+        var kiddos_IESTR = Children.Select(kiddo => kiddo.Name);
+        var kiddos_str = string.Join(", ", kiddos_IESTR);
+        Console.Write($"{kiddos_str}]\n");
+    }
+
 }
 
-    
+
