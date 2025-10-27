@@ -1,7 +1,4 @@
-﻿using System.Globalization;
-using System.Linq.Expressions;
-using System.Net.Http.Headers;
-using TP.SharedNamespace;
+﻿namespace TP.SharedNamespace;
     
 public partial class Person
 {
@@ -13,7 +10,7 @@ public partial class Person
     public const string Species = "homo erecxtus"; // must be avai at compile-time (not always best practice)
     public readonly string Planet = "earth"; // A readonly field can only take an assignment
     //public readonly string? Planet; // A readonly field can only take an assignment
-    //public readonly string HomePlanet = "Earth";
+    public readonly string HomePlanet = "Earth";
 
     // in a_bv constructor or at declaration.
     //public const DateTime SomeTime1 = DateTime.UtcNow; // wont work because not compile-time variable

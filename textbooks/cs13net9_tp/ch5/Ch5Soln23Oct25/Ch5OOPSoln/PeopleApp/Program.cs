@@ -3,6 +3,7 @@ using System.Numerics;
 using System.Reflection.Metadata;
 using System.Xml.Linq;
 using TP.SharedNamespace;
+
 using Env =System.Environment;
 using AliasedColorNmTPL = (int colorid, string colorname);
 using FruitUnamedTupleAlias = (string, short); // unamed tuple
@@ -242,3 +243,5 @@ Console.WriteLine($"v4 decon_name: {decon_name_var4}, decon_dob: {decon_dob_var4
 var classy_classer = new MyOtherClass();
 Console.WriteLine("run classy_classer.GoToWork(): ");
 classy_classer.GoToWork();
+
+Console.WriteLine($"p1.Origin_Prop: {p1.Origin_Prop}");
