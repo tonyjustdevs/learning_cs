@@ -251,3 +251,34 @@ Console.WriteLine($"p1.Prop3_CalculatedAge: {p1.Prop3_CalculatedAge}");
 Console.WriteLine($"(default) p1.FavouritePrimaryColor1:{p1.FavouritePrimaryColor1}");
 
 Console.WriteLine($"(set & getted) p1.FavouritePrimaryColor1:{p1.FavouritePrimaryColor1}");
+
+//p1.FavSport = "tennis";
+//p1.FavSport = "pickleball";
+//Console.WriteLine($"p1.FavSport:{p1.FavSport}");
+
+//p1.FavFood_property = "pho";
+//Console.WriteLine($"p1.FavFood_property: {p1.FavFood_property}");
+
+// add try-except
+// 1. try: {assign} var [chosen_sport] -> [p1.FavSport]
+// 2. exc: {capture exception}
+// - exc.msg pt[1]: nameof(p1.FavSport)
+// - exc.msg pt[2]: [chosen_sport]
+// - exc.msg pt[3]: ?
+//string CHOSEN_FOOD = "salad";
+string CHOSEN_FOOD = "eggplant";
+try
+{
+    p1.FavFood_property = CHOSEN_FOOD;
+}
+catch (Exception ex)
+{
+    Console.WriteLine("Tried to assign Property '{0}' to '{1}' \nbut an ERROR occured & captured: '{2}'",
+        nameof(p1.FavFood_property), CHOSEN_FOOD, ex.Message);
+}
+finally
+{
+    Console.WriteLine("finalised choosing....");
+}
+
+Console.WriteLine("end of program");
