@@ -308,6 +308,8 @@ finally
 {
     Console.WriteLine($"Current city: \t[{p1.FavCities}] (via p1.FavCities)\n");
 }
+//CountryEnumByte
+p1.Country2 = CountryEnumByte.Argentina | CountryEnumByte.Madagascar;
 
-
+//p1.Country2 = "Mate";
 

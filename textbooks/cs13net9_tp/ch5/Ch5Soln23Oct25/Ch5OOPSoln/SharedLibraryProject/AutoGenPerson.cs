@@ -120,15 +120,26 @@ public partial class Person
         }
 
     }
-    private CountryEnum? _Country2;
-    public CountryEnum? Country2 { 
+    //CountryEnumByte 
+    //private CountryEnum? _country2;
+    private CountryEnumByte? _country2;
+    //public CountryEnum? Country2 { 
+    public CountryEnumByte? Country2 { 
         get 
         {
-            return _Country2;
+            return _country2;
         }
         set {
-            // version 1, set to anything you want
-            _Country2 = value;
+            string cty = value.ToString();
+            Console.WriteLine($"value.ToString(): {cty}");
+            Console.WriteLine($"typeof(CountryEnum): {typeof(CountryEnumByte)}"); //TP.SharedNamespace.CountryEnum
+            bool EnumTF = Enum.IsDefined(typeof(CountryEnumByte), value);
+            Console.WriteLine($"Checking whether input Country '{value}' is Type 'Enum': {EnumTF}");
+
+            if (!EnumTF) {
+                throw new ArgumentException($"You dont have the relevant visa to go to: '{value}'");
+            }
+            _country2 = value;
         }
     }
 }
