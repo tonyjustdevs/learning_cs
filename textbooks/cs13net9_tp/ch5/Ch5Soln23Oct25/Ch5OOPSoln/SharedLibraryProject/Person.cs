@@ -5,7 +5,8 @@ public partial class Person
     public string? Name { get; set; }
     public DateTime? DOB { get; set; }
     public DateTimeOffset Born { get; set; }
-    public CountryEnum? Country { get; set; }
+
+    public CountryEnum? Country { get; set; }// --- moved to AutoGenPerson.cs
     public CountryEnumByte? CountryBucketList { get; set; }
     public List<Person> Children = new(); // create object and Children (a_bv pointer to -> List<P> object in memory)
     public const string Species = "homo erectus"; // must be avai at compile-time (not always best practice)

@@ -1,21 +1,23 @@
-﻿using System.Globalization;
-using System.Numerics;
-using System.Reflection.Metadata;
-using System.Xml.Linq;
+﻿//using System.Globalization;
+//using System.Numerics;
+//using System.Reflection.Metadata;
+//using System.Xml.Linq;
 using TP.SharedNamespace;
 
 using Env =System.Environment;
 using AliasedColorNmTPL = (int colorid, string colorname);
 using FruitUnamedTupleAlias = (string, short); // unamed tuple
 using FruitNamedTupleAlias  = (string Fruit, short Number); // unamed tuple
-
 using CareerNmTplAlias = (string JobTitle, bool Employed);
-using System.Runtime.InteropServices;
-Person p1 = new();
-p1.Name = "mary";
-p1.DOB = new DateTime(2025, 12, 25);
-p1.Country = CountryEnum.Argentina;
-p1.CountryBucketList = CountryEnumByte.UK | CountryEnumByte.Singapore; //40=8+32=2^3+2^5
+using System.Security.Cryptography.X509Certificates;
+
+Person p1 = new()
+{
+    Name = "mary",
+    DOB = new DateTime(2025, 12, 25),
+    Country = CountryEnum.Argentina,
+    CountryBucketList = CountryEnumByte.UK | CountryEnumByte.Singapore //40=8+32=2^3+2^5
+};
 
 Person sienna = new();
 sienna.Name = "sienna";
@@ -279,6 +281,33 @@ catch (Exception ex)
 finally
 {
     Console.WriteLine("finalised choosing....");
+};
+
+//List<Person.FavCities> matelist = new();
+
+//List<Person.FavCities> matelist = new();
+List<string?> cities_list = ["Saigon", "Sydney","kl", "da nang", "Bangkok"];
+string? curr_city=null;
+try
+{
+
+    foreach (string? city in cities_list)
+    {
+        Console.WriteLine($"Setting city: \t{city}");
+        //curr_city = city;
+        p1.FavCities = city;
+        Console.WriteLine($"Current city: \t[{p1.FavCities}] (via p1.FavCities)\n");
+
+    }
+}
+catch (Exception ex)
+{
+    Console.WriteLine("Tried to set {0} to {1} but failed: {2}", nameof(p1.FavCities), curr_city, ex.Message);
+}
+finally
+{
+    Console.WriteLine($"Current city: \t[{p1.FavCities}] (via p1.FavCities)\n");
 }
 
-Console.WriteLine("end of program");
+
+

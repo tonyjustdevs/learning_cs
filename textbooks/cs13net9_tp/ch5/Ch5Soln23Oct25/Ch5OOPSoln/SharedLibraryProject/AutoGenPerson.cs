@@ -1,8 +1,4 @@
-﻿
-
-using System.Net;
-
-namespace TP.SharedNamespace;
+﻿namespace TP.SharedNamespace;
 
 public partial class Person
 {
@@ -89,10 +85,51 @@ public partial class Person
             _favFood_backingfield = value;
         }
     }
+    // 1. create [private] [._bakingField] :   ._favCities
+    // 2. create [public]  [.Property]{get}:   .FavCities
+    // 3. create [public]  [.Property]{set}:   ._favCities=value
 
+    private string? _favCities;
+    public string? FavCities
+    {
+        get { 
+            return _favCities; 
+        }
+        set {
+            Console.WriteLine($"{value} chosen!");
+            switch (value?.ToLower())
+            {
+                case "da nang":
+                    Console.WriteLine($"amazing, '{value}' is beachy vibe of vietnam!");
+                    _favCities = value;
+                    break;
+                case "kl":
+                    Console.WriteLine($"yum '{value}' has laksa and all that good food!!");
+                    _favCities = value;
+                    break;
+                case "saigon":
+                    Console.WriteLine($"great choice of '{value}', the sleepy that never sleeps!!");
+                    _favCities = value;
+                    break;
+                case "sydney":
+                    Console.WriteLine($"'{value}'? are you rich or something?");
+                    break;
+                default:
+                    throw new ArgumentException($"You chose {value}, do you not have standards, try again!!");
+            }
+        }
+
+    }
+    private CountryEnum? _Country2;
+    public CountryEnum? Country2 { 
+        get 
+        {
+            return _Country2;
+        }
+        set {
+            // version 1, set to anything you want
+            _Country2 = value;
+        }
+    }
 }
 
-
-// first property: GetOrigin method -  use property syntax working on all vers of C#.
-// second property: return a greeting message - use lambda expression body => syntax from C# 6+
-// third property: calculate - person’s age.
