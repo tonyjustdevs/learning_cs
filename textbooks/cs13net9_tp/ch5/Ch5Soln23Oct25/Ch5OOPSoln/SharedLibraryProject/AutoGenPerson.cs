@@ -142,5 +142,25 @@ public partial class Person
             _country2 = value;
         }
     }
+
+    // create indexer: via constructor w' index syntax 
+    public Person this[int i]
+    {    // 1. create indexer of children
+        get { return Children[i]; }
+        set { Children[i] = value; }
+    }
+
+    // 2. update indexer of children to search by name
+    public Person this[string name]
+    {    // 1. create indexer of children
+        get { return Children.Find(p => p.Name == name); }
+    }
+
+
+    // 3. add children to person
+    // 4. test res 1: using .Children[0] & .Children[1] 
+    // 4. test res 2: using .Person[0] & .Person[1] 
+
+
 }
 

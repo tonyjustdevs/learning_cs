@@ -21,7 +21,8 @@ public partial class Person
     public const string Species2 = "homo saps";
     public readonly string? ClosestStar = "the sun";
     public readonly DateTime Instantiated;
-    public AngelsFlaggedBytes Angels;
+    //public AngelsFlaggedBytes Angels;
+    public AngelsFlaggedBytes Angels { get; set; } // convert from field to prop for serialisations
     public Angel? FavouriteAngel;
     public List<Angel> AngelList = new();
     public Person() // default constructor;

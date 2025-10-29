@@ -2,14 +2,17 @@
 //using System.Numerics;
 //using System.Reflection.Metadata;
 //using System.Xml.Linq;
-using TP.SharedNamespace;
-
-using Env =System.Environment;
-using AliasedColorNmTPL = (int colorid, string colorname);
-using FruitUnamedTupleAlias = (string, short); // unamed tuple
-using FruitNamedTupleAlias  = (string Fruit, short Number); // unamed tuple
-using CareerNmTplAlias = (string JobTitle, bool Employed);
+using System;
+using System.Linq;
 using System.Security.Cryptography.X509Certificates;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using TP.SharedNamespace;
+using AliasedColorNmTPL = (int colorid, string colorname);
+using CareerNmTplAlias = (string JobTitle, bool Employed);
+using Env =System.Environment;
+using FruitNamedTupleAlias  = (string Fruit, short Number); // unamed tuple
+using FruitUnamedTupleAlias = (string, short); // unamed tuple
 
 Person p1 = new()
 {
@@ -308,8 +311,47 @@ finally
 {
     Console.WriteLine($"Current city: \t[{p1.FavCities}] (via p1.FavCities)\n");
 }
-//CountryEnumByte
-p1.Country2 = CountryEnumByte.Argentina | CountryEnumByte.Madagascar;
 
-//p1.Country2 = "Mate";
+// 1. [AGPerson.cs] create indexer of children
+// 2. [AGPerson.cs] update indexer of children to search by name
+// 3. [Person.cs] add children to person
 
+//p1.Children.
+Console.WriteLine();
+var p1_kids_names_ie = p1.Children.Select(p => p.Name);
+//p1_kids_names_ie.Join(,)
+var kid_str = string.Join(", ", p1_kids_names_ie);
+
+//Console.WriteLine($"kid_str.GetType(): {kid_str.GetType()}");
+Console.WriteLine($"kid_str: '{kid_str}'");
+
+Console.WriteLine($"p1[0].Name:{p1[0].Name}" +
+    $"\np1[1].Name:{p1[1].Name}" +
+    $"\np1[2].Name:{p1[2].Name}");
+//'sienna, jeff, darryl'
+var sienna_kiddo_object = p1["sienna"];
+
+Console.WriteLine($"sienna_kiddo_object: {sienna_kiddo_object}");
+Console.WriteLine($"sienna_kiddo_object.Name: {sienna_kiddo_object.Name}");
+
+;
+// p1[1]:TP.SharedNamespace.Person
+// p1[0]:TP.SharedNamespace.Person,
+//Console.WriteLine($"p1[0]:{p1[0]}, p1[1]:{p1[1]}");
+
+// 4. [Person.cs] test res 1: using .Children[0] & .Children[1] 
+// 4. [Person.cs] test res 2: using .Person[0] & .Person[1] 
+
+
+// PRINT OBJECTS TO JSON
+var options = new JsonSerializerOptions
+{
+    Converters = { new JsonStringEnumConverter() },
+    WriteIndented = true
+};
+
+//string p1_json_str = JsonSerializer.Serialize(p1); // without enum strings
+string p1_json_str = JsonSerializer.Serialize(p1, options);
+Console.WriteLine(p1_json_str);
+
+File.WriteAllText("person.json", p1_json_str); // Save to file
