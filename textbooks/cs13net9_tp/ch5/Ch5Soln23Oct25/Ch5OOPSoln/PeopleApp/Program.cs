@@ -342,7 +342,58 @@ Console.WriteLine($"sienna_kiddo_object.Name: {sienna_kiddo_object.Name}");
 // 4. [Person.cs] test res 1: using .Children[0] & .Children[1] 
 // 4. [Person.cs] test res 2: using .Person[0] & .Person[1] 
 
+//// 1. create [passengers_array]
+//BusinessPassengers bp1  = new() { Name = "Huynh" };
+//BusinessPassengers bp2  = new() { Name = "Nam" };
+//BusinessPassengers bp3  = new BusinessPassengers() { Name = "Huynh" };
+//EconomyPassengers ep1   = new() { Name = "Vu" };
+//EconomyPassengers ep2   = new() { Name = "Nem" };
 
+
+//Console.WriteLine();
+//Console.WriteLine($"bp1: {bp1}");
+//Console.WriteLine($"bp2: {bp2}");
+//Console.WriteLine($"ep1: {ep1}");
+//Console.WriteLine($"ep2: {ep2}");
+//Console.WriteLine();
+
+//Passengers[] passengers_array = [ bp1,bp2,ep1,ep2];
+Passengers[] passengers_array = [
+    new EconomyPassengers()     { Name = "P2_EC_HEAVY", CarryOnKG=21 },
+    new EconomyPassengers()     { Name = "P2_EC_LIGHT" },
+    new BusinessPassengers()    { Name = "P1_BC" },
+    new FirstClassPassengers()  { Name = "P3_FC_BALLER", AirMiles=1001 },
+    new FirstClassPassengers()  { Name = "P4_FC_NEWBIE"},
+];
+
+
+Console.WriteLine("\nCalculating Flight Costs: \n");
+
+
+foreach (Passengers passenger in passengers_array)
+{
+    decimal flightCost = passenger switch
+    {
+        FirstClassPassengers    pgr when pgr.AirMiles > 1_000       => 4_500M,
+        FirstClassPassengers    _                                   => 4_000M,
+        BusinessPassengers      _                                   => 3_500M,
+        EconomyPassengers       pgr when pgr.CarryOnKG > 20         => 2_500M,
+        EconomyPassengers       _                                   => 2_000M,
+        _ => 5000M
+    };
+
+    Console.WriteLine($"{passenger.Name} {passenger.GetType()}: ${flightCost}");
+};
+
+Console.WriteLine("\n...EXPORTING DATA...\n");
+
+// add immutable person
+ImmutablePerson ImmutableJeff = new() { FirstName="jeff",LastName="bezos"};
+//ImmutablePerson ImmutableElon = new() { FirstName="elon",LastName= "musk" };
+
+Console.WriteLine("ImmutableJeff.FirstName, ImmutableJeff.LastName");
+ImmutableJeff.LastName = "epsetin";
+ImmutableJeff.LastName = "epsetin";
 // PRINT OBJECTS TO JSON
 var options = new JsonSerializerOptions
 {
