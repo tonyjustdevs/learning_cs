@@ -414,13 +414,22 @@ foreach (var car in cars)
     Console.WriteLine($"A {car.Colour} {car.Brand}");
 }
 
+// instances of: records vs classes
+AnimalClass animal_1_cls = new() { Name = "an_nm_cls" };
+AnimalClass animal_2_cls = new() { Name = "an_nm_cls" };
+string? animal_cls_comp_res = animal_1_cls== animal_2_cls ? "equal" : "non-equal";
+Console.WriteLine($"classes [ani_1_cls == ani_2_cls]: {animal_cls_comp_res}");
+
+// instances of: records vs classes
+AnimalRecord animal_1_rec = new() { Name = "an_nm_rec" };
+AnimalRecord animal_2_rec = new() { Name = "an_nm_rec" };
+string? animal_rec_comp_res = animal_1_rec == animal_2_rec ? "equal" : "non-equal";
+Console.WriteLine($"records [ani_1_rec == ani_2_rec]: {animal_rec_comp_res}");
 
 
 
 
-
-
-
+///////////////////// end: export objects to csv ///////////////////// 
 
 
 Console.WriteLine();
