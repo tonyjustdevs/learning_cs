@@ -4,6 +4,7 @@
 //using System.Xml.Linq;
 using System;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Security.Cryptography.X509Certificates;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -392,9 +393,38 @@ ImmutablePerson ImmutableJeff = new() { FirstName="jeff",LastName="bezos"};
 //ImmutablePerson ImmutableElon = new() { FirstName="elon",LastName= "musk" };
 
 Console.WriteLine("ImmutableJeff.FirstName, ImmutableJeff.LastName");
-ImmutableJeff.LastName = "epsetin";
-ImmutableJeff.LastName = "epsetin";
+//ImmutableJeff.LastName = "jeffidy";// cant reassign outside object initializer
 // PRINT OBJECTS TO JSON
+
+ImmutableCharacter bart = new() { CharacterName = "bart simpson", TVShow = "the simpsons" };
+Console.WriteLine($"'{bart.CharacterName.ToUpper()}' is a character from '{bart.TVShow.ToUpper()}'");
+//bart.CharacterName = "lisa";
+
+//ImmutableCharacter lisa = new() { CharacterName="lisa simpson"};// required TVShow
+
+ImmutableVehicle silver_toyota = new() { Brand = "Toyota", Colour = "Silver", Wheels = 4 };
+
+ImmutableVehicle blue_toyota = silver_toyota with { Colour = "Black" };
+Console.WriteLine();
+List<ImmutableVehicle> cars=  new List<ImmutableVehicle>();
+cars.Add(silver_toyota);
+cars.Add(blue_toyota);
+foreach (var car in cars)
+{
+    Console.WriteLine($"A {car.Colour} {car.Brand}");
+}
+
+
+
+
+
+
+
+
+
+
+Console.WriteLine();
+Console.WriteLine();
 var options = new JsonSerializerOptions
 {
     Converters = { new JsonStringEnumConverter() },
@@ -406,3 +436,4 @@ string p1_json_str = JsonSerializer.Serialize(p1, options);
 Console.WriteLine(p1_json_str);
 
 File.WriteAllText("person.json", p1_json_str); // Save to file
+
