@@ -426,6 +426,38 @@ AnimalRecord animal_2_rec = new() { Name = "an_nm_rec" };
 string? animal_rec_comp_res = animal_1_rec == animal_2_rec ? "equal" : "non-equal";
 Console.WriteLine($"records [ani_1_rec == ani_2_rec]: {animal_rec_comp_res}");
 
+///////////////////// add: HeadsetRecord class ///////////////////// 
+
+HeadsetRecord apple_headset_rec     = new("Vision Pro", "Apple");
+HeadsetRecord ps_headset_rec        = new("Sony PlayStation", "VR2");
+
+//HeadsetClass apple_headset_cls      = new("Vision Pro", "Apple");
+//HeadsetClass ps_headset_cls         = new("Sony PlayStation", "VR2");
+
+HeadsetGetSetLessClass apple_headset_cls = new("Vision Pro", "Apple");
+HeadsetGetSetLessClass ps_headset_cls = new("Sony PlayStation", "VR2");
+
+Console.WriteLine();
+var headsets_rec_array = new HeadsetRecord[] { apple_headset_rec, ps_headset_rec };
+//var headsets_cls_array = new HeadsetClass[] { apple_headset_cls, ps_headset_cls };
+var headsetsless_cls_array = new HeadsetGetSetLessClass[] { apple_headset_cls, ps_headset_cls };
+
+Console.WriteLine("HeadsetRecords Array:");
+foreach (var headset_rec in headsets_rec_array)
+{
+    Console.WriteLine($"{headset_rec}");
+}
+
+Console.WriteLine("HeadsetClassLess Array:");
+//Console.WriteLine("HeadsetClass Array:");
+//foreach (var headset_cls in headsets_cls_array)
+foreach (var headset_cls in headsetsless_cls_array)
+    {
+    Console.WriteLine($"{headset_cls}");
+}
+
+
+
 
 
 
