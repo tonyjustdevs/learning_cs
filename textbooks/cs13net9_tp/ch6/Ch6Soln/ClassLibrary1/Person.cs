@@ -2,7 +2,7 @@
 
 namespace TP.SharedLibraries;
 
-public class Person
+public partial class Person
 {
 
     #region Properties
@@ -12,10 +12,15 @@ public class Person
     public List<Person> Spouses { get; set; } = new ();
     #endregion
     public bool isMarried => Spouses.Count > 0;
+    public int SpousesCount => Spouses.Count;
     public bool isMarried2 { get{ return Spouses.Count > 0; } }
 
     #region InstanceMethods
-    public void WriteToConsole() => Console.WriteLine($"'{Name}' was born a '{DOB:dddd}'");
+    public void WriteToConsole() => Console.WriteLine(
+        $"'{Name}' " +
+        $"was born a '{DOB:dddd}' "+
+        $"& has '{SpousesCount}' spouse(s).' ");
+
     public void WriteKidsToConsole() 
     {
         string kids_term = Children.Count() == 1 ? "kid" : "kiddos";

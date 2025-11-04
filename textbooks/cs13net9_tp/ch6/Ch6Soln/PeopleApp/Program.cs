@@ -1,4 +1,6 @@
-﻿using System.Collections.Concurrent;
+﻿
+using System.Collections.Concurrent;
+using System.Reflection.Metadata;
 using TP.SharedLibraries;
 // [1] create person instance 
 Person hannah_instance = new Person() {
@@ -37,6 +39,50 @@ Console.WriteLine($"kim.isMarried: {kim.isMarried}, kim.Spouses.Count(): {kim.Sp
 Console.WriteLine("kim.Marry(new Person(){...} was run!");
 kim.Marry(new Person() { Name = "danny boy", DOB = new(1990, 01, 01, 0, 0, 0, 0, TimeSpan.Zero) });
 Console.WriteLine($"kim.isMarried: {kim.isMarried}, kim.Spouses.Count(): {kim.Spouses.Count()}");
+
+
+//Console.WriteLine();
+//Person anais    = new Person() { Name = "anais", DOB = new(2001, 01, 01, 0, 0, 0, TimeSpan.Zero) };
+//Person jordana  = new Person() { Name = "jordana", DOB = new(2000, 01, 01, 0, 0, 0, TimeSpan.Zero) };
+
+//anais.WriteToConsole();
+//jordana.WriteToConsole();
+
+//// use [MarriageService] to marry Anais and Jordana
+//Person.MarryTwoPersons(anais, jordana);
+//Person.MarryTwoPersons(anais, jordana);
+
+//anais.MarryAPerson(jordana);
+//jordana.MarryAPerson(anais);
+
+//anais.WriteToConsole();
+//jordana.WriteToConsole();
+
+// 1. add old-school non-generic hash
+// 2. add new-school generic hash
+
+System.Collections.Hashtable my_hash_tbl = new();
+my_hash_tbl.Add(1,  "aaa");
+my_hash_tbl.Add(2,  "bbb");
+my_hash_tbl.Add(3, "ccc");
+my_hash_tbl.Add(kim, "ddd");
+Console.WriteLine();
+int chosen_key = 3;
+Console.WriteLine($"key'{chosen_key}' has value: '{my_hash_tbl[chosen_key]}'");
+Console.WriteLine($"key'{kim}' has value: '{my_hash_tbl[kim]}'");
+
+Dictionary<int, string> my_dict = new();
+my_dict.Add(1, "aaa");
+my_dict.Add(2, "bbb");
+my_dict.Add(3, "ccc");
+my_dict.Add(kim, "ddd");
+Console.WriteLine();
+
+Console.WriteLine($"key'{chosen_key}' has value: '{my_dict[chosen_key]}'");
+//Console.WriteLine($"key'{kim}' has value: '{my_dict[kim]}'"); // error : generic has type check
+
+
+
 
 
 
