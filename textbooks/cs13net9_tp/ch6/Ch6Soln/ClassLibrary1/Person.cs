@@ -8,8 +8,8 @@ public partial class Person
     #region Properties
     public string? Name { get; set; }
     public DateTimeOffset DOB {get;set;}
-    public List<Person> Children {get;set;} = new ();
-    public List<Person> Spouses { get; set; } = new ();
+    public List<Person> Children {get;set;} = new();
+    public List<Person> Spouses { get; set; } = new();
     #endregion
     public bool isMarried => Spouses.Count > 0;
     public int SpousesCount => Spouses.Count;
@@ -31,6 +31,7 @@ public partial class Person
     #region StaticMethods
     public static void Marry(Person p1, Person p2)
     {
+        Console.WriteLine("A Marry() ceremony is happening...");
         // 1. raise exception if null
         ArgumentNullException.ThrowIfNull(p1);
         ArgumentNullException.ThrowIfNull(p2);
@@ -70,5 +71,42 @@ public partial class Person
         }
     }
     #endregion
+
+    #region MakeBabies
+    public static void MakeBabies(Person p1, Person p2)
+    {
+        Console.WriteLine("MakeBabies() attempted...");
+        ArgumentNullException.ThrowIfNull(p1);
+        ArgumentNullException.ThrowIfNull(p2);
+
+        if (!p1.Spouses.Contains(p2) & !p2.Spouses.Contains(p1))
+        {
+            throw new ArgumentException($"'{p1.Name}' & '{p2.Name}' must be MARRIED before making babies!");
+            // [test-1] make 2 persons and make babies ---> [exp] error!
+        }
+        else
+        {
+            Console.WriteLine("babies made");
+            Person bb = new() { Name = "bb1_p1p2", DOB = DateTimeOffset.Now };
+            p1.Children.Add(bb);
+            p2.Children.Add(bb);
+        }
+    }
+    #endregion
+
+    #region Operators
+    public static bool operator +(Person p1, Person p2)
+    {
+        Console.WriteLine("'+' Operator -> Marry() run....");
+        Marry(p1, p2); //[test-2] use + operator to perform marriage ceremony
+        return true;
+    }
+    #endregion
     
+    public static bool operator *(Person p1, Person p2)
+    {
+        Console.WriteLine("'*' Operator -> MakeBabies() run....");
+        MakeBabies(p1, p2);
+        return true;
+    }
 }

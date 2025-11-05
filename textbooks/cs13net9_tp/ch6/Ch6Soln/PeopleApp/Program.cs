@@ -3,31 +3,31 @@ using System.Collections.Concurrent;
 using System.Reflection.Metadata;
 using TP.SharedLibraries;
 // [1] create person instance 
-Person hannah_instance = new Person() {
+Person hana = new Person() {
     Name = "Hannah",
     DOB = new DateTimeOffset(2000, 01, 01, 0, 0, 0, 0, TimeSpan.Zero)
 };
-Console.WriteLine("Welcome to '{0}'s Saigon Love Story",hannah_instance.Name);
-hannah_instance.WriteToConsole();  
+Console.WriteLine("Welcome to '{0}'s Saigon Love Story",hana.Name);
+hana.WriteToConsole();  
 
 Console.WriteLine("before bangin");
-hannah_instance.WriteKidsToConsole(); // get kiddo info   (#no kids)
+hana.WriteKidsToConsole(); // get kiddo info   (#no kids)
 // [2] create kiddos instance
 List<Person> harry_kiddos = new() { 
     new Person(){Name="adolf"},
     new Person(){Name="ikea"},
     new Person(){Name="dryck!"}
 };
-hannah_instance.Children = harry_kiddos;
+hana.Children = harry_kiddos;
 
 // [3] get person object info
 Console.WriteLine("after bangin");
-hannah_instance.WriteKidsToConsole(); // get kiddo info   (#no kids)
+hana.WriteKidsToConsole(); // get kiddo info   (#no kids)
 
-Console.WriteLine("'{0}' pre-marriage: {1}",hannah_instance.Name,hannah_instance.Spouses.Count);
-Person.Marry(hannah_instance, new Person() { Name="mr raw"});
-Console.WriteLine("'{0}' pos-marriage: {1}", hannah_instance.Name,hannah_instance.Spouses.Count);
-Console.WriteLine("'{0}''s spouse-name: {1}", hannah_instance.Name, hannah_instance.Spouses[0].Name);
+Console.WriteLine("'{0}' pre-marriage: {1}",hana.Name,hana.Spouses.Count);
+Person.Marry(hana, new Person() { Name="mr raw"});
+Console.WriteLine("'{0}' pos-marriage: {1}", hana.Name,hana.Spouses.Count);
+Console.WriteLine("'{0}''s spouse-name: {1}", hana.Name, hana.Spouses[0].Name);
 
 Console.WriteLine("To be continued...");
 
@@ -71,18 +71,39 @@ int chosen_key = 3;
 Console.WriteLine($"key'{chosen_key}' has value: '{my_hash_tbl[chosen_key]}'");
 Console.WriteLine($"key'{kim}' has value: '{my_hash_tbl[kim]}'");
 
-Dictionary<int, string> my_dict = new();
-my_dict.Add(1, "aaa");
-my_dict.Add(2, "bbb");
-my_dict.Add(3, "ccc");
-my_dict.Add(kim, "ddd");
-Console.WriteLine();
+//Dictionary<int, string> my_dict = new();
+//my_dict.Add(1, "aaa");
+//my_dict.Add(2, "bbb");
+//my_dict.Add(3, "ccc");
+//my_dict.Add(kim, "ddd");
+//Console.WriteLine();
 
-Console.WriteLine($"key'{chosen_key}' has value: '{my_dict[chosen_key]}'");
-//Console.WriteLine($"key'{kim}' has value: '{my_dict[kim]}'"); // error : generic has type check
+//Console.WriteLine($"key'{chosen_key}' has value: '{my_dict[chosen_key]}'");
+//Console.WriteLine($"key'{kim}' has value: '{my_dict[kim]}'"); // error :
+//generic has type check
 
 
+try
+{
+    hana.WriteKidsToConsole();
+    kim.WriteKidsToConsole();
+    Person.MakeBabies(hana, kim);
+}
+catch (Exception e)
+{
+    Console.WriteLine("[Exception 1] e.Message: {0}", e.Message);
+    //Person.Marry(hana, kim);          // WORKS
+    _ = hana + kim;
+    //Person.MakeBabies(hana, kim);     // WORKS
+    _ = hana * kim;
 
+}
+finally
+{
+    hana.WriteKidsToConsole();
+    kim.WriteKidsToConsole();
+}
 
+Console.WriteLine("PROGRAM ENDED");
 
 
