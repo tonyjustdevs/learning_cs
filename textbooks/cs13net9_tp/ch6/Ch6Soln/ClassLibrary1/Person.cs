@@ -123,13 +123,23 @@ public partial class Person
     public void EmailMsg(string email) => Console.WriteLine($"Email Content: '{email}'");
     public void LogMsg(string logs) => Console.WriteLine($"Logged Text: '{logs}'");
 
-    public delegate string DG_STRSTR_CheckerHandler(string some_str);
-    public string STR_GetStrLenLT10ChrsDG(string some_str)
+    public delegate void DG_VOIDSTR_STR_VALIDATOR_Handler(string some_str);
+    public void STRSTR1_getlen_DG(string some_str)
+    { //Console.WriteLine("{index,alignment:format}", value);
+        //Console.WriteLine($"'{some_str}' has length: '{some_str.Length}'");
+        //Console.WriteLine("{0,-15} {1,-10} {2,-15:C2}", "Alice", 30, 55000.75);
+        Console.WriteLine("'{0}' {1,-20} {2,10}",$"{some_str}","has length:",some_str.Length);
+    }
+
+    public void STRSTR2_isnullorempty_DG(string some_str)
     {
-        Console.WriteLine($"input string: {some_str}");
-        bool bool_res = some_str.Length < 10;
-        Console.WriteLine($"LT10ChrsRes: {bool_res}");
-        return bool_res.ToString();
+        Console.WriteLine("'{0}' {1,-20} {2,10}",$"{some_str}", "is null or empty:", string.IsNullOrEmpty(some_str));
+        //Console.WriteLine($"'{some_str}' is null or empty: '{string.IsNullOrEmpty(some_str)}'");
+    }
+    public void STRSTR3_isnullorws_DG(string some_str)
+    {
+
+        Console.WriteLine("'{0}' {1,-20} {2,10}",$"{some_str}", "is null or white-space:", string.IsNullOrWhiteSpace(some_str));
     }
 
 }

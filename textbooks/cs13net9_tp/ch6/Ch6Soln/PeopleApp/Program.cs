@@ -2,7 +2,7 @@
 using static TP.SharedLibraries.Person;
 // [1] create person instance 
 Person anais = new Person() {
-    Name = "Hannah",
+    Name = "Anais",
     DOB = new DateTimeOffset(2000, 01, 01, 0, 0, 0, 0, TimeSpan.Zero)
 };
 Console.WriteLine("Welcome to '{0}'s Saigon Love Story",anais.Name);
@@ -154,19 +154,34 @@ Console.WriteLine();
 Console.WriteLine("Using DG_MyMsgHandler...");
 DG_MyMsgHandler msg_handler_dg = kim.EmailMsg;
 msg_handler_dg += kim.LogMsg;
-
 msg_handler_dg("this is single input msg");
 
 Console.WriteLine();
-Console.WriteLine("Running Delegate Instance of [DGSTRSTR_CheckerHandler]:...\n");
+string curr_str = "     ";
 
+Console.WriteLine($"Running Delegate on '{curr_str}'..." );
+//public delegate void DG_VOIDSTR_STR_VALIDATOR_Handler(string some_str);
+DG_VOIDSTR_STR_VALIDATOR_Handler cool_hdlr1 = kim.STRSTR1_getlen_DG;
+DG_VOIDSTR_STR_VALIDATOR_Handler cool_hdlr2 = new(kim.STRSTR1_getlen_DG);
+var cool_hdlr3 = new DG_VOIDSTR_STR_VALIDATOR_Handler(kim.STRSTR1_getlen_DG);
 
-DG_STRSTR_CheckerHandler im_a_cool_dg_str_str = kim.STR_GetStrLenLT10ChrsDG;
-im_a_cool_dg_str_str("donald trump"); 
+cool_hdlr1("mate1");    
+cool_hdlr2("mate2");
+cool_hdlr3("mate3");
 
+// v1: implict
+//public delegate void dg_void_str_hdlr(string some_str);
+//DG_VOIDSTR_STR_VALIDATOR_Handler str_val_hdler = new(kim.STRSTR1_getlen_DG);
+//str_val_hdler += kim.STRSTR2_isnullorempty_DG;
+//str_val_hdler += kim.STRSTR3_isnullorws_DG;
+//str_val_hdler(curr_str);
 
-
-
-Console.WriteLine();
-Console.WriteLine("PROGRAM ENDED");
+//GreetingDelegate d = new GreetingDelegate(SayHello);             -- gpt
+//GreetingDelegate greetingMethod;                                 -- grok
+//var greeter = new Greeter(p1.SayHello);  // Same as: new(p1.SayHello)
+//var greeter = new Greeter(new GreetingDelegate(p1.SayHello));
+//dg_void_str_hdlr str_hdlr = p1.SomeMethod;
+//dg_void_str_hdlr lambdaHdlr = msg => Console.WriteLine(msg);
+//Console.WriteLine("PROGRAM ENDED");
 //
+
