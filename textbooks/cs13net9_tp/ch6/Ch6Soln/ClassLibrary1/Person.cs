@@ -1,4 +1,6 @@
-﻿using System.Runtime.CompilerServices;
+﻿using Microsoft.VisualBasic.FileIO;
+using System.ComponentModel.DataAnnotations;
+using System.Runtime.CompilerServices;
 
 namespace TP.SharedLibraries;
 
@@ -7,21 +9,21 @@ public partial class Person
 
     #region Properties
     public string? Name { get; set; }
-    public DateTimeOffset DOB {get;set;}
-    public List<Person> Children {get;set;} = new();
+    public DateTimeOffset DOB { get; set; }
+    public List<Person> Children { get; set; } = new();
     public List<Person> Spouses { get; set; } = new();
     #endregion
     public bool isMarried => Spouses.Count > 0;
     public int SpousesCount => Spouses.Count;
-    public bool isMarried2 { get{ return Spouses.Count > 0; } }
+    public bool isMarried2 { get { return Spouses.Count > 0; } }
 
     #region InstanceMethods
     public void WriteToConsole() => Console.WriteLine(
         $"'{Name}' " +
-        $"was born a '{DOB:dddd}' "+
+        $"was born a '{DOB:dddd}' " +
         $"& has '{SpousesCount}' spouse(s).' ");
 
-    public void WriteKidsToConsole() 
+    public void WriteKidsToConsole()
     {
         string kids_term = Children.Count() == 1 ? "kid" : "kiddos";
         Console.WriteLine($"'{Name}' has {Children.Count()} {kids_term}.'");
@@ -51,7 +53,7 @@ public partial class Person
     {
         Marry(this, partner);
     }
-    
+
     #endregion
 
     #region Marriage
@@ -102,11 +104,32 @@ public partial class Person
         return true;
     }
     #endregion
-    
+
     public static bool operator *(Person p1, Person p2)
     {
         Console.WriteLine("'*' Operator -> MakeBabies() run....");
         MakeBabies(p1, p2);
         return true;
     }
+
+    public delegate void MyPersonDelegate(string? im_a_string);
+    public void MyPersonObjPrintMeMethodViaDG(string? my_string_param)
+    {
+        Console.WriteLine($"{my_string_param}");
+    }
+
+    public delegate void DG_MyMsgHandler(string some_msg);
+
+    public void EmailMsg(string email) => Console.WriteLine($"Email Content: '{email}'");
+    public void LogMsg(string logs) => Console.WriteLine($"Logged Text: '{logs}'");
+
+    public delegate string DG_STRSTR_CheckerHandler(string some_str);
+    public string STR_GetStrLenLT10ChrsDG(string some_str)
+    {
+        Console.WriteLine($"input string: {some_str}");
+        bool bool_res = some_str.Length < 10;
+        Console.WriteLine($"LT10ChrsRes: {bool_res}");
+        return bool_res.ToString();
+    }
+
 }

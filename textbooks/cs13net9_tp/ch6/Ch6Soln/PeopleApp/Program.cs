@@ -1,33 +1,31 @@
-﻿
-using System.Collections.Concurrent;
-using System.Reflection.Metadata;
-using TP.SharedLibraries;
+﻿using TP.SharedLibraries;
+using static TP.SharedLibraries.Person;
 // [1] create person instance 
-Person hana = new Person() {
+Person anais = new Person() {
     Name = "Hannah",
     DOB = new DateTimeOffset(2000, 01, 01, 0, 0, 0, 0, TimeSpan.Zero)
 };
-Console.WriteLine("Welcome to '{0}'s Saigon Love Story",hana.Name);
-hana.WriteToConsole();  
+Console.WriteLine("Welcome to '{0}'s Saigon Love Story",anais.Name);
+anais.WriteToConsole();  
 
 Console.WriteLine("before bangin");
-hana.WriteKidsToConsole(); // get kiddo info   (#no kids)
+anais.WriteKidsToConsole(); // get kiddo info   (#no kids)
 // [2] create kiddos instance
 List<Person> harry_kiddos = new() { 
     new Person(){Name="adolf"},
     new Person(){Name="ikea"},
     new Person(){Name="dryck!"}
 };
-hana.Children = harry_kiddos;
+anais.Children = harry_kiddos;
 
 // [3] get person object info
 Console.WriteLine("after bangin");
-hana.WriteKidsToConsole(); // get kiddo info   (#no kids)
+anais.WriteKidsToConsole(); // get kiddo info   (#no kids)
 
-Console.WriteLine("'{0}' pre-marriage: {1}",hana.Name,hana.Spouses.Count);
-Person.Marry(hana, new Person() { Name="mr raw"});
-Console.WriteLine("'{0}' pos-marriage: {1}", hana.Name,hana.Spouses.Count);
-Console.WriteLine("'{0}''s spouse-name: {1}", hana.Name, hana.Spouses[0].Name);
+Console.WriteLine("'{0}' pre-marriage: {1}",anais.Name,anais.Spouses.Count);
+Person.Marry(anais, new Person() { Name="mr bean"});
+Console.WriteLine("'{0}' pos-marriage: {1}", anais.Name,anais.Spouses.Count);
+Console.WriteLine("'{0}''s spouse-name: {1}", anais.Name, anais.Spouses[0].Name);
 
 Console.WriteLine("To be continued...");
 
@@ -68,8 +66,8 @@ my_hash_tbl.Add(3, "ccc");
 my_hash_tbl.Add(kim, "ddd");
 Console.WriteLine();
 int chosen_key = 3;
-Console.WriteLine($"key'{chosen_key}' has value: '{my_hash_tbl[chosen_key]}'");
-Console.WriteLine($"key'{kim}' has value: '{my_hash_tbl[kim]}'");
+Console.WriteLine($"mate_key'{chosen_key}' has value: '{my_hash_tbl[chosen_key]}'");
+Console.WriteLine($"mate_key'{kim}' has value: '{my_hash_tbl[kim]}'");
 
 //Dictionary<int, string> my_dict = new();
 //my_dict.Add(1, "aaa");
@@ -78,32 +76,97 @@ Console.WriteLine($"key'{kim}' has value: '{my_hash_tbl[kim]}'");
 //my_dict.Add(kim, "ddd");
 //Console.WriteLine();
 
-//Console.WriteLine($"key'{chosen_key}' has value: '{my_dict[chosen_key]}'");
-//Console.WriteLine($"key'{kim}' has value: '{my_dict[kim]}'"); // error :
+//Console.WriteLine($"mate_key'{chosen_key}' has value: '{my_dict[chosen_key]}'");
+//Console.WriteLine($"mate_key'{kim}' has value: '{my_dict[kim]}'"); // error :
 //generic has type check
 
 
 try
 {
-    hana.WriteKidsToConsole();
+    anais.WriteKidsToConsole();
     kim.WriteKidsToConsole();
-    Person.MakeBabies(hana, kim);
+    Person.MakeBabies(anais, kim);
 }
 catch (Exception e)
 {
     Console.WriteLine("[Exception 1] e.Message: {0}", e.Message);
-    //Person.Marry(hana, kim);          // WORKS
-    _ = hana + kim;
-    //Person.MakeBabies(hana, kim);     // WORKS
-    _ = hana * kim;
+    //Person.Marry(anais, kim);          // WORKS
+    _ = anais + kim;
+    //Person.MakeBabies(anais, kim);     // WORKS
+    _ = anais * kim;
 
 }
 finally
 {
-    hana.WriteKidsToConsole();
+    anais.WriteKidsToConsole();
     kim.WriteKidsToConsole();
 }
 
+// generics vs non-gen:
+// [1][non-generic] A old-school datatype
+// - import via system...dictionary
+// - but not is type-safe, [mate_key can be any type]
+//      - ie 1 or "1" or an [object]
+// - ie compiler or ide does not strict types inside it?
+
+Console.WriteLine("GEN VS NON-GEN");
+System.Collections.Hashtable mate_nongen_hashtbl = new();
+mate_nongen_hashtbl[0] = "zero";
+mate_nongen_hashtbl[1] = "one";
+mate_nongen_hashtbl[kim] = "cool beans";
+
+Console.WriteLine("NON-GEN: Hashtable");
+foreach (var mate_key in mate_nongen_hashtbl.Keys)
+{
+    Console.WriteLine($"key '{mate_key}' (keytype '({mate_key.GetType()})'): value '{mate_nongen_hashtbl[mate_key]}'"); 
+}
+
+
+// [2][generics] new school datatype
+// - type safe
+// - no import required   
+Console.WriteLine("NON-GEN: Dictionary<int,str>");
+Dictionary<int,string> mate_gen_dct = new();
+mate_gen_dct[0] = "zero";
+mate_gen_dct[1] = "one";
+mate_gen_dct[anais.Children.Count] = "cool beans";
+
+foreach (var mate_key in mate_gen_dct.Keys)
+{
+    Console.WriteLine($"key '{mate_key}' (keytype '({mate_key.GetType()})'): value '{mate_gen_dct[mate_key]}'");
+}
+
+Console.WriteLine("4. DELEGATES\n");
+
+// [0] add object (Program.cs):                         [kim]                               - [done]
+// [1] add delegate (Person.cs) [done]                  [kim.MyPersonDelegate()]                - [done]
+// [2] add method-1: sig matches delegate  (Person.cs)  [kim.MyPersonObjPrintMeMethodViaDG]     - [done]
+// [3] add method-2: sig matches delegate  (Person.cs)  ...
+// [4] create delegate instance (Program.cs)
+
+MyPersonDelegate dome_kim_dg = kim.MyPersonObjPrintMeMethodViaDG;
+dome_kim_dg("ran custom dome_kim_dg() which was declared via: MyPersonDelegate dome_kim_dg = kim.MyPersonObjPrintMeMethodViaDG;");
+// [5] add method to delegrate instanace (Program.cs)
+// [6] run delegate instanace (Program.cs)
+
+
+Console.WriteLine();
+Console.WriteLine("Using DG_MyMsgHandler...");
+DG_MyMsgHandler msg_handler_dg = kim.EmailMsg;
+msg_handler_dg += kim.LogMsg;
+
+msg_handler_dg("this is single input msg");
+
+Console.WriteLine();
+Console.WriteLine("Running Delegate Instance of [DGSTRSTR_CheckerHandler]:...\n");
+
+
+DG_STRSTR_CheckerHandler im_a_cool_dg_str_str = kim.STR_GetStrLenLT10ChrsDG;
+im_a_cool_dg_str_str("donald trump"); 
+
+
+
+
+Console.WriteLine();
 Console.WriteLine("PROGRAM ENDED");
-
-
+//
