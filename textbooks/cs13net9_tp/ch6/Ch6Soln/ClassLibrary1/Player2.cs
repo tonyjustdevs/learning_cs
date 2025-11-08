@@ -1,28 +1,22 @@
-﻿using System.Threading.Channels;
-
-namespace TP.SharedLibraries;
+﻿namespace TP.SharedLibraries;
 
 public class Player2
 {
     public int Points { get; private set; }
-    public delegate void Achieved100PointsHandler(int points);
-
-    //public event Action? Achieved100Points;
-    public event Achieved100PointsHandler? Achieved100Points;
+    public delegate void AchievementUnlockedIntHandler(int points);
+    //public delegate void AchievementUnlockedStrHandler(string points);
+    public event AchievementUnlockedIntHandler? AchievementIntUnlocked;
+    //public event AchievementUnlockedStrHandler? AchievementStrUnlocked;
     public async Task AddPoints(int points)
     {
         Points += points;
-        Console.WriteLine($"{points} p  oints added! Total Points: {Points}");
-        await Task.Delay(150);
-
-        if (Points > 100) {
-            Achieved100Points?.Invoke(Points);
-            //Console.WriteLine($"Congratulations, you've reached {Points} points");
+        await Task.Delay(200);
+        Console.WriteLine($"{points} added, Total: {Points}");
+        if (Points >= 100) { 
+            AchievementIntUnlocked?.Invoke(Points);
+            //AchievementStrUnlocked?.Invoke((string)Points);
+            //Console.WriteLine($"{Points} reached! You Win!"); 
         }
+        ;
     }
 }
-// [creating and using event]
-// 1.  add eventfld action
-// 2a. add eventfld?.invoke() somewhere you want it to be invoked (so people can subscribe to it)
-// 2b.   e.g. add insde a method() with if() criteria to reach
-// 3. in program.cs  add custom_methods() to the field, so these custom_methods() will run if criteria reached.

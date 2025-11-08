@@ -1,17 +1,27 @@
-﻿using System.Numerics;
-using TP.SharedLibraries;
-Console.WriteLine("Welcome to Points App 2");
-
-Player2 p = new();
-p.Achieved100Points += some_subbed_fn;
-await p.AddPoints(10);
-await p.AddPoints(20);
-await p.AddPoints(40);
-await p.AddPoints(80);
+﻿using TP.SharedLibraries;
 
 
-void some_subbed_fn(int points)
+Player2 p = new Player2();  
+p.AchievementIntUnlocked += some_fn;
+//p.AchievementUnlocked += some_fn2;
+await p.AddPoints(30);
+await p.AddPoints(30);
+await p.AddPoints(30);
+await p.AddPoints(30);
+
+static void some_fn(int points)
 {
-    Console.WriteLine($"Congratulations from Program.cs, you've reached over {points} points");
-
+    Console.WriteLine($"You Win! [some_fn]");
 }
+;
+
+
+
+//static void some_fn2(string points){
+//    Console.WriteLine($"You Win! [some_fn2]"); 
+//};
+
+//static void some_fn(int points)
+//{
+//    Console.WriteLine($"You Win from Program.cs. Total: {points}");
+//};
