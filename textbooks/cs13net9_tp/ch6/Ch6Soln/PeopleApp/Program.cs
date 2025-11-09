@@ -1,4 +1,5 @@
 ﻿using PeopleApp;
+using System.Threading.Channels;
 using TP.SharedLibraries;
 using static TP.SharedLibraries.Person;
 // [1] create person instance 
@@ -155,7 +156,7 @@ Console.WriteLine();
 Console.WriteLine("Using DG_MyMsgHandler...");
 DG_MyMsgHandler msg_handler_dg = kim.EmailMsg;
 msg_handler_dg += kim.LogMsg;
-msg_handler_dg("this is single input msg");
+msg_handler_dg("this is single input name");
 
 Console.WriteLine();
 string curr_str = "     ";
@@ -182,7 +183,7 @@ cool_hdlr3("mate3");
 //var greeter = new Greeter(p1.SayHello);  // Same as: new(p1.SayHello)
 //var greeter = new Greeter(new GreetingDelegate(p1.SayHello));
 //dg_void_str_hdlr str_hdlr = p1.SomeMethod;
-//dg_void_str_hdlr lambdaHdlr = msg => Console.WriteLine(msg);
+//dg_void_str_hdlr lambdaHdlr = name => Console.WriteLine(name);
 //Console.WriteLine("PROGRAM ENDED");
 //
 
@@ -194,3 +195,46 @@ Console.WriteLine($"DGInt_MethStrHandler.GetType(): {DGInt_MethStrHandler.GetTyp
 
 Console.WriteLine("Ran delegrate instance: DGInt_MethStrHandler('tonycules')...");
 DGInt_MethStrHandler("tonycules");
+
+//kim.SayMyName("tony abalone");
+
+DG_VD_STR_SayMyNameHandler name_handler = new(kim.SayMyName);
+name_handler("tony cules");
+
+//public delegate void DG_VD_STR_Handler(string some_str);
+DG_VD_STR_Handler vd_str_hdler_1;
+
+void TalkShiz(string name) { Console.WriteLine($"what up, {name}!"); };
+void TalkShiz2(string name) { Console.WriteLine($"what up, {name}!"); };
+
+vd_str_hdler_1 = TalkShiz;
+vd_str_hdler_1 += TalkShiz2;
+Console.WriteLine($"vd_str_hdler_1.GetType(): vd_str_hdler_1.GetType(): {vd_str_hdler_1.GetType()}");
+
+
+vd_str_hdler_1.Invoke("mi chiamo tony!");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

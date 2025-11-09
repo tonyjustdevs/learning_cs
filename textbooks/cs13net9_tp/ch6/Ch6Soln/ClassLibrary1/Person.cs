@@ -147,5 +147,21 @@ public partial class Person
         Console.WriteLine($"'{some_str}' length: {some_str.Length}");
         return some_str.Length;
     }
+    
+    public void SayMyName(string name)
+    {
+        Console.WriteLine($"Your name is: {name}");
+    }
+    //public EventHandler? Shout;
+        //instance field that is a delegate
+        //a delegate a type
+
+        //a delegate can be instantiated as an instance of the delegate type following a certain method sigh
+
+        //interestingly unlike other instances, which uses the.dot operator to access other methods() to run
+        //a delegate instance itself is runnable with parenthesis, thats quite unique right?
+        // is some method signature template that any other method can subscribe to
+
+    // normallly an delegate is something like:
 
 }
