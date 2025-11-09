@@ -1,4 +1,5 @@
-﻿using TP.SharedLibraries;
+﻿using PeopleApp;
+using TP.SharedLibraries;
 using static TP.SharedLibraries.Person;
 // [1] create person instance 
 Person anais = new Person() {
@@ -185,3 +186,11 @@ cool_hdlr3("mate3");
 //Console.WriteLine("PROGRAM ENDED");
 //
 
+
+// create DG instance pointed at Person.method
+DGInt_MethStr DGInt_MethStrHandler = new(kim.TODG_Int_MethStr);
+Console.WriteLine($"DGInt_MethStrHandler: {DGInt_MethStrHandler}");
+Console.WriteLine($"DGInt_MethStrHandler.GetType(): {DGInt_MethStrHandler.GetType()}");
+
+Console.WriteLine("Ran delegrate instance: DGInt_MethStrHandler('tonycules')...");
+DGInt_MethStrHandler("tonycules");

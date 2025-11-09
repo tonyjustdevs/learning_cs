@@ -2,7 +2,8 @@
 public class Player2
 {
     public int Points { get; private set; }
-    public event Action? AchievementUnlocked;
+    public delegate void AchievementUnlockedHandler(int points);
+    public event AchievementUnlockedHandler? AchievementUnlocked;
     public async Task AddPoints(int points)
     {
         Points += points;
@@ -11,7 +12,7 @@ public class Player2
 
         if (Points >= 100)
         {
-            AchievementUnlocked?.Invoke();
+            AchievementUnlocked?.Invoke(Points);
             //Console.WriteLine($"[Player2.cs] You won at life!");
 
         }

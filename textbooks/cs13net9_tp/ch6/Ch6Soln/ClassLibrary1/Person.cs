@@ -142,4 +142,10 @@ public partial class Person
         Console.WriteLine("'{0}' {1,-20} {2,10}",$"{some_str}", "is null or white-space:", string.IsNullOrWhiteSpace(some_str));
     }
 
+    public int TODG_Int_MethStr(string some_str)
+    {
+        Console.WriteLine($"'{some_str}' length: {some_str.Length}");
+        return some_str.Length;
+    }
+
 }

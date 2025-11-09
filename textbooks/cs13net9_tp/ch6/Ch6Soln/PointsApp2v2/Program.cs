@@ -7,8 +7,7 @@ await p.AddPoints(40);
 await p.AddPoints(30);
 await p.AddPoints(50);
 
-static void WinningMessage()
+static void WinningMessage(int Points)
 {
-    //Console.WriteLine($"You won at life! {Points} points.");
-    Console.WriteLine($"[Program.cs] You won at life!");
+    Console.WriteLine($"[Program.cs] You won at life! {Points} points.");
 }
