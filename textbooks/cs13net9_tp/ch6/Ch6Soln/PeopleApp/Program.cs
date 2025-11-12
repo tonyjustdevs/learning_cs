@@ -3,6 +3,10 @@ using System.Threading.Channels;
 using TP.SharedLibraries;
 using static TP.SharedLibraries.Person;
 // [1] create person instance 
+
+
+
+
 Person anais = new Person() {
     Name = "Anais",
     DOB = new DateTimeOffset(2000, 01, 01, 0, 0, 0, 0, TimeSpan.Zero)
@@ -214,27 +218,18 @@ Console.WriteLine($"vd_str_hdler_1.GetType(): vd_str_hdler_1.GetType(): {vd_str_
 
 vd_str_hdler_1.Invoke("mi chiamo tony!");
 
+//public DG3_EVHDLR? DG3_ShoutAtMe; // a nullable [field] with [delegate-type]
+
+// 1. instance field setup ----- // [Field] = Anon_Fn(Sender? sender, EventArgs e) => cw("mate");      
+
+// 2. instance field calling
+//kim.DG3_ShoutAtMe();
+//kim.DG3_ShoutAtMe();
 
 
+// [[[ Goal ]]]
+// 1. add   [dg.cs] delegate pre-def'n:   EventHandler, EventHandler<...> - DONE
+// 2. add   [ps.cs] delegate type-field:    Shout;
+// 3. add   [pg.cs] delegate invokation:
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+//kim.;

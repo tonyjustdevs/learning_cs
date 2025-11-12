@@ -1,6 +1,4 @@
-﻿using Microsoft.VisualBasic.FileIO;
-using System.ComponentModel.DataAnnotations;
-using System.Runtime.CompilerServices;
+﻿using Microsoft.Win32.SafeHandles;
 
 namespace TP.SharedLibraries;
 
@@ -128,18 +126,18 @@ public partial class Person
     { //Console.WriteLine("{index,alignment:format}", value);
         //Console.WriteLine($"'{some_str}' has length: '{some_str.Length}'");
         //Console.WriteLine("{0,-15} {1,-10} {2,-15:C2}", "Alice", 30, 55000.75);
-        Console.WriteLine("'{0}' {1,-20} {2,10}",$"{some_str}","has length:",some_str.Length);
+        Console.WriteLine("'{0}' {1,-20} {2,10}", $"{some_str}", "has length:", some_str.Length);
     }
 
     public void STRSTR2_isnullorempty_DG(string some_str)
     {
-        Console.WriteLine("'{0}' {1,-20} {2,10}",$"{some_str}", "is null or empty:", string.IsNullOrEmpty(some_str));
+        Console.WriteLine("'{0}' {1,-20} {2,10}", $"{some_str}", "is null or empty:", string.IsNullOrEmpty(some_str));
         //Console.WriteLine($"'{some_str}' is null or empty: '{string.IsNullOrEmpty(some_str)}'");
     }
     public void STRSTR3_isnullorws_DG(string some_str)
     {
 
-        Console.WriteLine("'{0}' {1,-20} {2,10}",$"{some_str}", "is null or white-space:", string.IsNullOrWhiteSpace(some_str));
+        Console.WriteLine("'{0}' {1,-20} {2,10}", $"{some_str}", "is null or white-space:", string.IsNullOrWhiteSpace(some_str));
     }
 
     public int TODG_Int_MethStr(string some_str)
@@ -147,21 +145,88 @@ public partial class Person
         Console.WriteLine($"'{some_str}' length: {some_str.Length}");
         return some_str.Length;
     }
-    
+
     public void SayMyName(string name)
     {
         Console.WriteLine($"Your name is: {name}");
     }
     //public EventHandler? Shout;
-        //instance field that is a delegate
-        //a delegate a type
+    //instance field that is a delegate
+    //a delegate a type
 
-        //a delegate can be instantiated as an instance of the delegate type following a certain method sigh
+    //a delegate can be instantiated as an instance of the delegate type following a certain method sigh
 
-        //interestingly unlike other instances, which uses the.dot operator to access other methods() to run
-        //a delegate instance itself is runnable with parenthesis, thats quite unique right?
-        // is some method signature template that any other method can subscribe to
+    //interestingly unlike other instances, which uses the.dot operator to access other methods() to run
+    //a delegate instance itself is runnable with parenthesis, thats quite unique right?
+    // is some method signature template that any other method can subscribe to
 
     // normallly an delegate is something like:
+    //public void GreetName(string name) => Console.WriteLine($"Hello {name}");
+
+    // create field of type delegate
+    //public DG3_EVHDLR? DG3_ShoutAtMe; // a nullable [field] with [delegate-type]
+
+    // add delegate field;
+    TPEventHandler? ShoutHandlerArgFree1;  // ok null but invocation requires invoke?...
+    TPEventHandler ShoutHandlerArgFree2 = (mate, sup) => { }; // anon fn ok
+
+    // normally in [prog.cs]: person.ShoutHandlerArgFree();
+    // but to call ShoutHandlerArgFree with another function
+    // use:
+
+    void doShout1()
+    {
+        ShoutHandlerArgFree1?.Invoke(this, EventArgs.Empty); // Nullable field
+
+    }
+
+    void doShout2()
+    {
+        ShoutHandlerArgFree2(this, EventArgs.Empty); // non-null field (initialised)
+
+    }
+
+    // add delegate event handler
+    // Write function that runs delegates
+    // add field [eventhandler]
+    // add methd[eventhndler_runner()] that runs it: eventhandler()
+
+    public TPEventHandler? Shout; //
+    // this is one just instance of type TPEH that also happens to be null
+    // recall all TPEH types accept (object? sender, EventArgs e)
+    // its null
+    // Shout is a field
+    // [prog.cs]: it can be invoked person.Shout(); (if already inc matching-methods)
+    // [pers.cs]: 
+    public void TPEventHandlerRunner()
+    {
+        
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }
+
+

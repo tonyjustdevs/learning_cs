@@ -35,3 +35,5 @@ public delegate void DG_VD_STR_Handler(string some_str);
 
 
 //public delegate void EvHdlr()
+
+
