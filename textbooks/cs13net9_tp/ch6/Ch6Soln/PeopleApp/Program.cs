@@ -4,9 +4,6 @@ using TP.SharedLibraries;
 using static TP.SharedLibraries.Person;
 // [1] create person instance 
 
-
-
-
 Person anais = new Person() {
     Name = "Anais",
     DOB = new DateTimeOffset(2000, 01, 01, 0, 0, 0, 0, TimeSpan.Zero)
@@ -233,3 +230,33 @@ vd_str_hdler_1.Invoke("mi chiamo tony!");
 // 3. add   [pg.cs] delegate invokation:
 
 //kim.;
+
+// [pers.cs]: 
+// [ testing ]
+// 1. SETUP:    create person instance p // kim
+// 2. NULL:     p.Shout will be null, test if ull
+//try
+//{
+//    //kim.Shout.Invoke(kim,EventArgs.Empty); // works but null is NullReferenceException
+//    kim.Shout?.Invoke(kim, EventArgs.Empty); // works and skips null instead of exception
+//}
+//catch (Exception e)
+//{
+//    Console.WriteLine($"tp error: {e}");
+//}
+//finally
+//{
+//    Console.WriteLine("[----------- shout ended -----------]");
+//}
+
+// 3. ASSIGN:   p.Shout = method, allocate some method following shape (sender, e)
+// 4. RUN:      p.shout() run it\
+
+// 1. [pers.cs] add EventHandler {EH}
+// 2. [pers.cs] add field [Shout]     - {EH_instance)
+// 3. [pers.cs] add field [AngerLvl]  - int
+// 4. [pers.cs] add methd [Poke()]    - void: incr [Anger], calls EH_instance() -> calls [atta ched-methods]
+
+
+
+

@@ -1,4 +1,4 @@
-﻿using Microsoft.Win32.SafeHandles;
+﻿using System.Diagnostics.Tracing;
 
 namespace TP.SharedLibraries;
 
@@ -14,7 +14,12 @@ public partial class Person
     public bool isMarried => Spouses.Count > 0;
     public int SpousesCount => Spouses.Count;
     public bool isMarried2 { get { return Spouses.Count > 0; } }
-
+    public Person() { }
+    public Person(string? name, DateTimeOffset dob)
+    {
+        Name = name;
+        DOB = dob;
+    }
     #region InstanceMethods
     public void WriteToConsole() => Console.WriteLine(
         $"'{Name}' " +
@@ -128,7 +133,6 @@ public partial class Person
         //Console.WriteLine("{0,-15} {1,-10} {2,-15:C2}", "Alice", 30, 55000.75);
         Console.WriteLine("'{0}' {1,-20} {2,10}", $"{some_str}", "has length:", some_str.Length);
     }
-
     public void STRSTR2_isnullorempty_DG(string some_str)
     {
         Console.WriteLine("'{0}' {1,-20} {2,10}", $"{some_str}", "is null or empty:", string.IsNullOrEmpty(some_str));
@@ -139,13 +143,11 @@ public partial class Person
 
         Console.WriteLine("'{0}' {1,-20} {2,10}", $"{some_str}", "is null or white-space:", string.IsNullOrWhiteSpace(some_str));
     }
-
     public int TODG_Int_MethStr(string some_str)
     {
         Console.WriteLine($"'{some_str}' length: {some_str.Length}");
         return some_str.Length;
     }
-
     public void SayMyName(string name)
     {
         Console.WriteLine($"Your name is: {name}");
@@ -191,42 +193,55 @@ public partial class Person
     // add field [eventhandler]
     // add methd[eventhndler_runner()] that runs it: eventhandler()
 
-    public TPEventHandler? Shout; //
-    // this is one just instance of type TPEH that also happens to be null
-    // recall all TPEH types accept (object? sender, EventArgs e)
-    // its null
-    // Shout is a field
+    // - a field of a [type Person]
+    // - [type TPEH] instnace allowed to be null
+    // - accepts (object? sender, EventArgs e)
     // [prog.cs]: it can be invoked person.Shout(); (if already inc matching-methods)
+     
+    // 
     // [pers.cs]: 
-    public void TPEventHandlerRunner()
-    {
+    // [ testing ]
+    // 1. SETUP:    create person instance p
+    // 2. NULL:     p.Shout will be null, test if ull
+    // 3. ASSIGN:   p.Shout = method, allocate some method following shape (sender, e)
+    // 4. RUN:      p.shout() run it
+    //public void TPEventHandlerRunner()
+    //{
         
+    //}
+
+    public TPEventHandler? Shout;
+
+    // why do we need to write a function to run shout?
+
+
+    public void RunShout()
+    {   // Shout must have be: (object? sender, EventArgs e);
+        Console.WriteLine($"[{this.Name}] is running RunShout()");
+        Shout?.Invoke(this, EventArgs.Empty); // nothing should happen
     }
 
+    // 1. [pers.cs] add EventHandler {EH}
+    // 2. [pers.cs] add field [Shout]     - {EH_instance)
+    // 3. [pers.cs] add field [AngerLvl]  - int
+    // 4. [pers.cs] add methd [Poke()]    - void: incr [Anger], calls EH_instance() -> calls [atta ched-methods]
 
+    public delegate void AngerEventHandler(object? sender, EventArgs e);
+    public delegate void AngerEventHandler<TEventArgs>(object? sender, EventArgs e);
 
+    public AngerEventHandler AngryShout;
+    public int AngerLevel;
+    public void Poke()
+    {
+        AngerLevel++;
+        if (AngerLevel <= 3)
+        {
+            return; 
+        }
+        // call EH instance
+        AngryShout?.Invoke(this, EventArgs);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    }
 }
 
 
