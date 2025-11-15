@@ -1,20 +1,22 @@
 ﻿using PeopleApp;
+using System.Reflection.Metadata;
 using System.Threading.Channels;
 using TP.SharedLibraries;
 using static TP.SharedLibraries.Person;
 // [1] create person instance 
 
-Person anais = new Person() {
+Person anais = new Person()
+{
     Name = "Anais",
     DOB = new DateTimeOffset(2000, 01, 01, 0, 0, 0, 0, TimeSpan.Zero)
 };
-Console.WriteLine("Welcome to '{0}'s Saigon Love Story",anais.Name);
-anais.WriteToConsole();  
+Console.WriteLine("Welcome to '{0}'s Saigon Love Story", anais.Name);
+anais.WriteToConsole();
 
 Console.WriteLine("before bangin");
 anais.WriteKidsToConsole(); // get kiddo info   (#no kids)
 // [2] create kiddos instance
-List<Person> harry_kiddos = new() { 
+List<Person> harry_kiddos = new() {
     new Person(){Name="adolf"},
     new Person(){Name="ikea"},
     new Person(){Name="dryck!"}
@@ -25,9 +27,9 @@ anais.Children = harry_kiddos;
 Console.WriteLine("after bangin");
 anais.WriteKidsToConsole(); // get kiddo info   (#no kids)
 
-Console.WriteLine("'{0}' pre-marriage: {1}",anais.Name,anais.Spouses.Count);
-Person.Marry(anais, new Person() { Name="mr bean"});
-Console.WriteLine("'{0}' pos-marriage: {1}", anais.Name,anais.Spouses.Count);
+Console.WriteLine("'{0}' pre-marriage: {1}", anais.Name, anais.Spouses.Count);
+Person.Marry(anais, new Person() { Name = "mr bean" });
+Console.WriteLine("'{0}' pos-marriage: {1}", anais.Name, anais.Spouses.Count);
 Console.WriteLine("'{0}''s spouse-name: {1}", anais.Name, anais.Spouses[0].Name);
 
 Console.WriteLine("To be continued...");
@@ -63,8 +65,8 @@ Console.WriteLine($"kim.isMarried: {kim.isMarried}, kim.Spouses.Count(): {kim.Sp
 // 2. add new-school generic hash
 
 System.Collections.Hashtable my_hash_tbl = new();
-my_hash_tbl.Add(1,  "aaa");
-my_hash_tbl.Add(2,  "bbb");
+my_hash_tbl.Add(1, "aaa");
+my_hash_tbl.Add(2, "bbb");
 my_hash_tbl.Add(3, "ccc");
 my_hash_tbl.Add(kim, "ddd");
 Console.WriteLine();
@@ -121,7 +123,7 @@ mate_nongen_hashtbl[kim] = "cool beans";
 Console.WriteLine("NON-GEN: Hashtable");
 foreach (var mate_key in mate_nongen_hashtbl.Keys)
 {
-    Console.WriteLine($"key '{mate_key}' (keytype '({mate_key.GetType()})'): value '{mate_nongen_hashtbl[mate_key]}'"); 
+    Console.WriteLine($"key '{mate_key}' (keytype '({mate_key.GetType()})'): value '{mate_nongen_hashtbl[mate_key]}'");
 }
 
 
@@ -129,7 +131,7 @@ foreach (var mate_key in mate_nongen_hashtbl.Keys)
 // - type safe
 // - no import required   
 Console.WriteLine("NON-GEN: Dictionary<int,str>");
-Dictionary<int,string> mate_gen_dct = new();
+Dictionary<int, string> mate_gen_dct = new();
 mate_gen_dct[0] = "zero";
 mate_gen_dct[1] = "one";
 mate_gen_dct[anais.Children.Count] = "cool beans";
@@ -162,13 +164,13 @@ msg_handler_dg("this is single input name");
 Console.WriteLine();
 string curr_str = "     ";
 
-Console.WriteLine($"Running Delegate on '{curr_str}'..." );
+Console.WriteLine($"Running Delegate on '{curr_str}'...");
 //public delegate void DG_VOIDSTR_STR_VALIDATOR_Handler(string some_str);
 DG_VOIDSTR_STR_VALIDATOR_Handler cool_hdlr1 = kim.STRSTR1_getlen_DG;
 DG_VOIDSTR_STR_VALIDATOR_Handler cool_hdlr2 = new(kim.STRSTR1_getlen_DG);
 var cool_hdlr3 = new DG_VOIDSTR_STR_VALIDATOR_Handler(kim.STRSTR1_getlen_DG);
 
-cool_hdlr1("mate1");    
+cool_hdlr1("mate1");
 cool_hdlr2("mate2");
 cool_hdlr3("mate3");
 
@@ -205,8 +207,10 @@ name_handler("tony cules");
 //public delegate void DG_VD_STR_Handler(string some_str);
 DG_VD_STR_Handler vd_str_hdler_1;
 
-void TalkShiz(string name) { Console.WriteLine($"what up, {name}!"); };
-void TalkShiz2(string name) { Console.WriteLine($"what up, {name}!"); };
+void TalkShiz(string name) { Console.WriteLine($"what up, {name}!"); }
+;
+void TalkShiz2(string name) { Console.WriteLine($"what up, {name}!"); }
+;
 
 vd_str_hdler_1 = TalkShiz;
 vd_str_hdler_1 += TalkShiz2;
@@ -257,6 +261,54 @@ vd_str_hdler_1.Invoke("mi chiamo tony!");
 // 3. [pers.cs] add field [AngerLvl]  - int
 // 4. [pers.cs] add methd [Poke()]    - void: incr [Anger], calls EH_instance() -> calls [atta ched-methods]
 
+kim.Poke();
+kim.Poke();
+kim.Poke();
+kim.Poke(); /// reset
+
+// attach a method to AngryEventHandler
+kim.AngryShouts += ShoutAtYou;
+kim.Poke();
+kim.Poke();
+kim.Poke();
+kim.Poke(); /// reset
+
+static void ShoutAtYou(object? sender, EventArgs e) 
+{
+    Console.WriteLine($"hey {sender}, bugger off you!"); 
+};
 
 
+// 4.a  add [lgc][pro.cs] SS_SH_obj & Pers_obj
+// 4.b  add [lgc][pro.cs] Run Pers_obj.IncrPower() 3-times
+// 4.c  add [lgc][pro.cs] SS_SH_obj +- Mth
+// 4.d  add [lgc][pro.cs] Run Pers_obj.IncrPower() 3-times
+Console.WriteLine();
+kim.Punch(anais);
+kim.Punch(anais);
+kim.Punch(anais);
+kim.SuperSayanify += SuperSayanReached;
+Console.WriteLine();
+kim.Punch(anais);
+kim.Punch(anais);
+kim.Punch(anais);
+Console.WriteLine();
+kim.Punch(anais);
+kim.Punch(anais);
+kim.Punch(anais);
 
+
+void SuperSayanReached(object? sender, EventArgs e)
+{
+    //Console.WriteLine($"{sender} has reached SuperSayan Mode!");
+    if (sender is null)
+    {
+        Console.WriteLine("sender is null");
+        return;
+    }
+
+    //Person? p = sender as Person;  // reuturns Persons or null
+    //Person? p = sender as Person;  // reuturns Persons or null
+    if (sender is not Person p) return;
+    Console.WriteLine($"{p?.Name} has reached SuperSayan Mode!");
+}

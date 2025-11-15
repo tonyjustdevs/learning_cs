@@ -229,19 +229,45 @@ public partial class Person
     public delegate void AngerEventHandler(object? sender, EventArgs e);
     public delegate void AngerEventHandler<TEventArgs>(object? sender, EventArgs e);
 
-    public AngerEventHandler AngryShout;
+    public AngerEventHandler? AngryShouts;
     public int AngerLevel;
     public void Poke()
     {
         AngerLevel++;
-        if (AngerLevel <= 3)
-        {
+        Console.WriteLine($"{this.Name} got Poked! Anger Level: {AngerLevel}");
+        if (AngerLevel <= 3) { 
             return; 
         }
-        // call EH instance
-        AngryShout?.Invoke(this, EventArgs);
+
+        AngryShouts?.Invoke(this, EventArgs.Empty); // call EH instance
+        AngerLevel = 0;
+        Console.WriteLine($"{this.Name} has calmed down... Anger Level: {AngerLevel}");
+        return;
+
+        // create person instance
+        // run poke() 4-times
+        // 
+    }
+
+    public void Poke2(object? sender, EventArgs e)
+    {
+        if (AngerLevel <= 3) { return; }
+        if (sender is not Person p) { return; }
+        
+        Shout?.Invoke(this, EventArgs.Empty);
 
     }
+
+        // 1.   add [fld][per.cs] SuperSayanLevel
+        // 2.   add [fld][per.cs] SuperSayanEventHandler
+        // 3.   add [mth][per.cs] IncrPower()
+        // 3a.  add [lgc][per.cs] SS_L++
+        // 3b.  add [lgc][per.cs] if SS_L>3 -> run SS_EH()
+
+        // 4.a  add [lgc][pro.cs] SS_SH_obj & Pers_obj
+        // 4.b  add [lgc][pro.cs] Run Pers_obj.IncrPower() 3-times
+        // 4.c  add [lgc][pro.cs] SS_SH_obj +- Mth
+        // 4.d  add [lgc][pro.cs] Run Pers_obj.IncrPower() 3-times
 }
 
 
