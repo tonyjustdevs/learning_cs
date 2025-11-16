@@ -317,6 +317,39 @@ public partial class Person
         //GoalCount = 0;
     }
 
+    // --------------- BEG ThreesACrowd Logic --------------- //
+    // [1]  [pers.cs] add {field} (event) CrowdEventHandler
+    public event EventHandler CrowdEventHandler;
+    public event EventHandler CrowdEventHandlerWithArgs;
+    public event EventHandler<CrowdEventArgs> CrowdEventHandlerWithArgs2;
+    //public event EventHandler<CrowdEventArgs> CrowdEventHandlerWithArgs3;
+    //public delegate void EventHandler<CrowdEventArgs> CrowdEventHandlerWithArgs4(Person? person, CrowdEventArgs e);
 
+    // [2]  [pers.cs] add {field} (int) PersonCounter;
+    public int PersonCounter;
+    
+    // [3]  [pers.cs] add {method} AddPerson():
+    public void AddPerson()
+    {
+        PersonCounter++;                                             // [3a] [pers.cs] - PersonCounter++
+        Console.WriteLine($"Person added. People: {PersonCounter}"); // [3b] [pers.cs] - Add PC output
+        if (PersonCounter % 5 != 0) { return; };                     // [3c] [pers.cs] - add req logic to run EventHandler() 
+        CrowdEventHandler?.Invoke(this, EventArgs.Empty);            // [3d] [pers.cs] - runs EventHandler() (runs all attached methods)
+
+        //var event_args = new CrowdEventArgs(PersonCounter);                       // v1
+        //CrowdEventHandlerWithArgs?.Invoke(this, event_args);                      // v1
+        CrowdEventHandlerWithArgs?.Invoke(this, new CrowdEventArgs(PersonCounter)); // v2
+        CrowdEventHandlerWithArgs2?.Invoke(this, new CrowdEventArgs(PersonCounter)); // v3
+        //CrowdEventHandlerWithArgs3?.Invoke(this, new CrowdEventArgs(PersonCounter)); // v3
+        //CrowdEventHandlerWithArgs4?.Invoke(this, new CrowdEventArgs(PersonCounter)); // v3
+
+    }
+    // [4]  [prog.cs] add Person instance
+    // [5]  [prog.cs] attach method to += CrowdEventHandler
+    // [6]  [prog.cs] run Person.AddPerson()
+    // [8]  [prog.cs] validate results
+
+
+    // --------------- END ThreesACrowd Logic --------------- //
 }
 

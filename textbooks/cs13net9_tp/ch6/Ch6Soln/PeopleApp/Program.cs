@@ -1,5 +1,6 @@
 ﻿using PeopleApp;
 using System.Reflection.Metadata;
+using System.Security.Cryptography;
 using System.Threading.Channels;
 using TP.SharedLibraries;
 using static TP.SharedLibraries.Person;
@@ -367,3 +368,42 @@ void ScoredAHattrick(object? sender, EventArgs e)
     if (sender is not Person p) return;
     Console.WriteLine($"{p.Name} Scored a Hattrick!!! Ballin! [prog.cs]");
 }
+
+Console.WriteLine();
+
+Person messi = new() {                                     // [4]  [prog.cs] add Person instance
+    Name="Messi", 
+    DOB=new DateTimeOffset(1990,06,07,0,0,0,0,TimeSpan.Zero)};
+messi.CrowdEventHandler += OnCrowdEvent;                   // [5]  [prog.cs] attach method to += CrowdEventHandler
+messi.CrowdEventHandlerWithArgs += OnCrowdEventWithArgs;   // [5]  [prog.cs] attach method to += CrowdEventHandler
+messi.CrowdEventHandlerWithArgs2 += OnCrowdEventWithArgs2; // [5]  [prog.cs] attach method to += CrowdEventHandler
+//messi.CrowdEventHandlerWithArgs4 += OnCrowdEventWithArgs3; // [5]  [prog.cs] attach method to += CrowdEventHandler
+
+for (int i = 0; i < 12; i++)
+{
+    messi.AddPerson();                                     // [6]  [prog.cs] run Person.AddPerson()
+}
+// [8]  [prog.cs] validate results
+void OnCrowdEvent(object? sender, EventArgs e)
+{
+    //Console.WriteLine("5's a crowd! [args]");
+}
+void OnCrowdEventWithArgs(object? sender, EventArgs e)     // v1
+{
+    //if (sender is not Person p) return;
+    //CrowdEventArgs? ce = e as CrowdEventArgs;
+    //Console.WriteLine($"{ce?.PersonCount}'s a crowd! [ceargs]");
+}
+
+void OnCrowdEventWithArgs2(object? sender, CrowdEventArgs e) // v1
+{
+    if (sender is not Person p) return;
+    //CrowdEventArgs? ce = e as CrowdEventArgs;
+    Console.WriteLine($"{e.PersonCount}'s a crowd! [ceargs]");
+}
+
+//void OnCrowdEventWithArgs3(Person? person, CrowdEventArgs e) // v1
+//{
+//    //CrowdEventArgs? ce = e as CrowdEventArgs;
+//    Console.WriteLine($"{e.PersonCount}'s a crowd! [ceargs]");
+//}
