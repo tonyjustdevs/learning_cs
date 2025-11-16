@@ -1,4 +1,8 @@
 ﻿namespace TP.SharedLibraries;
+public partial class Person
+{
+    public event EventHandler? StrikeEventHandler;
+}
 
 public class StrikeEventArgs : EventArgs
 {

@@ -300,6 +300,23 @@ public partial class Person
     {
         Console.WriteLine($"Strike {((StrikeEventArgs)e).StrikeNo}! You're Out! [pers1.cs]"); 
     }
-}
 
+    public EventHandler? GoalScoreHandler_1; // === public event void ScoreAGoal(object? s, EventArgs e)
+    public event EventHandler? GoalScoreHandler_2; // === public event void ScoreAGoal(object? s, EventArgs e)
+    public int GoalCount;
+    public void ScoreAGoal()
+    {
+        GoalCount++;
+        Console.WriteLine($"{this.Name} scored a goal! Goals: {GoalCount}");
+        if (GoalCount % 3 != 0) { return; };
+
+        // HattrickEvent
+        GoalScoreHandler_1?.Invoke(this, EventArgs.Empty);
+
+        // Reset
+        //GoalCount = 0;
+    }
+
+
+}
 

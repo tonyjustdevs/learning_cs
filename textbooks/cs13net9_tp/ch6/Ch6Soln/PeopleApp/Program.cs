@@ -334,14 +334,25 @@ vd_str_hdler_1.Invoke("mi chiamo tony!");
 //                    // ---> System.ArgumentException: At least one object must implement IComparable.
 //Person.OutputPersonNames(ppl);
 
-kim.StrikeOut();
-kim.StrikeOut();
-kim.StrikeOut();
 kim.StrikeNoHandler += YoureOutProg;
 kim.StrikeNoHandler += kim.YoureOutP1;
 kim.StrikeOut();
 kim.StrikeOut();
 kim.StrikeOut();
+
+kim.GoalScoreHandler_1 += ScoredAHattrick;
+kim.ScoreAGoal();
+kim.ScoreAGoal();
+kim.ScoreAGoal();
+
+kim.ScoreAGoal();
+kim.ScoreAGoal();
+kim.ScoreAGoal();
+
+kim.ScoreAGoal();
+kim.ScoreAGoal();
+kim.ScoreAGoal();
+kim.ScoreAGoal();
 
 void YoureOutProg(object? sender, EventArgs e)
 {
@@ -349,4 +360,10 @@ void YoureOutProg(object? sender, EventArgs e)
 
     StrikeEventArgs? se = e as StrikeEventArgs;
     Console.WriteLine($"{p.Name} has striked out, Strike {se?.StrikeNo} [prog.cs]");
+}
+
+void ScoredAHattrick(object? sender, EventArgs e)
+{
+    if (sender is not Person p) return;
+    Console.WriteLine($"{p.Name} Scored a Hattrick!!! Ballin! [prog.cs]");
 }
