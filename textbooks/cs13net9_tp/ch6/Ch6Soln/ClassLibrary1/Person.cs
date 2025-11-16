@@ -2,7 +2,8 @@
 
 namespace TP.SharedLibraries;
 
-public partial class Person
+//public partial class Person: IComparable<Person?>
+public partial class Person 
 {
 
     #region Properties
@@ -169,18 +170,18 @@ public partial class Person
     //public DG3_EVHDLR? DG3_ShoutAtMe; // a nullable [field] with [delegate-type]
 
     // add delegate field;
-    TPEventHandler? ShoutHandlerArgFree1;  // ok null but invocation requires invoke?...
+    //TPEventHandler? ShoutHandlerArgFree1;  // ok null but invocation requires invoke?...
     TPEventHandler ShoutHandlerArgFree2 = (mate, sup) => { }; // anon fn ok
 
     // normally in [prog.cs]: person.ShoutHandlerArgFree();
     // but to call ShoutHandlerArgFree with another function
     // use:
 
-    void doShout1()
-    {
-        ShoutHandlerArgFree1?.Invoke(this, EventArgs.Empty); // Nullable field
+    //void doShout1()
+    //{
+    //    ShoutHandlerArgFree1?.Invoke(this, EventArgs.Empty); // Nullable field
 
-    }
+    //}
 
     void doShout2()
     {
@@ -258,16 +259,47 @@ public partial class Person
 
     }
 
-        // 1.   add [fld][per.cs] SuperSayanLevel
-        // 2.   add [fld][per.cs] SuperSayanEventHandler
-        // 3.   add [mth][per.cs] IncrPower()
-        // 3a.  add [lgc][per.cs] SS_L++
-        // 3b.  add [lgc][per.cs] if SS_L>3 -> run SS_EH()
+    // 1.   add [fld][per.cs] SuperSayanLevel
+    // 2.   add [fld][per.cs] SuperSayanEventHandler
+    // 3.   add [mth][per.cs] IncrPower()
+    // 3a.  add [lgc][per.cs] SS_L++
+    // 3b.  add [lgc][per.cs] if SS_L>3 -> run SS_EH()
 
-        // 4.a  add [lgc][pro.cs] SS_SH_obj & Pers_obj
-        // 4.b  add [lgc][pro.cs] Run Pers_obj.IncrPower() 3-times
-        // 4.c  add [lgc][pro.cs] SS_SH_obj +- Mth
-        // 4.d  add [lgc][pro.cs] Run Pers_obj.IncrPower() 3-times
+    // 4.a  add [lgc][pro.cs] SS_SH_obj & Pers_obj
+    // 4.b  add [lgc][pro.cs] Run Pers_obj.IncrPower() 3-times
+    // 4.c  add [lgc][pro.cs] SS_SH_obj +- Mth
+    // 4.d  add [lgc][pro.cs] Run Pers_obj.IncrPower() 3-times
+
+    // Interfaces [A]
+    // 1a.  add [sta][mth]  OutputPersonNames(Inenumerable<Person?>)
+    // 2b.  add [lgc][mth]  for each person ...
+    // 3.   add [lgc][mth]  output Name (null logic)
+
+    public static void OutputPersonNames(IEnumerable<Person?> ppl)
+    {
+        foreach (Person? p in ppl)
+        {
+            string msg = p is null ? "<null> Person" : p.Name ?? "Name is <snull>";
+            Console.WriteLine(msg);
+        }
+    }
+
+    private int StrikeNo;
+    //public event EventHandler? StrikeNoHandler;
+    public event EventHandler<StrikeEventArgs>? StrikeNoHandler;
+    public void StrikeOut()
+    {
+        StrikeNo += 1;
+        Console.WriteLine($"Hit & A Miss, Strike: {StrikeNo}");
+        if (StrikeNo < 2) { return; }
+        StrikeNoHandler?.Invoke(this, new StrikeEventArgs(StrikeNo));
+        StrikeNo = 0;
+        Console.WriteLine($"\nNext Hitter up!");
+    }
+    public void YoureOutP1(object? sender, EventArgs e)
+    {
+        Console.WriteLine($"Strike {((StrikeEventArgs)e).StrikeNo}! You're Out! [pers1.cs]"); 
+    }
 }
 
 

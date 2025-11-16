@@ -261,54 +261,92 @@ vd_str_hdler_1.Invoke("mi chiamo tony!");
 // 3. [pers.cs] add field [AngerLvl]  - int
 // 4. [pers.cs] add methd [Poke()]    - void: incr [Anger], calls EH_instance() -> calls [atta ched-methods]
 
-kim.Poke();
-kim.Poke();
-kim.Poke();
-kim.Poke(); /// reset
+//kim.Poke();
+//kim.Poke();
+//kim.Poke();
+//kim.Poke(); /// reset
 
-// attach a method to AngryEventHandler
-kim.AngryShouts += ShoutAtYou;
-kim.Poke();
-kim.Poke();
-kim.Poke();
-kim.Poke(); /// reset
+//// attach a method to AngryEventHandler
+//kim.AngryShouts += ShoutAtYou;
+//kim.Poke();
+//kim.Poke();
+//kim.Poke();
+//kim.Poke(); /// reset
 
-static void ShoutAtYou(object? sender, EventArgs e) 
-{
-    Console.WriteLine($"hey {sender}, bugger off you!"); 
-};
+//static void ShoutAtYou(object? sender, EventArgs e) 
+//{
+//    Console.WriteLine($"hey {sender}, bugger off you!"); 
+//};
 
 
 // 4.a  add [lgc][pro.cs] SS_SH_obj & Pers_obj
 // 4.b  add [lgc][pro.cs] Run Pers_obj.IncrPower() 3-times
 // 4.c  add [lgc][pro.cs] SS_SH_obj +- Mth
 // 4.d  add [lgc][pro.cs] Run Pers_obj.IncrPower() 3-times
-Console.WriteLine();
-kim.Punch(anais);
-kim.Punch(anais);
-kim.Punch(anais);
-kim.SuperSayanify += SuperSayanReached;
-Console.WriteLine();
-kim.Punch(anais);
-kim.Punch(anais);
-kim.Punch(anais);
-Console.WriteLine();
-kim.Punch(anais);
-kim.Punch(anais);
-kim.Punch(anais);
+//Console.WriteLine();
+//kim.Punch(anais);
+//kim.Punch(anais);
+//kim.Punch(anais);
+//kim.SuperSayanify += SuperSayanReached;
+//Console.WriteLine();
+//kim.Punch(anais);
+//kim.Punch(anais);
+//kim.Punch(anais);
+//Console.WriteLine();
+//kim.Punch(anais);
+//kim.Punch(anais);
+//kim.Punch(anais);
 
 
-void SuperSayanReached(object? sender, EventArgs e)
+//void SuperSayanReached(object? sender, EventArgs e)
+//{
+//    //Console.WriteLine($"{sender} has reached SuperSayan Mode!");
+//    if (sender is null)
+//    {
+//        Console.WriteLine("sender is null");
+//        return;
+//    }
+
+//    //Person? p = sender as Person;  // reuturns Persons or null
+//    //Person? p = sender as Person;  // reuturns Persons or null
+//    if (sender is not Person p) return;
+//    Console.WriteLine($"{p?.Name} has reached SuperSayan Mode!");
+//}
+
+// create list of person
+// run Person.OutputPersonNames(list_of_ppl)
+//List<Person?> real_ppl = new()
+//{
+//    Person james = new()
+
+//};
+//Person?[] ppl = {
+//    new("mate", new DateTimeOffset()),
+//    null,
+//    new("cuz",  new DateTimeOffset()),
+//    new(null,  new DateTimeOffset()),
+//    new("legend",  new DateTimeOffset()),
+//};
+
+//Person.OutputPersonNames(ppl);
+//Array.Sort(ppl);    // wihtout IComparable
+//                    // Unhandled exception. System.InvalidOperationException: Failed to compare two elements in the array.
+//                    // ---> System.ArgumentException: At least one object must implement IComparable.
+//Person.OutputPersonNames(ppl);
+
+kim.StrikeOut();
+kim.StrikeOut();
+kim.StrikeOut();
+kim.StrikeNoHandler += YoureOutProg;
+kim.StrikeNoHandler += kim.YoureOutP1;
+kim.StrikeOut();
+kim.StrikeOut();
+kim.StrikeOut();
+
+void YoureOutProg(object? sender, EventArgs e)
 {
-    //Console.WriteLine($"{sender} has reached SuperSayan Mode!");
-    if (sender is null)
-    {
-        Console.WriteLine("sender is null");
-        return;
-    }
-
-    //Person? p = sender as Person;  // reuturns Persons or null
-    //Person? p = sender as Person;  // reuturns Persons or null
     if (sender is not Person p) return;
-    Console.WriteLine($"{p?.Name} has reached SuperSayan Mode!");
+
+    StrikeEventArgs? se = e as StrikeEventArgs;
+    Console.WriteLine($"{p.Name} has striked out, Strike {se?.StrikeNo} [prog.cs]");
 }
