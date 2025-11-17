@@ -1,9 +1,8 @@
-﻿using System.Diagnostics.Tracing;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.Diagnostics.Tracing;
 
 namespace TP.SharedLibraries;
-
-//public partial class Person: IComparable<Person?>
-public partial class Person 
+public partial class Person : IComparable<Person?>
 {
 
     #region Properties
@@ -198,7 +197,7 @@ public partial class Person
     // - [type TPEH] instnace allowed to be null
     // - accepts (object? sender, EventArgs e)
     // [prog.cs]: it can be invoked person.Shout(); (if already inc matching-methods)
-     
+
     // 
     // [pers.cs]: 
     // [ testing ]
@@ -208,7 +207,7 @@ public partial class Person
     // 4. RUN:      p.shout() run it
     //public void TPEventHandlerRunner()
     //{
-        
+
     //}
 
     public TPEventHandler? Shout;
@@ -236,8 +235,9 @@ public partial class Person
     {
         AngerLevel++;
         Console.WriteLine($"{this.Name} got Poked! Anger Level: {AngerLevel}");
-        if (AngerLevel <= 3) { 
-            return; 
+        if (AngerLevel <= 3)
+        {
+            return;
         }
 
         AngryShouts?.Invoke(this, EventArgs.Empty); // call EH instance
@@ -254,7 +254,7 @@ public partial class Person
     {
         if (AngerLevel <= 3) { return; }
         if (sender is not Person p) { return; }
-        
+
         Shout?.Invoke(this, EventArgs.Empty);
 
     }
@@ -298,7 +298,7 @@ public partial class Person
     }
     public void YoureOutP1(object? sender, EventArgs e)
     {
-        Console.WriteLine($"Strike {((StrikeEventArgs)e).StrikeNo}! You're Out! [pers1.cs]"); 
+        Console.WriteLine($"Strike {((StrikeEventArgs)e).StrikeNo}! You're Out! [pers1.cs]");
     }
 
     public EventHandler? GoalScoreHandler_1; // === public event void ScoreAGoal(object? s, EventArgs e)
@@ -308,7 +308,8 @@ public partial class Person
     {
         GoalCount++;
         Console.WriteLine($"{this.Name} scored a goal! Goals: {GoalCount}");
-        if (GoalCount % 3 != 0) { return; };
+        if (GoalCount % 3 != 0) { return; }
+        ;
 
         // HattrickEvent
         GoalScoreHandler_1?.Invoke(this, EventArgs.Empty);
@@ -327,13 +328,14 @@ public partial class Person
 
     // [2]  [pers.cs] add {field} (int) PersonCounter;
     public int PersonCounter;
-    
+
     // [3]  [pers.cs] add {method} AddPerson():
     public void AddPerson()
     {
         PersonCounter++;                                             // [3a] [pers.cs] - PersonCounter++
         Console.WriteLine($"Person added. People: {PersonCounter}"); // [3b] [pers.cs] - Add PC output
-        if (PersonCounter % 5 != 0) { return; };                     // [3c] [pers.cs] - add req logic to run EventHandler() 
+        if (PersonCounter % 5 != 0) { return; }
+        ;                     // [3c] [pers.cs] - add req logic to run EventHandler() 
         CrowdEventHandler?.Invoke(this, EventArgs.Empty);            // [3d] [pers.cs] - runs EventHandler() (runs all attached methods)
 
         //var event_args = new CrowdEventArgs(PersonCounter);                       // v1
@@ -344,12 +346,21 @@ public partial class Person
         //CrowdEventHandlerWithArgs4?.Invoke(this, new CrowdEventArgs(PersonCounter)); // v3
 
     }
-    // [4]  [prog.cs] add Person instance
-    // [5]  [prog.cs] attach method to += CrowdEventHandler
-    // [6]  [prog.cs] run Person.AddPerson()
-    // [8]  [prog.cs] validate results
 
+    public int CompareTo(Person? other)
+    {
+        if (other == null) return 1; // non-null > null
+        if (Name == null) return other.Name == null ? 0 : -1;
+        else
+        {
+            int instance_value = (Name?.Length??0).CompareTo(other?.Name?.Length??0);
+            Console.WriteLine($"instance_value: {instance_value}");
+            return instance_value;
+        }
 
-    // --------------- END ThreesACrowd Logic --------------- //
+    }
+    public override string ToString()
+    {
+        return Name ?? "<null>";
+    }
 }
-

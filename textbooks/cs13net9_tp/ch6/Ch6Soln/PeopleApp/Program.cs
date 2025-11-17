@@ -407,3 +407,44 @@ void OnCrowdEventWithArgs2(object? sender, CrowdEventArgs e) // v1
 //    //CrowdEventArgs? ce = e as CrowdEventArgs;
 //    Console.WriteLine($"{e.PersonCount}'s a crowd! [ceargs]");
 //}
+//IEnumerable<Person?> ListOfPersons = new List<Person?>
+//{
+//    new Person(){Name="messi"},
+//    new Person(){},   
+//    new Person(){Name="iniesta"},
+//    null
+//};
+
+//foreach (Person? p in ListOfPersons)
+//{
+//    //Console.WriteLine($"Name: {p?.Name}");
+//    //string msg = p is null ? "<null> Person" : "Name or Person <null>";
+//    string msg = p is null ? "<null> Person" : p.Name ?? "Person <null>";
+//    Console.WriteLine($"Name: {msg}");
+//}
+
+// 1. create list of persons
+Person?[] ListOfPersons =
+{
+        new() { Name = "xavi" },
+        new() { Name = "tonycules" },
+        new() { Name = "ibrahimovic" },
+        new() { Name = "mess" },
+        new() { },
+        null,
+        new() { Name = "iniesta" },
+};
+
+OutputNames(ListOfPersons);
+
+//string astr = "aaaa";
+//string bstr = "zzzz";
+//string a2str = "aaaa";
+//Console.WriteLine($"a_vs_z: {astr.CompareTo(bstr)} [exp: -1]");
+//Console.WriteLine($"z_vs_a: {bstr.CompareTo(astr)} [exp: +1]");
+//Console.WriteLine($"a_vs_a: {a2str.CompareTo(astr)} [exp:  0]");
+
+OutputNames(ListOfPersons);
+Array.Sort(ListOfPersons);
+OutputNames(ListOfPersons);
+
