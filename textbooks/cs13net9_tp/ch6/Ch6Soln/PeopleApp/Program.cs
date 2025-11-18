@@ -444,7 +444,33 @@ OutputNames(ListOfPersons);
 //Console.WriteLine($"z_vs_a: {bstr.CompareTo(astr)} [exp: +1]");
 //Console.WriteLine($"a_vs_a: {a2str.CompareTo(astr)} [exp:  0]");
 
-OutputNames(ListOfPersons);
-Array.Sort(ListOfPersons);
-OutputNames(ListOfPersons);
+//OutputNames(ListOfPersons);
+//Array.Sort(ListOfPersons);
+//OutputNames(ListOfPersons);
 
+//MyString str1 = new() { Value = "aaaa" };
+//MyString str2 = new() { Value = "bbbb" };
+
+//Console.WriteLine($"'{str1.Value}' vs {str2.Value}: {str1.CompareTo(str2)} [exp: -1]");
+////;
+///
+var acc = new MyBal(100); // constructor runs once
+acc.Deposit(50);  // method call
+acc.Withdraw(30); // method call
+
+var acc2 = new MyBal(100); // constructor runs once
+acc2.Deposit(50);  // method call
+acc2.Withdraw(30); // method call
+
+Console.WriteLine($"{acc.Balance}_vs_{acc2.Balance}: {acc.CompareTo(acc2)} [exp: 0]");
+acc.Withdraw(30); // method call
+Console.WriteLine($"{acc.Balance}_vs_{acc2.Balance}: {acc.CompareTo(acc2)} [exp: -1]");
+acc.Deposit(1000); // method call
+Console.WriteLine($"{acc.Balance}_vs_{acc2.Balance}: {acc.CompareTo(acc2)} [exp: 1](using CompareTo)");
+
+MyBalComparer bal_compararer = new();
+Console.WriteLine($"{acc.Balance}_vs_{acc2.Balance}: {bal_compararer.Compare(acc, acc2)} [exp: 1](using Compare)");
+
+Hooman imahooman = new();
+imahooman.Lose();
+ 

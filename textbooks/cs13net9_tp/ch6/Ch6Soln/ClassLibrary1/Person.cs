@@ -1,8 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-using System.Diagnostics.Tracing;
-
-namespace TP.SharedLibraries;
-public partial class Person : IComparable<Person?>
+﻿namespace TP.SharedLibraries;
+public partial class Person
+//public partial class Person : IComparable<Person?>
 {
 
     #region Properties
@@ -347,7 +345,7 @@ public partial class Person : IComparable<Person?>
 
     }
 
-    public int CompareTo(Person? other)
+    public int  ToCompare(Person? other)
     {
         if (other == null) return 1; // non-null > null
         if (Name == null) return other.Name == null ? 0 : -1;
