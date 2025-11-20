@@ -473,4 +473,40 @@ Console.WriteLine($"{acc.Balance}_vs_{acc2.Balance}: {bal_compararer.Compare(acc
 
 Hooman imahooman = new();
 imahooman.Lose();
- 
+
+//  19/11/25
+Driver driver = new();
+driver.Drive();
+IDriveScooter rider = driver as IDriveScooter;
+rider.Drive();
+((IDriveScooter)driver).Drive();
+
+// create instance Patron
+
+
+// run enter(): implicit implementation
+// run enter(): explicit implementation
+Patron patron = new();
+((IWebsite)patron).Enter(); 
+
+IWebsite patron2 = new Patron() as IWebsite;
+patron2.Enter();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
