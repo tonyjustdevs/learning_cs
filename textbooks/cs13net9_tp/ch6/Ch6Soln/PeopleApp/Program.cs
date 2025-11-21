@@ -492,20 +492,20 @@ Patron patron = new();
 IWebsite patron2 = new Patron() as IWebsite;
 patron2.Enter();
 
+// what is implicit & explicit interface implementations
+
+// classes versus interfaces
+// [1] classes have fields and methods: is or as somethign?
+// - animal, doggo, vehile
+
+// [2] interfaces some action:
+// - IFlyable [liftoff(), land(), fly()]
+// - IDrivable [accellerate(), honk(), brake()]
 
 
-
-
-
-
-
-
-
-
-
-
-
-
+Car camry_toyota = new();
+camry_toyota.Move();
+((IFlyable)camry_toyota).Move();
 
 
 
