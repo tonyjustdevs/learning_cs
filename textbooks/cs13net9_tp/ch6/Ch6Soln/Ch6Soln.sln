@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PplApp2", "PointsApp3\PplAp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PointsApp2v2", "PointsApp2v2\PointsApp2v2.csproj", "{BC14BEEB-9835-4779-AF7E-C5F5F8E13046}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NullHandling", "NullHandling\NullHandling.csproj", "{C93E1571-021A-4982-BA17-A60A17872952}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{BC14BEEB-9835-4779-AF7E-C5F5F8E13046}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BC14BEEB-9835-4779-AF7E-C5F5F8E13046}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BC14BEEB-9835-4779-AF7E-C5F5F8E13046}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C93E1571-021A-4982-BA17-A60A17872952}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C93E1571-021A-4982-BA17-A60A17872952}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C93E1571-021A-4982-BA17-A60A17872952}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C93E1571-021A-4982-BA17-A60A17872952}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
