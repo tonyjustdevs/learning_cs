@@ -48,8 +48,6 @@ void ShoutMeth1(object? some_obj, EventArgs some_e) //some meth
     //Console.WriteLine($"some_obj: {some_obj}")
 }
 
-
-
-//messi.Shout?.Invoke("mate", EventArgs.Empty);
-
 messi.RunShout();
+
+    

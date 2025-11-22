@@ -510,5 +510,11 @@ camry_toyota.Move();
 IFlyable camry_toyota_flying = camry_toyota as IFlyable;
 camry_toyota_flying.Move();
 
+// 1. create {iface} IPlayable.cs:     + 2 req methods [Pause, Play]
+// 2. create {class} DVD.cs:           + 2 imp methods [Pause, Play]
 
 
+Dvd dvd1 = new();
+Console.WriteLine($"{dvd1} Dvd instance created!");
+
+dvd1.Play();
