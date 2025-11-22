@@ -5,13 +5,11 @@ public class Dvd : IPlayable
 {
     public void Pause()
     {
-        //Console.WriteLine("dvd has pa/used...");
-        throw new NotImplementedException();
+        Console.WriteLine("dvd has paused..."); //throw new NotImplementedException();
     }
 
     public void Play()
     {
-        //Console.WriteLine("dvd has ");
-        throw new NotImplementedException();
+        Console.WriteLine("dvd is playing...");
     }
 }

@@ -515,6 +515,11 @@ camry_toyota_flying.Move();
 
 
 Dvd dvd1 = new();
+//IPlayable dvd2 = new(); ------- CANNOT INS AN INTERFACE
+//IPlayable dvd2 = Dvd(); //------- MISSING 'new'
+IPlayable dvd2 = new Dvd();
 Console.WriteLine($"{dvd1} Dvd instance created!");
 
 dvd1.Play();
+((IPlayable)dvd1).Stop();
+dvd2.Stop();
