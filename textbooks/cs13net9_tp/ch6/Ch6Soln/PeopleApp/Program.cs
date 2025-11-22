@@ -505,8 +505,10 @@ patron2.Enter();
 
 Car camry_toyota = new();
 camry_toyota.Move();
-((IFlyable)camry_toyota).Move();
+((IFlyable)camry_toyota).Move(); // v1
 
+IFlyable camry_toyota_flying = camry_toyota as IFlyable;
+camry_toyota_flying.Move();
 
 
 
