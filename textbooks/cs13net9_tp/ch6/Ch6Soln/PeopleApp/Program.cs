@@ -520,6 +520,10 @@ Dvd dvd1 = new();
 IPlayable dvd2 = new Dvd();
 Console.WriteLine($"{dvd1} Dvd instance created!");
 
-dvd1.Play();
-((IPlayable)dvd1).Stop();
-dvd2.Stop();
+((IPlayable)dvd1).Stop();   // Stop() v1
+dvd2.Stop();                // Stop() v2
+
+IPlayable dvd3 = dvd1 as IPlayable;
+dvd3.Stop();                // Stop() v3
+
+
