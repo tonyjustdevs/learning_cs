@@ -19,3 +19,8 @@ some_int_nullable = 7;
 Console.WriteLine(some_int_nullable);                       // 7
 Console.WriteLine(some_int_nullable.GetValueOrDefault());   // 7
 
+// 7. alternative syntax of null int
+Nullable<int> AnotherNullableInt = 69;
+Console.WriteLine($"pre-null: {AnotherNullableInt }");
+AnotherNullableInt = null;
+Console.WriteLine($"post-null: {AnotherNullableInt }");
