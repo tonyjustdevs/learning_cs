@@ -1,4 +1,5 @@
 ﻿using NullHandling;
+using System.Xml;
 // 1. add non-null int
 //int some_int_nonnullable = null; // must comment out
 //ok -"Cannot convert null to 'int' because it is a non-nullable value type"
@@ -122,8 +123,13 @@ if (name is not null)
 
 
 
-
-
+string? author_name = null;
+int author_length;
+author_length = author_name?.Length ?? 30;
+Console.WriteLine($"'{author_name}', author_length: {author_length}");
+author_name = "george orwell";
+author_length = author_name?.Length ?? 30;
+Console.WriteLine($"'{author_name}', author_length: {author_length}");
 
 
 
