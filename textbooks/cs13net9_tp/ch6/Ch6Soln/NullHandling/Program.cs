@@ -1,4 +1,4 @@
-﻿
+﻿using NullHandling;
 // 1. add non-null int
 //int some_int_nonnullable = null; // must comment out
 //ok -"Cannot convert null to 'int' because it is a non-nullable value type"
@@ -28,3 +28,17 @@ Console.WriteLine($"pre-null.HasValue: {AnotherNullableInt.HasValue}");
 AnotherNullableInt = null;
 Console.WriteLine($"post-null: {AnotherNullableInt }");
 Console.WriteLine($"pre-null.HasValue: {AnotherNullableInt.HasValue}");
+
+// 8. addy stuff //    [3] Call the default parameterless constructor
+
+AddessCls addy1 = new();
+Console.WriteLine($"addy1: {addy1}");
+Console.WriteLine($"addy1.Building: {addy1.Building}");
+Console.WriteLine($"addy1.Street: {addy1.Street}");
+Console.WriteLine($"addy1.Region: {addy1.Region}");
+Console.WriteLine($"addy1.City: {addy1.City}");
+
+//addy1: NullHandling.AddessCls
+//addy1.Building:
+//addy1.Street:
+//addy1.Region:
