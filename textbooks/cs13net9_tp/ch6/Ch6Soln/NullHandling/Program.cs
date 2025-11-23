@@ -68,16 +68,57 @@ Console.WriteLine("running PublishFootballers(ballers)...");
 PublishFootballers(ballers);
 
 
+// [1. ]    Testing nulls: Assign FirstName = null;
+// [Exp]    Warning: CS8600 - Converting a null literal or a possible null value to a non-nullable type.
+
+// create Footballer instance via constructor Footballer(null)
+
+Footballer pep = new("pep")
+{
+    Club = "Man City",
+    Value = 99_999_999,
+    //FirstName = null
+};
+
+Console.WriteLine($"\npep.FirstName: {pep.FirstName}");
+Console.WriteLine($"pep.Club: {pep.Club}");
+Console.WriteLine($"pep.Value: {pep.Value}\n\n");
+
+Footballer gundogan = new("gundogan")
+{
+    Club = null,
+    Value = 30_123_321,
+    FirstName = null! // CS8625
+};
 
 
+Console.WriteLine($"gundogan.FirstName: {gundogan.FirstName}");
+Console.WriteLine($"gundogan.Club: {gundogan.Club}");
+Console.WriteLine($"gundogan.Value: {gundogan.Value}\n\n");
+// - [test] whether FirstName is actually non-nullable
+// - [expd] Compile-Error: Literal "FirstName" cannot be null
+
+// show diff in compiler errors for nulls:
+// 1.  non-nullable that is assigned null, then null!
+// 2.  DEREFERENCING FirstName & Club: both null 
+
+//Console.WriteLine($"gundogan.FirstName.Length: {gundogan.FirstName.Length}"); // fails
+Console.WriteLine($"gundogan.FirstName.Length: {gundogan.FirstName?.Length}"); // ok with !
+Console.WriteLine($"gundogan.Club.Length: {     gundogan.Club?.Length}\n"); // CS8602 without ?
 
 
+// test NullRefException
 
-
-
-
-
-
+string? name = null;
+if (name is not null)
+{
+    WriteLine("{0}: {1}", name,name.Length);  // ❌ BOOM
+}
+name = "bourne";
+if (name is not null)
+{
+    WriteLine("{0}: {1}", name, name.Length);
+}
 
 
 

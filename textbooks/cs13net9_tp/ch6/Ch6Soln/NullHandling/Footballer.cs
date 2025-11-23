@@ -1,22 +1,18 @@
-﻿
-namespace NullHandling;
-
+﻿namespace NullHandling;
 public class Footballer
 {
     public string FirstName;
-    //public string LastName = string.Empty;
-    public string LastName = "<LastName>";
+    public string LastName = "<LastName>";          //public string LastName = string.Empty;
     public double Value;
     public string? Club;
 
     public Footballer() {
-        //FirstName = string.Empty;
-        FirstName = "<FirstName>";
+        FirstName = "<FirstName>";                  //FirstName = string.Empty;
     }
-
-    public Footballer(string club): this()
+    
+    public Footballer(string fname): this()
     {
-        Club = club;
+        FirstName = fname;
     }
 
     public Footballer(double value) : this()
@@ -31,9 +27,9 @@ public class Footballer
     }
     public Footballer(string club, double value, string fname) : this()
     {
-        Club = club;
-        Value = value;
-        FirstName = fname;
+            Club = club;
+            Value = value;
+            FirstName = fname;
     }
 
 }
