@@ -50,3 +50,40 @@ Console.WriteLine($"addy2.Building: {   addy2.Building}");
 Console.WriteLine($"addy2.Street: {     addy2.Street}");
 Console.WriteLine($"addy2.Region: {     addy2.Region}");
 Console.WriteLine($"addy2.City: {       addy2.City}");
+
+// [1]  create list of footballers
+List<Footballer> ballers = new()
+{
+    new(){},
+    new(){FirstName="andres"},
+    new(){Club="tottenham"},
+    new(){LastName="messi"},
+    new(){Value=69_420_666},
+    new(){FirstName="Xavi",LastName="Hernandez",Club="FCB",Value=1_000},
+};
+Console.WriteLine($"ballers: {ballers}\n\n");
+// [2]  [Helpers.cs] add static function(): output fballers
+// [3]  [Program.cs] run()
+Console.WriteLine("running PublishFootballers(ballers)...");
+PublishFootballers(ballers);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
