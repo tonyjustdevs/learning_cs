@@ -8,4 +8,15 @@ partial class Program
             baller?.FirstName, baller?.LastName, baller?.Club, baller?.Value);
         }
     }
+
+    public static void PrintYouthAndProBaller(Footballer youth_player, Footballer pro_player)
+    {
+        Console.WriteLine("checking for nulls...");
+        ArgumentNullException.ThrowIfNull(youth_player, nameof(youth_player));
+        ArgumentNullException.ThrowIfNull(pro_player, nameof(pro_player));
+
+        Console.WriteLine($"yth: {youth_player}");
+        Console.WriteLine($"pro: {pro_player}");
+    }
 }
+

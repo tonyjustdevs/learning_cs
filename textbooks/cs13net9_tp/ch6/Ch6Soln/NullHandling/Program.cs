@@ -131,6 +131,10 @@ author_name = "george orwell";
 author_length = author_name?.Length ?? 30;
 Console.WriteLine($"'{author_name}', author_length: {author_length}");
 
+Console.Write("PrintYouthAndProBaller(gundogan, pep): ");
+PrintYouthAndProBaller(gundogan, pep);
 
 
+Console.Write("PrintYouthAndProBaller(null, pep): ");
+PrintYouthAndProBaller(null, pep);
 
