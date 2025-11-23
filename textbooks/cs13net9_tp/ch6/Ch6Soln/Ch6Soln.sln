@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PointsApp2v2", "PointsApp2v
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NullHandling", "NullHandling\NullHandling.csproj", "{C93E1571-021A-4982-BA17-A60A17872952}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NullHandling2", "NullHandling2\NullHandling2.csproj", "{BBA167AC-E607-4F6D-9D4F-ABD5772F56C0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{C93E1571-021A-4982-BA17-A60A17872952}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C93E1571-021A-4982-BA17-A60A17872952}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C93E1571-021A-4982-BA17-A60A17872952}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BBA167AC-E607-4F6D-9D4F-ABD5772F56C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BBA167AC-E607-4F6D-9D4F-ABD5772F56C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BBA167AC-E607-4F6D-9D4F-ABD5772F56C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BBA167AC-E607-4F6D-9D4F-ABD5772F56C0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
