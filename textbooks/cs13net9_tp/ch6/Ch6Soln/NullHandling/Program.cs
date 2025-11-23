@@ -31,14 +31,22 @@ Console.WriteLine($"pre-null.HasValue: {AnotherNullableInt.HasValue}");
 
 // 8. addy stuff //    [3] Call the default parameterless constructor
 
-AddessCls addy1 = new();
+Address addy1 = new();
 Console.WriteLine($"addy1: {addy1}");
 Console.WriteLine($"addy1.Building: {addy1.Building}");
 Console.WriteLine($"addy1.Street: {addy1.Street}");
 Console.WriteLine($"addy1.Region: {addy1.Region}");
 Console.WriteLine($"addy1.City: {addy1.City}");
 
-//addy1: NullHandling.AddessCls
-//addy1.Building:
+//addy1: NullHandling.Address
+//addy1.Building:   
 //addy1.Street:
 //addy1.Region:
+
+Address addy2 = new("sydney");
+
+Console.WriteLine($"addy2: {            addy2}");
+Console.WriteLine($"addy2.Building: {   addy2.Building}");
+Console.WriteLine($"addy2.Street: {     addy2.Street}");
+Console.WriteLine($"addy2.Region: {     addy2.Region}");
+Console.WriteLine($"addy2.City: {       addy2.City}");
