@@ -526,11 +526,11 @@ dvd2.Stop();                // Stop() v2
 IPlayable dvd3 = dvd1 as IPlayable;
 dvd3.Stop();                // Stop() v3
 
-Employee employee1 = new() { 
+Employee john_ee = new() { 
     Name="John Smith",
     DOB=new DateTimeOffset(2000,01,01,0,0,0,0,TimeSpan.Zero),
 };
 
-//employee1.WriteToConsole();
-
-employee1.TestingThisAndBases();
+Console.WriteLine("john_ee.ToString();..");
+Console.WriteLine($"john_ee: {john_ee.ToString()}");
+Console.WriteLine($"kim: {kim.ToString()}");

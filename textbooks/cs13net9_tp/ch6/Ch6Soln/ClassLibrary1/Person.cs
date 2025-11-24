@@ -357,8 +357,14 @@ public partial class Person
         }
 
     }
+    //public override string ToString()
+    //{
+    //    return Name ?? "<null>";
+    //}
+    # region OverriddenMethods
     public override string ToString()
     {
-        return Name ?? "<null>";
+        return $"{Name} is a {base.ToString()}";
     }
+    # endregion
 }
