@@ -17,7 +17,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NullHandling", "NullHandlin
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NullHandling2", "NullHandling2\NullHandling2.csproj", "{BBA167AC-E607-4F6D-9D4F-ABD5772F56C0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmployeeApp", "EmployeeApp\EmployeeApp.csproj", "{BFD4BF2D-C941-4617-BA55-4CE4FCA3D808}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InterfaceAbstractApp", "EmployeeApp\InterfaceAbstractApp.csproj", "{BFD4BF2D-C941-4617-BA55-4CE4FCA3D808}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
