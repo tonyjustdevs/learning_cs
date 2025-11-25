@@ -1,4 +1,5 @@
 ﻿using PeopleApp;
+using SharedClassesLibrary;
 using System.Reflection.Metadata;
 using System.Security.Cryptography;
 using System.Threading.Channels;
@@ -534,3 +535,7 @@ Employee john_ee = new() {
 Console.WriteLine("john_ee.ToString();..");
 Console.WriteLine($"john_ee: {john_ee.ToString()}");
 Console.WriteLine($"kim: {kim.ToString()}");
+
+
+LadyGaga gaga = new() { };
+gaga.WriteToConsole();
