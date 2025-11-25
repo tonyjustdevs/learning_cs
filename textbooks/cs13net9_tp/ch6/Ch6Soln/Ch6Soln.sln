@@ -17,7 +17,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NullHandling", "NullHandlin
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NullHandling2", "NullHandling2\NullHandling2.csproj", "{BBA167AC-E607-4F6D-9D4F-ABD5772F56C0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InterfaceAbstractApp", "EmployeeApp\InterfaceAbstractApp.csproj", "{BFD4BF2D-C941-4617-BA55-4CE4FCA3D808}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InterfaceAbstractProject", "InterfaceAbstractProject\InterfaceAbstractProject.csproj", "{7443D530-45EA-4CAE-867D-2C51719B44FC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -53,10 +53,10 @@ Global
 		{BBA167AC-E607-4F6D-9D4F-ABD5772F56C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BBA167AC-E607-4F6D-9D4F-ABD5772F56C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BBA167AC-E607-4F6D-9D4F-ABD5772F56C0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BFD4BF2D-C941-4617-BA55-4CE4FCA3D808}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BFD4BF2D-C941-4617-BA55-4CE4FCA3D808}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BFD4BF2D-C941-4617-BA55-4CE4FCA3D808}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BFD4BF2D-C941-4617-BA55-4CE4FCA3D808}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7443D530-45EA-4CAE-867D-2C51719B44FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7443D530-45EA-4CAE-867D-2C51719B44FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7443D530-45EA-4CAE-867D-2C51719B44FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7443D530-45EA-4CAE-867D-2C51719B44FC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

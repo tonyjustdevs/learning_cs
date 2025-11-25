@@ -9,7 +9,9 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ClassLibrary1\SharedClassesLibrary.csproj" />
-    <Using Include="System.Console" Static="true" />
+  </ItemGroup>
+  <ItemGroup>
+	  <Using Include="System.Console" Static="true" />
   </ItemGroup>
 
 </Project>
