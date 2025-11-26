@@ -539,3 +539,33 @@ Console.WriteLine($"kim: {kim.ToString()}");
 
 LadyGaga gaga = new() { };
 gaga.WriteToConsole();
+
+// what is implicit casting: conversion between similar types (int16 vs int32)
+// what is explicit casting: convertion between diff types (chr vs int)
+
+Employee2 waitress_Ee2 = new() {// waitress_Ee2 is a pointer to a 'Eee2' object
+    Name = "Ngoc",          // waitress_Ee2 is placed into variable 'Person' 
+    HireDate=new DateOnly(2025,11,26)}; // 
+Person waitress_Person = waitress_Ee2;  //
+waitress_Ee2.WriteToConsole();
+waitress_Person.WriteToConsole();
+Console.WriteLine();
+
+Console.WriteLine($"waitress_Ee2.ToString(): {waitress_Ee2.ToString()}");
+Console.WriteLine($"waitress_Person.ToString(): {waitress_Person.ToString()}");
+
+
+
+
+// waitress_Ee2:
+// - is a variable holding a value.
+// - this value is a reference-object (aka reference: pointer-like)
+// - pointing to an 'Employee2' object 
+
+// waitress_Person is a variable
+// - referring to the same object (reference): ------> 'Employee2' object
+
+// change hiredate
+//waitress_Person.HireDate  
+
+// 

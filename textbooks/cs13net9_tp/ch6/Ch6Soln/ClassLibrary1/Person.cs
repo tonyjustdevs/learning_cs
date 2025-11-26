@@ -5,7 +5,7 @@ public partial class Person
 
     #region Properties
     public string? Name { get; set; }
-    public DateTimeOffset DOB { get; set; }
+    public DateTimeOffset? DOB { get; set; }
     public List<Person> Children { get; set; } = new();
     public List<Person> Spouses { get; set; } = new();
     #endregion
@@ -318,8 +318,8 @@ public partial class Person
 
     // --------------- BEG ThreesACrowd Logic --------------- //
     // [1]  [pers.cs] add {field} (event) CrowdEventHandler
-    public event EventHandler CrowdEventHandler;
-    public event EventHandler CrowdEventHandlerWithArgs;
+    public event EventHandler? CrowdEventHandler;
+    public event EventHandler? CrowdEventHandlerWithArgs;
     public event EventHandler<CrowdEventArgs> CrowdEventHandlerWithArgs2;
     //public event EventHandler<CrowdEventArgs> CrowdEventHandlerWithArgs3;
     //public delegate void EventHandler<CrowdEventArgs> CrowdEventHandlerWithArgs4(Person? person, CrowdEventArgs e);
