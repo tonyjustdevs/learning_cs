@@ -554,9 +554,6 @@ Console.WriteLine();
 Console.WriteLine($"waitress_Ee2.ToString(): {waitress_Ee2.ToString()}");
 Console.WriteLine($"waitress_Person.ToString(): {waitress_Person.ToString()}");
 
-
-
-
 // waitress_Ee2:
 // - is a variable holding a value.
 // - this value is a reference-object (aka reference: pointer-like)
@@ -568,4 +565,44 @@ Console.WriteLine($"waitress_Person.ToString(): {waitress_Person.ToString()}");
 // change hiredate
 //waitress_Person.HireDate  
 
+// [explicit casting]
+// 1. add [ee_type] instance
+// 2. add explicity cast ---> [person_type] instance
+
+Employee2 workerJames = new() { Name = "James", HireDate = new DateOnly(2025, 11, 26) };
+Person personJames = workerJames;
+
+personJames.WriteToConsole();
+workerJames.WriteToConsole();
+
+
+// Casting: IMPLICIT
+// [STATEMENT 1] ANY CLS can convert 'object' cls (all types are derived class of 'object')
 // 
+Person personNhi = new() { Name ="Nhi", DOB = new DateTimeOffset(1999, 01, 01, 0, 0, 0, 0, TimeSpan.Zero) };
+object objectNhi = personNhi;
+Console.WriteLine($"objectNhi.ToString(): {objectNhi.ToString()}");
+Console.WriteLine($"personNhi.ToString(): {personNhi.ToString()}");
+
+// Casting: EXPLICIT
+// [STATEMENT 2] Explicity Casting required to cast to [NON-PARENT-CLASS]
+// e.g. Person -> Employee (NON-PARENT)
+
+Person personJenny = new() { Name = "Jenny", DOB = new DateTimeOffset(1990, 01, 01, 0, 0, 0, 0, TimeSpan.Zero) };
+//Person personJenny = new() { Name = "Jenny"};
+// Employee2 workerJenny = personJenny;  // CS0266 - require explicit conversion
+
+// ------ Must Tell Compiler (Explicitly): "trust me bro, i know its a 'Employee2' " ------ //
+Employee2 workerJenny = (Employee2) personJenny;
+///Unhandled exception. System.InvalidCastException: Unable to cast object of type 'TP.SharedLibraries.Person' to type 'TP.SharedLibraries.Employee2'.
+//
+
+Person coolperson = new();
+Employee coolemployee = new();
+
+coolemployee.EmployeeNo = 0;
+//coolperson.EmployeeNo = 0;
+
+Person p = new Employee();
+Employee pe = (Employee)p;
+Employee? pe2 = p as Employee;
