@@ -590,14 +590,14 @@ Person personJenny = new() { Name = "Jenny", DOB = new DateTimeOffset(1990, 01, 
 // Employee2 workerJenny = personJenny;  // CS0266 - require explicit conversion
 
 // ------ Must Tell Compiler (Explicitly): "trust me bro, i know its a 'Employee2' " ------ //
-Employee2 workerJenny = (Employee2) personJenny;
+//Employee2 workerJenny = (Employee2) personJenny;
 ///Unhandled exception. System.InvalidCastException: Unable to cast object of type 'TP.SharedLibraries.Person' to type 'TP.SharedLibraries.Employee2'.
 //
 
-Person coolperson = new();
-Employee coolemployee = new();
+//Person coolperson = new();
+//Employee coolemployee = new();
 
-coolemployee.EmployeeNo = 0;
+//coolemployee.EmployeeNo = 0;
 //coolperson.EmployeeNo = 0;
 
 //Employee mate_ee = (Employee)mate_person;
@@ -611,9 +611,16 @@ if (mate_person is Employee)            // runtime check: is 'mate_person' a [Em
     Employee mate_ee = (Employee)mate_person;   // trust me compiler, 'mate_person' is an Employee object
 }                                               // assign it to 'mate_ee' of type Employee
 
-// v2: check + explicit casting
-if (mate_person is Employee mate_explicit_ee)            
+if (mate_person is Employee mate_explicit_ee)   // v2: check + explicit casting
 {
     // do something safely with mate_explicit_ee 
+}
+Employee? mate_as_person = mate_person as Employee; // v3: 'as' keyword: returns 'null' or 'instance'
+
+if (mate_as_person is not null)
+{
+    mate_as_person.WriteToConsole();
+    mate_as_person.Name = "MateAsPerson";
+    mate_as_person.WriteToConsole();
 }
 
