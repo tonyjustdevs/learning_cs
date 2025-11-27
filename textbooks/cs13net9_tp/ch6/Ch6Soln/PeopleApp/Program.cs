@@ -2,6 +2,7 @@
 using SharedClassesLibrary;
 using TP.SharedLibraries;
 using static TP.SharedLibraries.Person;
+//using static TP.SharedLibraries.StringExtensions;
 // [1] create person instance 
 
 Person anais = new Person()
@@ -9,8 +10,8 @@ Person anais = new Person()
     Name = "Anais",
     DOB = new DateTimeOffset(2000, 01, 01, 0, 0, 0, 0, TimeSpan.Zero)
 };
-Console.WriteLine("Welcome to '{0}'s Saigon Love Story", anais.Name);
-anais.WriteToConsole();
+//Console.WriteLine("Welcome to '{0}'s Saigon Love Story", anais.Name);
+//anais.WriteToConsole();
 
 Console.WriteLine("before bangin");
 anais.WriteKidsToConsole(); // get kiddo info   (#no kids)
@@ -624,3 +625,30 @@ if (mate_as_person is not null)
     mate_as_person.WriteToConsole();
 }
 
+Console.WriteLine();
+try
+{
+    anais.WriteToConsole();
+    Console.WriteLine();
+    anais.TimeTravel(new DateTime(2025, 01, 01));
+    Console.WriteLine();
+    anais.TimeTravel(new DateTime(1995, 01, 01));
+}
+catch (PersonalException ex)
+{
+    Console.WriteLine();
+    Console.WriteLine($"\nex.Message: \n\t{ex.Message}");
+    Console.WriteLine($"\nex.ToString(): \n\t{ex.ToString()}");
+    Console.WriteLine($"\nex.StackTrace: \n\t{ex.StackTrace}");
+}
+
+//Console.WriteLine("mate@mate.com: {0}",StringExtensions.isValidEmail("mate@mate.com"));
+//Console.WriteLine("mate&mate@com: {0}", StringExtensions.isValidEmail("mate&mate@com"));
+
+string email1 = "pamela@test.com";
+string email2 = "ian&test.com";
+Console.WriteLine("{0} is a valid e-mail address: {1}", arg0: email1, arg1: StringExtensions.isValidEmail(email1));
+Console.WriteLine("{0} is a valid e-mail address: {1}", arg0: email2, arg1: StringExtensions.isValidEmail(email2));
+Console.WriteLine();
+Console.WriteLine("(extension method) {0} is a valid e-mail address : {1}", arg0: email1, arg1: email1.isValidEmail());
+Console.WriteLine("(extension method) {0} is a valid e-mail address : {1}", arg0: email2, arg1: email2.isValidEmail());

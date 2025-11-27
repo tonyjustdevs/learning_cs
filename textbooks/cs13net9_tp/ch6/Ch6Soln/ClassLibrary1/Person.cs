@@ -21,7 +21,7 @@ public partial class Person
     #region InstanceMethods
     public void WriteToConsole() => Console.WriteLine(
         $"'{Name}' " +
-        $"was born a '{DOB:dddd}' " +
+        $"was born a '{DOB:dddd}' in Year {DOB:yyyy} " +
         $"& has '{SpousesCount}' spouse(s).' ");
 
     public void WriteKidsToConsole()
@@ -367,4 +367,19 @@ public partial class Person
         return $"{Name} is a {base.ToString()}";
     }
     # endregion
+
+    // create a method that throws if TimeTravel before DOB
+    public void TimeTravel(DateTime timeTravelToDate)
+    {
+        if (timeTravelToDate < DOB)
+        {
+            throw new PersonalException("PersonalException error raised!");
+        }
+
+        else
+        {
+            //return timeTravelToDate - DOB;
+            Console.WriteLine($"You have time-travelled to Year {timeTravelToDate}...");
+        }
+    }
 }
