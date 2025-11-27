@@ -1,8 +1,5 @@
 ﻿using PeopleApp;
 using SharedClassesLibrary;
-using System.Reflection.Metadata;
-using System.Security.Cryptography;
-using System.Threading.Channels;
 using TP.SharedLibraries;
 using static TP.SharedLibraries.Person;
 // [1] create person instance 
@@ -239,8 +236,8 @@ vd_str_hdler_1.Invoke("mi chiamo tony!");
 
 // [pers.cs]: 
 // [ testing ]
-// 1. SETUP:    create person instance p // kim
-// 2. NULL:     p.Shout will be null, test if ull
+// 1. SETUP:    create person instance mate_person // kim
+// 2. NULL:     mate_person.Shout will be null, test if ull
 //try
 //{
 //    //kim.Shout.Invoke(kim,EventArgs.Empty); // works but null is NullReferenceException
@@ -255,8 +252,8 @@ vd_str_hdler_1.Invoke("mi chiamo tony!");
 //    Console.WriteLine("[----------- shout ended -----------]");
 //}
 
-// 3. ASSIGN:   p.Shout = method, allocate some method following shape (sender, e)
-// 4. RUN:      p.shout() run it\
+// 3. ASSIGN:   mate_person.Shout = method, allocate some method following shape (sender, e)
+// 4. RUN:      mate_person.shout() run it\
 
 // 1. [pers.cs] add EventHandler {EH}
 // 2. [pers.cs] add field [Shout]     - {EH_instance)
@@ -309,10 +306,10 @@ vd_str_hdler_1.Invoke("mi chiamo tony!");
 //        return;
 //    }
 
-//    //Person? p = sender as Person;  // reuturns Persons or null
-//    //Person? p = sender as Person;  // reuturns Persons or null
-//    if (sender is not Person p) return;
-//    Console.WriteLine($"{p?.Name} has reached SuperSayan Mode!");
+//    //Person? mate_person = sender as Person;  // reuturns Persons or null
+//    //Person? mate_person = sender as Person;  // reuturns Persons or null
+//    if (sender is not Person mate_person) return;
+//    Console.WriteLine($"{mate_person?.Name} has reached SuperSayan Mode!");
 //}
 
 // create list of person
@@ -391,7 +388,7 @@ void OnCrowdEvent(object? sender, EventArgs e)
 }
 void OnCrowdEventWithArgs(object? sender, EventArgs e)     // v1
 {
-    //if (sender is not Person p) return;
+    //if (sender is not Person mate_person) return;
     //CrowdEventArgs? ce = e as CrowdEventArgs;
     //Console.WriteLine($"{ce?.PersonCount}'s a crowd! [ceargs]");
 }
@@ -416,11 +413,11 @@ void OnCrowdEventWithArgs2(object? sender, CrowdEventArgs e) // v1
 //    null
 //};
 
-//foreach (Person? p in ListOfPersons)
+//foreach (Person? mate_person in ListOfPersons)
 //{
-//    //Console.WriteLine($"Name: {p?.Name}");
-//    //string msg = p is null ? "<null> Person" : "Name or Person <null>";
-//    string msg = p is null ? "<null> Person" : p.Name ?? "Person <null>";
+//    //Console.WriteLine($"Name: {mate_person?.Name}");
+//    //string msg = mate_person is null ? "<null> Person" : "Name or Person <null>";
+//    string msg = mate_person is null ? "<null> Person" : mate_person.Name ?? "Person <null>";
 //    Console.WriteLine($"Name: {msg}");
 //}
 
@@ -603,6 +600,20 @@ Employee coolemployee = new();
 coolemployee.EmployeeNo = 0;
 //coolperson.EmployeeNo = 0;
 
-Person p = new Employee();
-Employee pe = (Employee)p;
-Employee? pe2 = p as Employee;
+//Employee mate_ee = (Employee)mate_person;
+//Employee? mate_ee2 = mate_person as Employee;
+
+
+// v1: check + explicit casting
+Person mate_person = new Employee();    // create [Employee] instance & assign variable name: 'mate_person' of type Person
+if (mate_person is Employee)            // runtime check: is 'mate_person' a [Employee] instance?
+{
+    Employee mate_ee = (Employee)mate_person;   // trust me compiler, 'mate_person' is an Employee object
+}                                               // assign it to 'mate_ee' of type Employee
+
+// v2: check + explicit casting
+if (mate_person is Employee mate_explicit_ee)            
+{
+    // do something safely with mate_explicit_ee 
+}
+
