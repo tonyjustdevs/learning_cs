@@ -686,8 +686,23 @@ Console.WriteLine($"(SetAge)xtina.Name & Age: {xtina.Name} & {xtina.Age}");
 
 xtina.SetName("xtina").SetAge(69); // [test_2a]: normal string input [exp: valid]
 Console.WriteLine($"(Chaining!)xtina.Name & Age: {xtina.Name} & {xtina.Age}");
+                                                                    
+Console.WriteLine("[StrExt2Cls.IsValidEmail(mate@mate.com)] : {0}", StringExtensionsTwo.isValidEmailOrNotStatic( "mate@mate.com"));
+Console.WriteLine("[StrExt2Cls.IsValidEmail(mate@mate&com)] : {0}", StringExtensionsTwo.isValidEmailOrNotStatic( "mate@mate&com"));
+Console.WriteLine("[StrExt2Cls.IsValidEmail(mate&mate@com)] : {0}", StringExtensionsTwo.isValidEmailOrNotStatic( "mate&mate@com"));
+Console.WriteLine("[StrExt2Cls.IsValidEmail(mate.mate.com)] : {0}", StringExtensionsTwo.isValidEmailOrNotStatic( "mate.mate.com"));
+Console.WriteLine("[StrExt2Cls.IsValidEmail(mate@mate@com)] : {0}", StringExtensionsTwo.isValidEmailOrNotStatic( "mate@mate@com"));
+Console.WriteLine("[StrExt2Cls.IsValidEmail(mate.com)] : {0}"      , StringExtensionsTwo.isValidEmailOrNotStatic("mate.com"));
+Console.WriteLine("[StrExt2Cls.IsValidEmail(mate@com)] : {0}"      , StringExtensionsTwo.isValidEmailOrNotStatic("mate@com"));
 
 
+Console.WriteLine("email_instance.IsValidEmail()] : {0} ({1})", "mate@mate.com".isValidEmailOrNotExtMth(),"mate@mate.com");
+Console.WriteLine("email_instance.IsValidEmail()] : {0} ({1})", "mate@mate&com".isValidEmailOrNotExtMth(),"mate@mate&com");
+Console.WriteLine("email_instance.IsValidEmail()] : {0} ({1})", "mate&mate@com".isValidEmailOrNotExtMth(),"mate&mate@com");
+Console.WriteLine("email_instance.IsValidEmail()] : {0} ({1})", "mate.mate.com".isValidEmailOrNotExtMth(),"mate.mate.com");
+Console.WriteLine("email_instance.IsValidEmail()] : {0} ({1})", "mate@mate@com".isValidEmailOrNotExtMth(),"mate@mate@com");
+Console.WriteLine("email_instance.IsValidEmail()] : {0} ({1})", "mate.com".isValidEmailOrNotExtMth(),"mate.com");
+Console.WriteLine("email_instance.IsValidEmail()] : {0} ({1})", "mate@com".isValidEmailOrNotExtMth(),"mate@com");
 
 
 
