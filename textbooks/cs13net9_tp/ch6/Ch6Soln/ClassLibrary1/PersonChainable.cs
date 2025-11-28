@@ -7,9 +7,17 @@ public class PersonChainable
     // PersonChainable.cs
     public string? Name { get; set; }           // 1. add fld [Name]
     public int Age { get; set; }                // 2. add fld [Age]
-    public void SetName1(string? name)
+    
+
+    public PersonChainable SetName(string? name)
     {
         Name=name;
+        return this;
+    }
+    public PersonChainable SetAge(int age)
+    {
+        Age = age;
+        return this;
     }
 
     private string? _name2;
@@ -20,7 +28,7 @@ public class PersonChainable
         {       // apply name validation
             if (value is null)
             {
-                throw new Exception("Trying to set Name2 to null!");
+                throw new ArgumentNullException("Trying to set Name2 to null!");
 
             }
             _name2 = value;

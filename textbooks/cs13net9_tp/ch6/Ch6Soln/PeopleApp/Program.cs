@@ -654,18 +654,44 @@ Console.WriteLine("(extension method) {0} is a valid e-mail address : {1}", arg0
 Console.WriteLine("(extension method) {0} is a valid e-mail address : {1}", arg0: email2, arg1: email2.isValidEmail());
 
 
-
-
-
-
 // [test_1]: [prop] Set Name2=null;
 PersonChainable person_chainable_1 = new();  // [test_1]
 Console.WriteLine($"(pre) person_chainable_1.Name2: {person_chainable_1.Name2}");
 person_chainable_1.Name2 = "jordan";             // [test_1a] set to normal string
 Console.WriteLine($"(pst) person_chainable_1.Name2: {person_chainable_1.Name2}");
-person_chainable_1.Name2 = null;             // [test_1b] set to null
-Console.WriteLine($"(null) person_chainable_1.Name2: {person_chainable_1.Name2}");
+
+try
+{
+    person_chainable_1.Name2 = null;             // [test_1b] set to null
+    Console.WriteLine($"(null) person_chainable_1.Name2: {person_chainable_1.Name2}");
+}
+catch (ArgumentNullException e)
+{
+    Console.WriteLine("ArgumentNullException: {0}", e.Message);
+}
+catch (Exception e)
+{
+    Console.WriteLine("Exception: {0}", e.Message);
+    //Console.WriteLine(e.Message);
+}
+
+// [test_2] Set Attributes via MethodChaining
+PersonChainable xtina = new();  // [test_2]
+Console.WriteLine($"(pre)xtina.Name & Age: {xtina.Name} & {xtina.Age}");
+
+Console.WriteLine($"(SetName)xtina.Name & Age: {xtina.Name} & {xtina.Age}");
+
+xtina.SetAge(420);
+Console.WriteLine($"(SetAge)xtina.Name & Age: {xtina.Name} & {xtina.Age}");
+
+xtina.SetName("xtina").SetAge(69); // [test_2a]: normal string input [exp: valid]
+Console.WriteLine($"(Chaining!)xtina.Name & Age: {xtina.Name} & {xtina.Age}");
 
 
 
-// [test_1b] set to null
+
+
+
+
+
+Console.WriteLine("PRGORAM ENDED");
