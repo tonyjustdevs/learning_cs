@@ -707,6 +707,20 @@ Console.WriteLine("email_instance.IsValidEmail()] : {0} ({1})", "mate@com".isVal
 
 
 
+Console.WriteLine("\n[TEST3] ext_methods on immutable classes...\n"); // test 3
+
+Car2 camry = new();                                                     // [OK] 1. add camry = Car2() instance & print
+Console.WriteLine("[0_pre]\t\tcamry.Model: {0}", camry.Model);
+camry.Model = "toyota camry";                                           // [OK] 2. set camry.Model = "Toyota Camry" (manual) & print
+Console.WriteLine("[1_manual_set]\tcamry.Model: {0}", camry.Model);
+Car2Extensions.SetModel(camry, "hyundae getz");
+    Console.WriteLine("[2_stat_meth]\tcamry.Model: {0}", camry.Model);    // [OK] 3. set Car2Extensions.SetModel(camry, "Hyundae Getz") (static method)
+
+// 4. UPDATE Car2Extensions SetModel v2 to be extension method
+camry.SetModel2("Mitsubishi Lancer: EVO IX");
+Console.WriteLine("[3_ext_method]\tcamry.Model: {0}", camry.Model);    // [OK] 3. set Car2Extensions.SetModel(camry, "Hyundae Getz") (static method)
+// 5. set Car2Extensions.SetModel(camry, "Hyundae Getz") (extension method) 
+
 
 
 Console.WriteLine("PRGORAM ENDED");
