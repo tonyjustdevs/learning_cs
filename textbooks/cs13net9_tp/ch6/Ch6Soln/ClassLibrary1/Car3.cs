@@ -12,7 +12,7 @@ public class Car3
     public string? CountryOfOrigin { get; set; }
     public bool IsJapanese()
     {
-        if (CountryOfOrigin == "Japanese")
+        if (CountryOfOrigin == "Japan")
         {
             return true;
         }
@@ -71,7 +71,7 @@ public static class Car3Extension// create static & extension method
 {
     public static bool IsJapaneseStatic(Car3 car)
     {   // [Car3Ext-Test-1: Car3Extension.IsJapaneseStatic(car3)]
-        if (car.CountryOfOrigin == "Japanese")
+        if (car.CountryOfOrigin == "Japan")
         {
             Console.WriteLine($"{car.Model} is Japanese! [via Car3Extension.IsJapaneseStatic(...)]");
             return true; 
@@ -82,7 +82,7 @@ public static class Car3Extension// create static & extension method
 
     public static bool IsJapaneseMethExtension(this Car3 car)
     {   // [Car3Ext-Test-2: car.IsJapaneseMethExtension()]
-        if (car.CountryOfOrigin == "Japanese")
+        if (car.CountryOfOrigin == "Japan")
         {
             Console.WriteLine($"{car.Model} is Japanese! [via car.IsJapaneseMethExtension()]");
             return true; 
@@ -97,9 +97,77 @@ public static class Car3Extension// create static & extension method
         return car;
     }
 
-    public static Car3 SetYearViaExtension(this Car3 car, int year)
+    public static Car3 SetYearViaExtension(
+        this Car3 car, int year)
     {
         car.Year = year; return car;
     }
 
+    // use [ExtensionBlocks]:
+    //  - extension_methods
+    //  - extension_members
+
+    extension(Car3 car)
+    {
+        internal Car3 SetModel_INTERNALCar3_Via_ExtensionBlock(string model)
+        {
+            car.Model = model;
+            return car;
+        }
+        internal Car3 SetYear_INTERNALCar3_Via_ExtensionBlock(int year)
+        {
+            car.Year = year;
+            return car;
+        }
+        internal Car3 SetCountry_INTERNALCar3_Via_ExtensionBlock(string country)
+        {
+            car.CountryOfOrigin = country;
+            return car;
+        }
+
+        internal bool IsJap_INTERNALCar3_Via_ExtensionBlock()
+        {
+            if (car.CountryOfOrigin=="Japan")
+            {
+                return true;
+            }
+            return false;
+        }
+
+    }
+
+}
+
+
+public static class Car3_ExtensionBlocks
+{
+    extension(Car3 car)
+    {
+        public Car3 External_SetModel_Via_ExtensionBlock(string model)
+        {
+            car.Model = model;
+            return car;
+        }
+        public Car3 External_SetYear_Via_ExtensionBlock(int year)
+        {
+            car.Year = year;
+            return car;
+        }
+        public Car3 External_SetCountry_Via_ExtensionBlock(string country)
+        {
+            car.CountryOfOrigin = country;
+            return car;
+        }
+
+        public bool External_IsJap_Via_ExtensionBlock()
+        {
+            if (car.CountryOfOrigin == "Japan")
+            {
+                Console.WriteLine($"{car.Model} is Japanese! [via car.External_IsJap_Via_ExtensionBlock()]");
+                return true;
+            }
+            Console.WriteLine($"{car.Model} is NOT Japanese! [via car.External_IsJap_Via_ExtensionBlock()]");
+            return false;
+        }
+    }
 }
