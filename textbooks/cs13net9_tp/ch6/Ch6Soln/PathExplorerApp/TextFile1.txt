@@ -1,0 +1,3 @@
+﻿im a text file,
+in PathExplorerApp,
+of Solution 'Ch6Soln'.

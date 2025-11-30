@@ -62,7 +62,7 @@ yamaha_bike.External_SetModel_Via_ExtensionBlock("Yamaha MT-07")
     .External_SetCountry_Via_ExtensionBlock("Japan")
     .External_SetYear_Via_ExtensionBlock(2025);
 yamaha_bike.ShowCarInfo();
-yamaha_bike.External_IsJap_Via_ExtensionBlock();
+yamaha_bike.External_IsJap_Via_ExtensionBlock();        
 
 
 //  [Car3Ext-Test-4c]: get fields via [external] extended_fields()
