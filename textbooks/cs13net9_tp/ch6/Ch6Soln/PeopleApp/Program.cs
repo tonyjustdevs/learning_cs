@@ -721,6 +721,9 @@ camry.SetModel2("Mitsubishi Lancer: EVO IX");
 Console.WriteLine("[3_ext_method]\tcamry.Model: {0}", camry.Model);    // [OK] 3. set Car2Extensions.SetModel(camry, "Hyundae Getz") (static method)
 // 5. set Car2Extensions.SetModel(camry, "Hyundae Getz") (extension method) 
 
+// 6. obj.SetModel(...)
 
+
+// 7. CHAINING:  obj.SetModel.SetColor
 
 Console.WriteLine("PRGORAM ENDED");

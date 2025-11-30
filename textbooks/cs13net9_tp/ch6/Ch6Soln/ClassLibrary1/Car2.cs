@@ -14,9 +14,10 @@ public static class Car2Extensions          // 1.  [car2ext.cs] add static    cl
     {
         car_instance.Model = model;
     }
-    public static void SetModel2(this Car2 car_instance, string? model)
+    public static Car2 SetModel2(this Car2 car_instance, string? model)
     {
         car_instance.Model = model;
+        return car_instance;
     }
 
 }
