@@ -66,3 +66,4 @@ yamaha_bike.External_IsJap_Via_ExtensionBlock();
 
 
 //  [Car3Ext-Test-4c]: get fields via [external] extended_fields()
+

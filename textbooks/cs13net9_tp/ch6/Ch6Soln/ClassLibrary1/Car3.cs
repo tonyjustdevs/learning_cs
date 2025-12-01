@@ -171,3 +171,77 @@ public static class Car3_ExtensionBlocks
         }
     }
 }
+
+
+public static class CarExt
+{
+    // 1. extend static method: Car.some_method();
+    public static bool CarExt_IsAmerican(Car3 car3)
+    {
+        if (car3.CountryOfOrigin == "USA")
+        {
+            Console.WriteLine("I'm murican!");
+            return true;
+        }
+        ;
+        Console.WriteLine("I'm not murican!");
+        return false;
+    }
+    // 2. extend instce method: car.some_method();
+}
+
+
+public static class CarExt2 
+{ 
+    public static bool IsVeryOldStatic(Car3 car3)
+    {
+        if (car3.Year<2000)
+        {
+            Console.WriteLine("This car is Ancient! (<2000) [IsVeryOldStatic()]");
+            return true;
+        }
+        Console.WriteLine("This car is a Gen-Z! (>=2000) [IsVeryOldStatic()]");
+        return false;
+    }
+
+    public static bool IsVeryOldInstce(this Car3 car3)
+    {
+        if (car3.Year < 2000)
+        {
+            Console.WriteLine("This car is Ancient! (<2000) [IsVeryOldInstce()]");
+            return true;
+        }
+        Console.WriteLine("This car is a Gen-Z! (>=2000) [IsVeryOldInstce()]");
+        return false;
+    }
+
+}
+
+
+public static class CarExt3ViaExtensionBlocks
+{
+    extension(Car3 car3)
+    {
+        public bool IsVeryOldInstceViaExtensionBlocks(int year)
+        {
+            if (car3.Year < year)
+            {
+                Console.WriteLine($"This car is Ancient! (<{year}) [CarExt3ViaExtensionBlocks.IsVeryOldInstceViaExtensionBlocks()]");
+                return true;
+            }
+            Console.WriteLine($"This car is a Gen-Z! (>={year}) [CarExt3ViaExtensionBlocks.IsVeryOldInstceViaExtensionBlocks()]");
+            return false;
+        }
+        public bool IsVeryOldInstceViaExtensionBlocks()
+        {
+            int year = 2000;
+            if (car3.Year < year)
+            {
+                Console.WriteLine($"This car is Ancient! (<{year}) [CarExt3ViaExtensionBlocks.IsVeryOldInstceViaExtensionBlocks()]");
+                return true;
+            }
+            Console.WriteLine($"This car is a Gen-Z! (>={year}) [CarExt3ViaExtensionBlocks.IsVeryOldInstceViaExtensionBlocks()]");
+            return false;
+        }
+    }
+}
