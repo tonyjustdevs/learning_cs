@@ -61,3 +61,5 @@ PathExtensions.IsFileOG(file_path);                             // v1: static ex
 // v2: instance extension method, Path is not instantiated
 //PathExtensions.Is
 //Path.IsPathRooted(file_path);
+
+Path.IsDirectoryPE2(file_path);
