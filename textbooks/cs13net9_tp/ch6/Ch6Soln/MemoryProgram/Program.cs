@@ -36,3 +36,17 @@ Console.WriteLine($"dv1==dv2_1: {dv1 == dv2_1}  ");
 
 // ADD COMPARISON FUNCTION BY FIELDS...
 Console.WriteLine($"CompareDisplacementVectors(dv1, dv2_1):{DispVectComparer.CompareDisplacementVectors(dv1, dv2_1)}");
+
+// RECORD STRUCT TESTING
+// 1.   ADD RS instance 1
+// 2.   ADD RS instance 2
+// 3.   ADD '==' test: rs1 vs rs2
+// 4.   ADD '!=' test: rs1 vs rs2
+
+DisVec3_RS disvec_rs_1 = new(3, 5);
+DisVec3_RS disvec_rs_3 = new(3, 5);
+DisVec3_RS disvec_rs_2 = new(-2, 7);
+
+Console.WriteLine();
+Console.WriteLine($"disvec_rs_1==disvec_rs_3: {disvec_rs_1== disvec_rs_3}");
+//Console.WriteLine($"dv2==dv2_v2: {dv2==dv2_v2}");
