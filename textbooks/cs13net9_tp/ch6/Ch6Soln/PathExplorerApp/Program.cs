@@ -56,7 +56,7 @@ ford.IsVeryOldInstceViaExtensionBlocks(2012);
 // TODO:
 
 Console.WriteLine("\nPathExtensions Scenarios:\n");
-PathExtensions.IsFileOG(file_path);                             // v1: static extension method
+//PathExtensions.IsFileOG(file_path);                             // v1: static extension method
 //Path.IsFile(file_path);       
 // v2: instance extension method, Path is not instantiated
 //PathExtensions.Is
