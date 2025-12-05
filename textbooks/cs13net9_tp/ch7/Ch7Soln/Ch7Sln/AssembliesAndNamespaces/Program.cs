@@ -16,8 +16,18 @@ XDocument xdoco = new();
 
 String a = "aaa";
 string b = "bbb";
+Console.WriteLine($"\ntypeof(string).Assembly.FullName: {typeof(string).Assembly.FullName}"); // deets
+Console.WriteLine($"typeof(string).Assembly.Location: {typeof(string).Assembly.Location}"); //full path
+Console.WriteLine($"typeof(string).Assembly.GetName().Name: {typeof(string).Assembly.GetName().Name}"); // just name
+Console.WriteLine();
+// 5. Check the Assembly Size (Quick and Dirty)
 
-System.Console.WriteLine($"a: {a}, {a.GetType()}, {a.GetTypeCode()}");
+var assembly = typeof(string).Assembly;
+var fileInfo = new FileInfo(assembly.Location);
+Console.WriteLine($"Assembly size: {fileInfo.Length} bytes\n"); // 100kb runtime , 10mb corlib
+
+
+System.Console.WriteLine($"\na: {a}, {a.GetType()}, {a.GetTypeCode()}");
 System.Console.WriteLine($"b: {b}, {b.GetType()}, {b.GetTypeCode()}");
 
 Console.WriteLine();
