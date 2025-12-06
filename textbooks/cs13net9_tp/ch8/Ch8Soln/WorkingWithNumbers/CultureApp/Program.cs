@@ -8,6 +8,7 @@ CultureInfo.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
 // [2]  add string 1 & 2
 string nm1 = "mark";
 string nm2 = "MARK";
+Console.WriteLine($"[A] COMPARE STRINGS\n");
 Console.WriteLine($"Set en-US");
 Console.WriteLine($"nm1:{nm1}, nm2:{nm2}");
 // [3]  compare strings
@@ -49,17 +50,23 @@ Console.WriteLine($"[4b] comp(Straße,Strasse): \t{string.Compare(nm2, nm1, Stri
 
 // STRING ORDERING
 
-Console.WriteLine("\n[String Ordering]\n");
+Console.WriteLine($"[B] STRING ORDERING\n");
 
 // create string comparer
 StringComparer string_comparer = StringComparer.Create(CultureInfo.CurrentCulture, CompareOptions.NumericOrdering);
 
 //string_comparer.order
 
-string[] operating_systems = new[] { "Windows 10", "Windows 11", "Windows 8" };
+string[] operating_systems = new[] { "Windows 10", "Windows 11", "Windows 8","Windows 7-XP"};
 
 Console.Write("Un-Ordered oses: ");
 foreach (var os in operating_systems){Console.Write($"'{os}', ");}
+
 Console.Write("\nOrdered oses: ");
 foreach (var os in operating_systems.Order(string_comparer)){Console.Write($"'{os}', "); }
+
+Console.WriteLine($"[C] COMBINE STRINGS\n");
+
+string os_story = string.Join(" => ", operating_systems);
+Console.WriteLine(os_story);
 
