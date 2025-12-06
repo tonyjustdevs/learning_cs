@@ -1,4 +1,5 @@
 <Solution>
+  <Project Path="CultureApp/CultureApp.csproj" Id="1269d632-9f73-4a57-bb74-0dcc86f361c3" />
   <Project Path="RandomingProject/RandomingProject.csproj" Id="93e6fea0-643e-4902-a29c-272fd1642c67" />
   <Project Path="StringsApp/StringsApp.csproj" Id="fb653d9f-3a27-441b-b0af-a8292cfdfdee" />
   <Project Path="WorkingWithNumbers/WorkingWithNumbers.csproj" />
