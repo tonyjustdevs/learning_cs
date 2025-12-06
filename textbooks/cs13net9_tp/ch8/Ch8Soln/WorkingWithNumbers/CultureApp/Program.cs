@@ -65,8 +65,20 @@ foreach (var os in operating_systems){Console.Write($"'{os}', ");}
 Console.Write("\nOrdered oses: ");
 foreach (var os in operating_systems.Order(string_comparer)){Console.Write($"'{os}', "); }
 
-Console.WriteLine($"[C] COMBINE STRINGS\n");
+Console.WriteLine($"\n[C] COMBINE STRINGS\n");
 
 string os_story = string.Join(" => ", operating_systems);
 Console.WriteLine(os_story);
+
+Console.WriteLine($"\n[D] FORMAT STRINGS\n");
+
+string produce_nm = "2011 Honda CBR 250R";
+decimal produce_px = 7999.99M;
+DateTime today_dt = DateTime.Today;
+// set culture!~!
+CultureInfo.CurrentCulture = CultureInfo.GetCultureInfo("en-US");
+Console.WriteLine($"{produce_nm} was bought for {produce_px:C} on {today_dt:dddd}");
+// [D1] add product name
+// [D2] add product price
+// [D3] add todays date
 
