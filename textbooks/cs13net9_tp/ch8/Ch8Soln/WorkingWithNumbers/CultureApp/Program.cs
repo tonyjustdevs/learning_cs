@@ -1,4 +1,5 @@
-﻿using System.Globalization;
+﻿using System.Buffers;
+using System.Globalization;
 //OutputEncoding = System.Text.Encoding.UTF8; // Enable Euro symbol.
 Console.WriteLine("Welcome to Culture & Strings App");
 
@@ -97,4 +98,13 @@ Console.WriteLine($"char.IsUpper('q'): {char.IsUpper('t')} [exp: F]");
 Console.WriteLine($"char.IsSeparator(' '): {char.IsSeparator(' ')} [exp: T]");
 Console.WriteLine($"char.IsSeparator('s'): {char.IsSeparator('s')} [exp: F]");
 
-//Console.WriteLine($"\n[E] CHAR CHECKING\n");
+Console.WriteLine($"\n[E] VOWEL & STRING SEARCH\n");
+
+string all_vowels = "aeiouAEIOU";
+SearchValues<char> search_values_vowels_instance = SearchValues.Create(all_vowels);
+ReadOnlySpan<char> text_to_be_searched = "messi";
+
+int idx_of_first_vowel = text_to_be_searched.IndexOfAny(search_values_vowels_instance);
+Console.WriteLine($"The first vowel in '{text_to_be_searched}' is at index: '{idx_of_first_vowel}'");
+
+
