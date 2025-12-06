@@ -37,27 +37,29 @@ nm2 = "Straße";
 
 CultureInfo.CurrentCulture = CultureInfo.GetCultureInfo("de-DE");
 Console.WriteLine($"\nSet de-DE");
-Console.WriteLine($"[1c] comp(Strasse,Straße): \t{string.Compare(nm1, nm2, 
+Console.WriteLine($"[1b] comp(Strasse,Straße): \t{string.Compare(nm1, nm2, 
     culture: CultureInfo.CurrentCulture, CompareOptions.IgnoreNonSpace)} [CompareOptions.IgnoreNonSpace]");
 
-Console.WriteLine($"[1c] comp(Strasse,Straße): \t{string.Compare(nm1, nm2,
+Console.WriteLine($"[2b] comp(Strasse,Straße): \t{string.Compare(nm1, nm2,
     culture: CultureInfo.CurrentCulture, 
     CompareOptions.IgnoreNonSpace | CompareOptions.IgnoreCase)} [CompareOptions.IgnoreNonSpace | CompareOptions.IgnoreCase)]");
 
-Console.WriteLine($"[1c] comp(Strasse,Straße): \t{string.Compare(nm1, nm2, StringComparison.InvariantCultureIgnoreCase)} [StringComparison.InvariantCultureIgnoreCase)]");
-Console.WriteLine($"[1c] comp(Straße,Strasse): \t{string.Compare(nm2, nm1, StringComparison.InvariantCultureIgnoreCase)} [StringComparison.InvariantCultureIgnoreCase)]");
+Console.WriteLine($"[3b] comp(Strasse,Straße): \t{string.Compare(nm1, nm2, StringComparison.InvariantCultureIgnoreCase)} [StringComparison.InvariantCultureIgnoreCase)]");
+Console.WriteLine($"[4b] comp(Straße,Strasse): \t{string.Compare(nm2, nm1, StringComparison.InvariantCultureIgnoreCase)} [StringComparison.InvariantCultureIgnoreCase)]");
 
-//Console.WriteLine();
-//Console.WriteLine($"[2c] comp(Müller,Mueller,ignoreCase): \t\t{string.Compare(nm1, nm2, ignoreCase: true)}");
-//Console.WriteLine($"[3c] comp(Müller,Mueller,SC.InvCIGCase): \t{string.Compare(nm1, nm2, StringComparison.InvariantCultureIgnoreCase)}");
+// STRING ORDERING
 
-//    Müller
-//    Mueller 
-//    Straße 
-//    Strasse
-//    
+Console.WriteLine("\n[String Ordering]\n");
 
-// [7] set German culture
+// create string comparer
+StringComparer string_comparer = StringComparer.Create(CultureInfo.CurrentCulture, CompareOptions.NumericOrdering);
 
-// [7] 
-//"de - DE"
+//string_comparer.order
+
+string[] operating_systems = new[] { "Windows 10", "Windows 11", "Windows 8" };
+
+Console.Write("Un-Ordered oses: ");
+foreach (var os in operating_systems){Console.Write($"'{os}', ");}
+Console.Write("\nOrdered oses: ");
+foreach (var os in operating_systems.Order(string_comparer)){Console.Write($"'{os}', "); }
+
