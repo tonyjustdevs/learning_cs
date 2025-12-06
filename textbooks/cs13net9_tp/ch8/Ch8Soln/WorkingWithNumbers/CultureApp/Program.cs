@@ -82,3 +82,19 @@ Console.WriteLine($"{produce_nm} was bought for {produce_px:C} on {today_dt:dddd
 // [D2] add product price
 // [D3] add todays date
 
+
+
+Console.WriteLine($"\n[E] CHAR CHECKING\n");
+
+Console.WriteLine($"char.IsDigit('a'): {char.IsDigit('a')} [exp: F]");
+Console.WriteLine($"char.IsDigit('6'): {char.IsDigit('6')} [exp: T]");
+Console.WriteLine($"char.IsLetter('6'): {char.IsLetter('6')} [exp: F]");
+Console.WriteLine($"char.IsLetter('b'): {char.IsLetter('b')} [exp: T]");
+Console.WriteLine($"char.IsLower('o'): {char.IsLower('k')} [exp: T]");
+Console.WriteLine($"char.IsLower('P'): {char.IsLower('U')} [exp: F]");
+Console.WriteLine($"char.IsUpper('M'): {char.IsUpper('N')} [exp: T]");
+Console.WriteLine($"char.IsUpper('q'): {char.IsUpper('t')} [exp: F]");
+Console.WriteLine($"char.IsSeparator(' '): {char.IsSeparator(' ')} [exp: T]");
+Console.WriteLine($"char.IsSeparator('s'): {char.IsSeparator('s')} [exp: F]");
+
+//Console.WriteLine($"\n[E] CHAR CHECKING\n");
