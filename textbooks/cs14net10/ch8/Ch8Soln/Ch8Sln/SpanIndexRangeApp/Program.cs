@@ -1,4 +1,6 @@
 ﻿
+using System.ComponentModel;
+
 Console.WriteLine("Hello, Span App!");
 Console.WriteLine("\n[A] CREATE 'INDEX' INSTANCES\n");
 
@@ -12,7 +14,6 @@ Index idx1c = new Index(888);
 
 // [2a] Index rev via: new(...,fromend:t)
 // [2b] Index rev via: ^value
-
 
 Index idx2a = new(666, fromEnd: true);
 Index idx2b = ^555;
@@ -59,7 +60,7 @@ int length_lname = name.Length - length_fname - 1;
 
 Console.WriteLine($"name: {name}, length_firstname: {length_fname}, length_lname: {length_lname}");
 
-// [1] SUBSTRING
+// [C1] SUBSTRING
 string fname = name.Substring(0, length_fname);
 string lname = name.Substring(length_fname + 1, length_lname);
 string lname2 = name.Substring(name.Length-length_lname, length_lname);
@@ -67,7 +68,7 @@ Console.WriteLine($"fname: {fname} (via Substring()");
 Console.WriteLine($"lname: {lname} (via Substring()");
 Console.WriteLine($"lname2: {lname2} (via Substring()");
 
-// [2] SPAN 
+// [C2] SPAN 
 Console.WriteLine("\n[C2] SPAN\n");
 
 ReadOnlySpan<char> nameSpan = name.AsSpan();
@@ -89,3 +90,53 @@ Console.WriteLine($"nameSpan[^length_lname..]: \t{lname_span3} \t\t[exp: 'Jones'
 
 //"Samantha Jones";
 //"01234567890123"; 
+
+// [C3] EFFICIENT STRING/TEXT CALCULATION VIA SPAN  (E.G. "3+23+34")
+// [C3] EFFICIENT STRING/TEXT CALCULATION VIA SPAN  (E.G. "3+23+34")
+Console.WriteLine("\n[C3] EFFICIENT TEXT CALCULATIONS VIA SPAN\n");
+
+// [a]  add string variable 'og_string' with math operators '+'
+string og_string = "23+1+45+351"; //2,24,69,420
+
+// [b]  convert to text_span = ... ReadOnlySpan<char>
+ReadOnlySpan<char> text_span = og_string.AsSpan();
+Console.WriteLine($"text_span: {text_span}");
+
+// [c]  declare sum=0;
+int sum = 0;
+
+// [e]  get Range range_by_plus from .split('+') by math operator '+'
+var text_span_split_rng =text_span.Split('+');
+//Console.WriteLine($"text_span_split.Current: {text_span_split.Current}");
+
+foreach (Range span_rng in text_span_split_rng) 
+{
+    // Console.WriteLine($"span_part: {span_rng} [{span_rng.GetType()}]");   // span_part(is type [System.Range])
+    var text_span_split = text_span[span_rng]; // needs to be intparsed
+    int text_span_split_int = int.Parse(text_span_split);
+    sum += text_span_split_int;
+    Console.WriteLine($"int.Parse(text_span_split): {text_span_split_int} (current_sum = {sum}])"); // [exp: [1],[23],[45], [351]"); // ReadOnlySpan<char>
+
+    // [f] convert span to int
+
+    //int split_int_span = split_txt_span.TryParse(out int span_int);
+}
+
+Console.WriteLine($"FINAL SUM: {sum} (exp: 420)");
+
+
+
+
+// [f]  foreach r:
+//var text_span_rng = text_span.Split('+');
+//Console.WriteLine($"text_span_rng.GetEnumerator(): {text_span_rng.GetEnumerator()}");
+
+//typeof(text_span_rng);
+//foreach(Range r)
+// [f]      sum += intParse(text_span[range_by_plus])  <-------- curr rng eg: text_span[0,1]..[2,3,4]..[5,6]
+
+// [g]  print sum
+
+
+//Console.WriteLine($"text_span_spliteted: {text_span_spliteted}");
+
