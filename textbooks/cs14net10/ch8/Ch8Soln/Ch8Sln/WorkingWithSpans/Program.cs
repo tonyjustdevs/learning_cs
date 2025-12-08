@@ -35,3 +35,27 @@ Console.WriteLine($"last_name_ro_span: {last_name_ro_span}");
 //string name = "Samantha Jones";
 //               01234567890123 - indexes
 //               12345678901234 - lenght
+
+// -------------------- [B] TEXT EXTRACTION 2: via Span<T>, Range & Index --------------------
+//string name = "Samantha Jones";
+
+ReadOnlySpan<char> name_span   = name.AsSpan();
+int fname_len   = name.IndexOf(' ');
+var fname_span = name_span[..fname_len];
+
+int lname_len   = name.Length - (fname_len+1);
+
+var lname_span = name_span[^lname_len..];
+Console.WriteLine(name_span[^lname_len..]);
+Console.WriteLine(fname_span);
+Console.WriteLine(lname_span);
+Console.WriteLine($"{fname_span}-{lname_span}");
+//Console.WriteLine("{0}-{1}",fname_span, lname_span);
+
+
+//var asdf = "samantha jones";
+//            01234567890123 - 0,13
+//            12345678901234 - 1,14
+//            43210987654321
+//           [123456789][01234]
+//           [samantha ][jones]
