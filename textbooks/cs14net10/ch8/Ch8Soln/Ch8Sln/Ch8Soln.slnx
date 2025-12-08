@@ -4,4 +4,5 @@
   <Project Path="SpanIndexRangeApp/SpanIndexRangeApp.csproj" Id="b774d7ad-c3bf-43a5-96e9-46c1a7d4b196" />
   <Project Path="StringsApp/StringsApp.csproj" Id="fb653d9f-3a27-441b-b0af-a8292cfdfdee" />
   <Project Path="WorkingWithNumbers/WorkingWithNumbers.csproj" />
+  <Project Path="WorkingWithSpans/WorkingWithSpans.csproj" Id="826cace7-68eb-4245-b6a6-0f7886a5f357" />
 </Solution>
