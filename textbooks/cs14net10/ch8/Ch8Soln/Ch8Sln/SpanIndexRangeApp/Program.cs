@@ -38,8 +38,6 @@ Range rng5 = 3..;
 Range rng6 = Range.EndAt(7);
 Range rng7 = ..7;
 
-
-
 Console.WriteLine($"{rng1} (exp: 3..7)");  
 Console.WriteLine($"{rng2} (exp: 3..7)");  
 Console.WriteLine($"{rng3} (exp: 3..7)");  
@@ -49,9 +47,13 @@ Console.WriteLine($"{rng6} (exp: 0..7)");
 Console.WriteLine($"{rng7} (exp: 0..7)");  
 
 Console.WriteLine("\n[C] NAME EXTRACTION: 2 SUBSTRING VS SPAN\n");
+Console.WriteLine("\n[C1] SUBSTRING\n");
 
 string name = "Samantha Jones"; // len:15 flen:8 llen:5
- 
+//"Samantha Jones";
+//"01234567890123"; 
+// ........890123 = len-fnamelen = 
+// .........90123 = len-fnamelen-1 = 
 int length_fname = name.IndexOf(' ');
 int length_lname = name.Length - length_fname - 1;
 
@@ -65,4 +67,25 @@ Console.WriteLine($"fname: {fname} (via Substring()");
 Console.WriteLine($"lname: {lname} (via Substring()");
 Console.WriteLine($"lname2: {lname2} (via Substring()");
 
-// [2] SPAN
+// [2] SPAN 
+Console.WriteLine("\n[C2] SPAN\n");
+
+ReadOnlySpan<char> nameSpan = name.AsSpan();
+int spaceIndex = nameSpan.IndexOf(' ');
+Console.WriteLine($"nameSpan.IndexOf(' '): \t\t{spaceIndex} \t\t[exp: 8]");
+
+var fname_span = nameSpan[..spaceIndex];
+Console.WriteLine($"nameSpan[..spaceIndex]: \t{fname_span} \t[exp: 'Samantha']");
+
+var lname_span = nameSpan[(spaceIndex + 1)..];
+Console.WriteLine($"nameSpan[(spaceIndex + 1)..]: \t{lname_span} \t\t[exp: 'Jones']");
+
+// count backwards from the end - lastnamelen
+//Console.WriteLine($"length_lname: {length_lname}");
+var lname_span2 = nameSpan[^5..];
+var lname_span3 = nameSpan[^length_lname..];
+Console.WriteLine($"nameSpan[^5..]: \t\t{lname_span2} \t\t[exp: 'Jones']");
+Console.WriteLine($"nameSpan[^length_lname..]: \t{lname_span3} \t\t[exp: 'Jones']");
+
+//"Samantha Jones";
+//"01234567890123"; 
