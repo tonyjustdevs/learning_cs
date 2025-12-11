@@ -8,7 +8,7 @@
 /.venv
 /cs13net9*
 *.pdf
-/cs14net10_official*
+textbooks/cs14net10_official*
 
 # dotenv files
 .env
