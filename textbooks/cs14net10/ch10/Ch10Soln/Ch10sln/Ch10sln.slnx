@@ -1,4 +1,8 @@
 <Solution>
   <Project Path="Northwind.EntityModels/Northwind.EntityModels.csproj" Id="000b9252-5b1f-40a9-ad53-ba067096f8f4" />
+  <Project Path="NW.EntModels/NW.EntModels.csproj" Id="c74df098-23aa-495f-9dd9-4156286fee01" />
+  <Project Path="Proj1EFCore/Proj1EFCore.csproj" Id="af2e74b5-3067-44db-b3dc-8ffde71cb480" />
+  <Project Path="Proj2.NorthWind.EntityModels/Proj2.NorthWind.EntityModels.csproj" Id="9c5deae2-ce73-403e-b48d-8259c89c5640" />
+  <Project Path="Proj2_EFCore/Proj2_EFCore.csproj" Id="bc702b10-6e4d-42fb-95f3-33458bea0407" />
   <Project Path="WorkingWithEFCore/WorkingWithEFCore.csproj" />
 </Solution>
