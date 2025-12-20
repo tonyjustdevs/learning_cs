@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Ch6: Memory</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="ch6_memory_files/libs/clipboard/clipboard.min.js"></script>
+<script src="ch6_memory_files/libs/quarto-html/quarto.js"></script>
+<script src="ch6_memory_files/libs/quarto-html/popper.min.js"></script>
+<script src="ch6_memory_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="ch6_memory_files/libs/quarto-html/anchor.min.js"></script>
+<link href="ch6_memory_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="ch6_memory_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="ch6_memory_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="ch6_memory_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="ch6_memory_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Ch6: Memory</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Reference:</p>
+<ul>
+<li>https://github.com/markjprice/cs14net10/blob/main/docs/ch06-memory.md</li>
+</ul>
+<p><strong>Topics</strong>:</p>
+<ul>
+<li>Understanding stack and heap memory</li>
+<li>Defining reference and value types</li>
+<li>How reference and value types are stored in memory</li>
+<li>Understanding boxing</li>
+<li>Defining struct types</li>
+<li>Defining record struct types</li>
+<li>Releasing unmanaged resources</li>
+<li>Ensuring that Dispose is called</li>
+</ul>
+<section id="common-type-system-cts-in-c" class="level1">
+<h1>1. Common Type System (CTS) In <code>C#</code></h1>
+<section id="common-type-system-cts" class="level2">
+<h2 class="anchored" data-anchor-id="common-type-system-cts">1.1 Common Type System (CTS)</h2>
+<p><strong>CTS</strong> is:</p>
+<ul>
+<li><strong>master blueprint</strong> of every <strong>type</strong> that can exist in <code>.NET</code>.</li>
+<li>part of <strong>.NET’s runtime environment</strong> (<code>CLR</code>) and</li>
+<li>sits underneath <code>C#</code>, <code>VB.NET</code>, <code>F#</code>, etc.</li>
+</ul>
+</section>
+<section id="why-does-cts-exist" class="level2">
+<h2 class="anchored" data-anchor-id="why-does-cts-exist">1.2 Why does <strong>CTS</strong> exist?</h2>
+<p>Because .NET is multi-language (without compatibility issues), that is:</p>
+<ul>
+<li><strong><em>Write</em></strong> a class in <code>C#</code></li>
+<li><strong><em>Inherit</em></strong> it in <code>VB.NET</code></li>
+<li><strong><em>Use</em></strong> it in <code>F#</code></li>
+</ul>
+<p>However each language has different syntax, rules, and philosophies, e.g.:</p>
+<ul>
+<li><code>VB.NET</code> has a type called <code>Integer</code> (32-bit integer)</li>
+<li><code>C#</code> has a type called <code>int</code> (also 32-bit integer)</li>
+</ul>
+<p>CTS unifies both by defining:</p>
+<ul>
+<li><code>System.Int32</code></li>
+</ul>
+</section>
+<section id="member-rules" class="level2">
+<h2 class="anchored" data-anchor-id="member-rules">1.3 Member rules</h2>
+<p>Every .NET language must follow these rules, CTS defines what members a type can have:</p>
+<ul>
+<li><strong>Fields</strong></li>
+<li><strong>Methods</strong></li>
+<li><strong>Properties</strong></li>
+<li><strong>Constructors</strong></li>
+<li><strong>Events</strong></li>
+<li><strong>Nested types</strong></li>
+<li><strong>Visibility rules (public, private…)</strong></li>
+</ul>
+</section>
+<section id="data-concepts" class="level2">
+<h2 class="anchored" data-anchor-id="data-concepts">1.4 Data Concepts</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Data Concept</th>
+<th>Things to Consider</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>How data is <strong>stored</strong></td>
+<td>- <strong>directly</strong> (value)<br>- <strong>indirectly</strong> (reference/pointer)</td>
+</tr>
+<tr class="even">
+<td>How data is <strong>copied</strong></td>
+<td>- <em>duplicate</em> the <strong>value</strong><br>- <em>duplicate</em> the <strong>reference</strong></td>
+</tr>
+<tr class="odd">
+<td>How it <strong>lives</strong> in memory</td>
+<td>- <strong>stack</strong> vs <br>- <strong>heap</strong> (or equivalent)</td>
+</tr>
+<tr class="even">
+<td><strong>Mutability</strong> &amp; <strong>shared state</strong></td>
+<td>- <em>editing</em> a value <strong>doesn’t affect</strong> other variables<br>- <em>editing</em> a <strong>shared reference</strong> does affect them</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="c-types-versus-clr.net-types" class="level2">
+<h2 class="anchored" data-anchor-id="c-types-versus-clr.net-types">1.5 C# Types Versus CLR.NET Types</h2>
+<ul>
+<li><p><code>C#</code> type: Something the C# language defines (e.g., int, string keywords)</p></li>
+<li><p><code>CLR/.NET</code> type: A type stored in the .NET type system (metadata + IL), loaded by the Common Language Runtime.</p></li>
+</ul>
+</section>
+<section id="net-type-system" class="level2">
+<h2 class="anchored" data-anchor-id="net-type-system">1.6 <code>.NET</code> <strong>Type System</strong></h2>
+<p>Is explicitly designed around:</p>
+<ul>
+<li><strong>Value</strong> Types (<code>structs</code>, <code>enums</code>, <code>numeric types</code>, <code>bool</code>, <code>user-defined structs</code>, etc.)</li>
+<li><strong>Reference</strong> Types (<code>classes</code>, <code>interfaces</code>, <code>arrays</code>, <code>strings</code>, <code>delegate</code>, <code>object</code>,etc)</li>
+</ul>
+</section>
+<section id="common-struct-types" class="level2">
+<h2 class="anchored" data-anchor-id="common-struct-types">1.7 Common <code>struct</code> Types</h2>
+<p><code>struct</code> objects are compared for equality using <strong>values</strong> <strong><em>instead</em></strong> of <strong>memory addresses</strong>.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 75%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>System Types</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Number</td>
+<td>byte, sbyte, short, ushort, int, uint, long, ulong, float, double, and decimal.</td>
+</tr>
+<tr class="even">
+<td>Other</td>
+<td>char, DateTime, DateOnly, TimeOnly, and bool.</td>
+</tr>
+<tr class="odd">
+<td>System.Drawing</td>
+<td>Color, Point, PointF, Size, SizeF, Rectangle, and RectangleF.</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="somemethod-csharp-code" class="level1">
+<h1>2. <code>SomeMethod()</code> CSharp Code</h1>
+<section id="console-app-scenario" class="level2">
+<h2 class="anchored" data-anchor-id="console-app-scenario">2.1 Console App: Scenario</h2>
+<p>Imagine a ConsoleApp:</p>
+<ul>
+<li><strong><em>calls</em></strong> <code>SomeMethod()</code> (see below)</li>
+<li><code>SomeMethod()</code> has:
+<ul>
+<li><strong>ref</strong> &amp;</li>
+<li><strong>val</strong> type variables</li>
+</ul></li>
+</ul>
+<div id="563ac8bd" class="cell" data-vscode="{&quot;languageId&quot;:&quot;ruby&quot;}">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>void SomeMethod() <span class="co"># csharp code example</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>{ </span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">int</span> number1 <span class="op">=</span> <span class="dv">49</span><span class="op">;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">long</span> number2 <span class="op">=</span> <span class="dv">12</span><span class="op">;</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    System.Drawing.Point location <span class="op">=</span> new(x: <span class="dv">3</span>, y: <span class="dv">5</span>)<span class="op">;</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    Person kevin <span class="op">=</span> new() { Name <span class="op">=</span> <span class="st">"Kevin"</span>,</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>        Born <span class="op">=</span> new(<span class="dv">1988</span>, <span class="dv">9</span>, <span class="dv">23</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, TimeSpan.Zero) }<span class="op">;</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    Person sally<span class="op">;</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="type-memory-allocation" class="level2">
+<h2 class="anchored" data-anchor-id="type-memory-allocation">2.1 Type Memory Allocation</h2>
+<p>Memory allocated when method is run</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 8%">
+<col style="width: 7%">
+<col style="width: 7%">
+<col style="width: 9%">
+<col style="width: 5%">
+<col style="width: 63%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>Object</th>
+<th>C# Type</th>
+<th>Allocated</th>
+<th>Bytes</th>
+<th>Run-Time Level Type<br>or .NET Common Language Runtime (CLR)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>number1</code></td>
+<td>struct</td>
+<td><code>int</code></td>
+<td><code>stack</code></td>
+<td><code>4</code></td>
+<td><code>System.Int32</code></td>
+</tr>
+<tr class="even">
+<td><code>number2</code></td>
+<td>struct</td>
+<td><code>long</code></td>
+<td><code>stack</code></td>
+<td><code>8</code></td>
+<td><code>System.Long???</code></td>
+</tr>
+<tr class="odd">
+<td><code>location</code></td>
+<td>struct</td>
+<td><code>Sys.D.Point</code></td>
+<td><code>stack</code></td>
+<td><code>8</code></td>
+<td><code>System.Drawing.Location??</code></td>
+</tr>
+<tr class="even">
+<td><code>kevin</code></td>
+<td>ref</td>
+<td><code>Person</code></td>
+<td><code>heap</code></td>
+<td><code>8</code></td>
+<td><code>System.Program.cs?</code></td>
+</tr>
+<tr class="odd">
+<td><code>kevin.Name</code></td>
+<td>ref</td>
+<td><code>string</code></td>
+<td><code>heap</code></td>
+<td><code>8</code></td>
+<td><code>System.Program.cs?</code></td>
+</tr>
+<tr class="even">
+<td><code>kevin.Born</code></td>
+<td>ref</td>
+<td><code>Date</code></td>
+<td><code>heap</code></td>
+<td><code>8</code></td>
+<td><code>System.Program.cs?</code></td>
+</tr>
+<tr class="odd">
+<td><code>sally</code></td>
+<td>ref</td>
+<td><code>Person</code></td>
+<td><code>heap</code></td>
+<td><code>8</code></td>
+<td><code>System.Program.cs?</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="struct" class="level1">
+<h1>3. <code>Struct</code></h1>
+<p>When to use it:</p>
+<ul>
+<li>If the <strong>Total Memory</strong> used by All the Fields in your type is <strong>16 bytes or less</strong> and</li>
+<li>Type Fields are only <strong>Value Types</strong> and</li>
+<li>Type be used to <strong>Derive Another Type</strong></li>
+</ul>
+</section>
+<section id="reference-type" class="level1">
+<h1>3.1 Reference Type</h1>
+<p>When to declare a Reference Type:</p>
+<ul>
+<li>Total Memory &gt; 16 bytes, or</li>
+<li>Fields are Reference Types, or</li>
+<li>Type to be used to derive other types</li>
+</ul>
+</section>
+<section id="questions-to-answer" class="level1">
+<h1>4. Questions To Answer</h1>
+<ul>
+<li><p>What <code>.NET</code> Type is it</p>
+<ul>
+<li>Reference-Type</li>
+<li>Value-Type</li>
+</ul></li>
+<li><p>What <code>C#</code> keywords available to define object types?</p></li>
+<li><p>How are the different object types allocated in memory?</p>
+<ul>
+<li>Stack</li>
+<li>Heap</li>
+</ul></li>
+<li><p>Provide a special (and useful) charateristic of the <code>struct</code> type</p>
+<ul>
+<li>Inheritance</li>
+<li>Equality: Values versus Memory Addresses</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb2"><pre class="sourceCode cs code-with-copy"><code class="sourceCode cs"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> <span class="fu">SomeMethod</span><span class="op">()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
