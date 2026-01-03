@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="MethodsCountApp/MethodsCountApp.csproj" />
+  <Project Path="MethodsCountApp2/MethodsCountApp2.csproj" />
+</Solution>
