@@ -3,4 +3,5 @@
   <Project Path="MethodCounterApp3/MethodsCounterApp3.csproj" Id="3afab911-40e7-4ee3-abf0-0adf604dd244" />
   <Project Path="MethodsCountApp/MethodsCountApp.csproj" />
   <Project Path="MethodsCountApp2/MethodsCountApp2.csproj" />
+  <Project Path="SizeCalculatorApp1/SizeCalculatorApp1.csproj" />
 </Solution>
