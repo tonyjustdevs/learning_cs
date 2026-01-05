@@ -1,4 +1,5 @@
 <Solution>
+  <Project Path="KeyReaderApp1/KeyReaderApp1.csproj" Id="8ddf90d7-8394-482d-8405-43c8933d5022" />
   <Project Path="MethodCounterApp3/MethodsCounterApp3.csproj" Id="3afab911-40e7-4ee3-abf0-0adf604dd244" />
   <Project Path="MethodsCountApp/MethodsCountApp.csproj" />
   <Project Path="MethodsCountApp2/MethodsCountApp2.csproj" />
