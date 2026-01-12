@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="AuthFieldAdderApp1/AuthFieldAdderApp1.csproj" />
+  <Project Path="BitwiseOperationsApp/BitwiseOperationsApp.csproj" Id="56f70e5f-9142-4114-b452-1074fde69911" />
+  <Project Path="BitwiseOperator/BitwiseOperator.csproj" Id="2c868d7a-e5b9-4948-97ed-9946859f6452" />
+  <Project Path="Customer/Customer.csproj" Id="50050be6-ccf3-4446-acb3-70a272426466" />
+</Solution>

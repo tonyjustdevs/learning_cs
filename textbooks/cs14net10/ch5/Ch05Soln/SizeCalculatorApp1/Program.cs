@@ -1,27 +1,58 @@
-﻿Console.WriteLine("Hello SizeExplorerApp1");
+﻿using System.ComponentModel.DataAnnotations;
+
+Console.WriteLine("Hello SizeExplorerApp1");
 // two methods:
 // 1. [operator]    sizeof()
 // 2. [cls mbr]     MinValue, MaxValue
 
-Console.WriteLine($"sbyte: {sizeof(sbyte)} bytes, min: {sbyte.MinValue}, min:{sbyte.MaxValue}");
-Console.WriteLine($"byte: {sizeof(byte)} bytes, min: {byte.MinValue}, min:{byte.MaxValue}");
-Console.WriteLine($"short: {sizeof(short)} bytes, min: {short.MinValue}, min:{short.MaxValue}");
-Console.WriteLine($"ushort: {sizeof(ushort)} bytes, min: {ushort.MinValue}, min:{ushort.MaxValue}");
-Console.WriteLine($"int: {sizeof(int)} bytes, min: {int.MinValue}, min:{int.MaxValue}");
-Console.WriteLine($"uint: {sizeof(uint)} bytes, min: {uint.MinValue}, min:{uint.MaxValue}");
-Console.WriteLine($"long: {sizeof(long)} bytes, min: {long.MinValue}, min:{long.MaxValue}");
-Console.WriteLine($"ulong: {sizeof(ulong)} bytes, min: {ulong.MinValue}, min:{ulong.MaxValue}");
-
-unsafe
+int Version = 2;
+if (Version == 1)
 {
-    Console.WriteLine($"Int128: {sizeof(Int128)} bytes, min: {Int128.MinValue}, min:{Int128.MaxValue}");
-    Console.WriteLine($"UInt128: {sizeof(UInt128)} bytes, min: {UInt128.MinValue}, min:{UInt128.MaxValue}");
-    Console.WriteLine($"Half: {sizeof(Half)} bytes, min: {Half.MinValue}, min:{Half.MaxValue}");
+    Console.WriteLine($"sbyte: {sizeof(sbyte)} bytes, min: {sbyte.MinValue}, min:{sbyte.MaxValue}");
+    Console.WriteLine($"byte: {sizeof(byte)} bytes, min: {byte.MinValue}, min:{byte.MaxValue}");
+    Console.WriteLine($"short: {sizeof(short)} bytes, min: {short.MinValue}, min:{short.MaxValue}");
+    Console.WriteLine($"ushort: {sizeof(ushort)} bytes, min: {ushort.MinValue}, min:{ushort.MaxValue}");
+    Console.WriteLine($"int: {sizeof(int)} bytes, min: {int.MinValue}, min:{int.MaxValue}");
+    Console.WriteLine($"uint: {sizeof(uint)} bytes, min: {uint.MinValue}, min:{uint.MaxValue}");
+    Console.WriteLine($"long: {sizeof(long)} bytes, min: {long.MinValue}, min:{long.MaxValue}");
+    Console.WriteLine($"ulong: {sizeof(ulong)} bytes, min: {ulong.MinValue}, min:{ulong.MaxValue}");
+
+    unsafe
+    {
+        Console.WriteLine($"Int128: {sizeof(Int128)} bytes, min: {Int128.MinValue}, min:{Int128.MaxValue}");
+        Console.WriteLine($"UInt128: {sizeof(UInt128)} bytes, min: {UInt128.MinValue}, min:{UInt128.MaxValue}");
+        Console.WriteLine($"Half: {sizeof(Half)} bytes, min: {Half.MinValue}, min:{Half.MaxValue}");
+    }
+
+    Console.WriteLine($"float: {sizeof(float)} bytes, min: {float.MinValue}, min:{float.MaxValue}");
+    Console.WriteLine($"double: {sizeof(double)} bytes, min: {double.MinValue}, min:{double.MaxValue}");
+    Console.WriteLine($"decimal: {sizeof(decimal)} bytes, min: {decimal.MinValue}, min:{decimal.MaxValue}");
+
+}
+else if (Version == 2)
+{
+    Console.WriteLine($"Type:  {"Byte(s) of Memory",-4} {"Min",32} {"Max",45}");
+
+    //Console.WriteLine($"short: {sizeof(short)} bytes, min: {short.MinValue}, min:{short.MaxValue}");
+    //Console.WriteLine($"ushort: {sizeof(ushort)} bytes, min: {ushort.MinValue}, min:{ushort.MaxValue}");
+    //Console.WriteLine($"int: {sizeof(int)} bytes, min: {int.MinValue}, min:{int.MaxValue}");
+    //Console.WriteLine($"uint: {sizeof(uint)} bytes, min: {uint.MinValue}, min:{uint.MaxValue}");
+    //Console.WriteLine($"long: {sizeof(long)} bytes, min: {long.MinValue}, min:{long.MaxValue}");
+    //Console.WriteLine($"ulong: {sizeof(ulong)} bytes, min: {ulong.MinValue}, min:{ulong.MaxValue}");
+
+    //unsafe
+    //{
+    //    Console.WriteLine($"Int128: {sizeof(Int128)} bytes, min: {Int128.MinValue}, min:{Int128.MaxValue}");
+    //    Console.WriteLine($"UInt128: {sizeof(UInt128)} bytes, min: {UInt128.MinValue}, min:{UInt128.MaxValue}");
+    //    Console.WriteLine($"Half: {sizeof(Half)} bytes, min: {Half.MinValue}, min:{Half.MaxValue}");
+    //}
+
+    //Console.WriteLine($"float: {sizeof(float)} bytes, min: {float.MinValue}, min:{float.MaxValue}");
+    //Console.WriteLine($"double: {sizeof(double)} bytes, min: {double.MinValue}, min:{double.MaxValue}");
+    //Console.WriteLine($"decimal: {sizeof(decimal)} bytes, min: {decimal.MinValue}, min:{decimal.MaxValue}");
+
 }
 
-Console.WriteLine($"float: {sizeof(float)} bytes, min: {float.MinValue}, min:{float.MaxValue}");
-Console.WriteLine($"double: {sizeof(double)} bytes, min: {double.MinValue}, min:{double.MaxValue}");
-Console.WriteLine($"decimal: {sizeof(decimal)} bytes, min: {decimal.MinValue}, min:{decimal.MaxValue}");
 
 //string rowSeparator = new string('-', count: 104);
 //WriteLine(rowSeparator);
