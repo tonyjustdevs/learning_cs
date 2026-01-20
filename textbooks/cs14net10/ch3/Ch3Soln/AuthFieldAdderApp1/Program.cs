@@ -1,6 +1,7 @@
 ﻿using System.Text;
 using TPSharedNamespace;
 using static System.Net.Mime.MediaTypeNames;
+using static System.Net.WebRequestMethods;
 
 // [1] A fictional function that returns either a string value or null.
 string  auth_name = getAuthName();
@@ -40,33 +41,17 @@ Customer.UpdateAge2(null, 11);
 
 
 Console.WriteLine("\n\nProgram Initiated:\n");
-Console.WriteLine("\n[1]Bits & Bytes\n");
+Console.WriteLine("[1]Bits & Bytes\n");
 
-byte[] BinaryObject = new byte[128];
-string some_text = "G'day Mate!";
 
-//Convert.to(some_text);
-for (int i = 0; i < 10; i++)
-{
-    Console.Write($"{BinaryObject[i]:X2} ");
-}
-Console.WriteLine("\n");
-for (int i = 0; i < 10; i++)
-{
-    Console.Write($"{BinaryObject[i]:X}  ");
-}
+Console.WriteLine("1. HTTP APIs");
+byte[] bytes_object = System.IO.File.ReadAllBytes("fake.pdf");
+string bytes_string = Convert.ToBase64String(bytes_object);
 
-string BinaryObject_str = Convert.ToBase64String(BinaryObject);
+Console.WriteLine("2. Encoding/Decoding (Not Encryption)");
 
-Console.WriteLine("\n");
-for (int i = 0; i < 10; i++)
-{
-    Console.Write($"{BinaryObject_str[i]:X2} ");
-}
-Console.WriteLine("\n");
-for (int i = 0; i < 10; i++)
-{
-    Console.Write($"{BinaryObject_str[i]:X}  ");
-}
+byte[] hello_txt2bin = Encoding.UTF8.GetBytes("hello");
+string base64_str = Convert.ToBase64String(data);
 
-Console.WriteLine("\n\nProgram Completed:\n");
+byte[] hello_64str2bin = Convert.FromBase64String(base64_str);
+string text = Encoding.UTF8.GetString(data);

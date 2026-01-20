@@ -1,0 +1,12 @@
+
+[ 1. add unit tests]
+- create calc_lib proj with bug
+- create calc_libunittest proj 
+- create calc_libunittest class
+- write two unit tests & test & fix bug
+
+[ 2. add multiple parameter value unit tests ]
+- add [Theory] & 
+- add multiple [InlineData(a,b,exp)]
+- add 'General Unit Test' 
+- TestAdding(a,b,exp) 

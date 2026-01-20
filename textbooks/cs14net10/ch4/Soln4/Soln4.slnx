@@ -1,0 +1,7 @@
+<Solution>
+  <Project Path="AsyncConsoleApp/AsyncConsoleApp.csproj" Id="c3d5a4b8-a905-464c-968d-11ba548076c1" />
+  <Project Path="CalculatorLib/CalculatorLib.csproj" Id="40a296f4-2fbe-4d94-8a08-c86050a3ede8" />
+  <Project Path="CalculatorLibUnitTests/CalculatorLibUnitTests.csproj" Id="78d5e3e7-5b08-487e-87ab-41d043094565" />
+  <Project Path="HotReloadApp/HotReloadApp.csproj" Id="875b0f93-134a-4b35-98bb-6b3e03da00fa" />
+  <Project Path="TopLeveLFunctionsApp/TopLeveLFunctionsApp.csproj" Id="98704b3d-d6f8-45ea-9f53-0c8dbc39497d" />
+</Solution>
