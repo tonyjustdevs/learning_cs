@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="TPCalcLib/TPCalcLib.csproj" />
+  <Project Path="TpCalcLibUnitTests/TpCalcLibUnitTests.csproj" />
+</Solution>

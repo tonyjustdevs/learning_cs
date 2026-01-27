@@ -1,7 +1,16 @@
 <Solution>
+  <Folder Name="/Solution Items/">
+    <File Path="Summary.txt" />
+  </Folder>
   <Project Path="AsyncConsoleApp/AsyncConsoleApp.csproj" Id="c3d5a4b8-a905-464c-968d-11ba548076c1" />
+  <Project Path="BankAccount/BankAccount.csproj" Id="a40bd922-5fd9-4aa9-8f26-3fb5842f449e" />
+  <Project Path="BankAccountLib/BankAccountLib.csproj" Id="286503aa-58e6-4b17-9687-3bc2e0522a9e" />
+  <Project Path="CalcLib2/CalcLib2.csproj" Id="4b04c767-48fb-4056-9b11-9004bedf75a9" />
+  <Project Path="CalcLib2UnitTests/CalcLib2UnitTests.csproj" Id="f339bbd8-0e67-45ef-8850-dbea16166305" />
   <Project Path="CalculatorLib/CalculatorLib.csproj" Id="40a296f4-2fbe-4d94-8a08-c86050a3ede8" />
   <Project Path="CalculatorLibUnitTests/CalculatorLibUnitTests.csproj" Id="78d5e3e7-5b08-487e-87ab-41d043094565" />
+  <Project Path="CallStackExceptionHandling/CallStackExceptionHandling.csproj" Id="bf8c7365-1d5d-4645-bc3c-d5bae58ab925" />
+  <Project Path="CallStackExceptionHandlingLib/CallStackExceptionHandlingLib.csproj" Id="c205f549-9a4c-483d-aad8-ebf14b9d8463" />
   <Project Path="HotReloadApp/HotReloadApp.csproj" Id="875b0f93-134a-4b35-98bb-6b3e03da00fa" />
   <Project Path="TopLeveLFunctionsApp/TopLeveLFunctionsApp.csproj" Id="98704b3d-d6f8-45ea-9f53-0c8dbc39497d" />
 </Solution>
