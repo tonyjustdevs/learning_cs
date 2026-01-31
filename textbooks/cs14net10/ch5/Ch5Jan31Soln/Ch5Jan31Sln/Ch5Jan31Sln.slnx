@@ -1,5 +1,7 @@
 <Solution>
   <Project Path="PeopleApp/PeopleApp.csproj" />
+  <Project Path="TPCalcLibForTesting/TPCalcLibForTesting.csproj" />
+  <Project Path="TPCalcLibUnitTests/TPCalcLibUnitTests.csproj" />
   <Project Path="TPSharedLibraryNet2/TPSharedLibraryNet2.csproj" />
   <Project Path="WorldApp/WorldApp.csproj" />
 </Solution>
