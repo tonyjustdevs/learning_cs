@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="PplApp1/PplApp1.csproj" />
+  <Project Path="TPLibraryNet2/TPLibraryNet2.csproj" />
+</Solution>

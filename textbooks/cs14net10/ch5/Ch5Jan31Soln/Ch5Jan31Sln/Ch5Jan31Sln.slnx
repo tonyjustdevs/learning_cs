@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="PeopleApp/PeopleApp.csproj" />
+  <Project Path="TPSharedLibraryNet2/TPSharedLibraryNet2.csproj" />
+  <Project Path="WorldApp/WorldApp.csproj" />
+</Solution>
