@@ -3,5 +3,6 @@
   <Project Path="TPCalcLibForTesting/TPCalcLibForTesting.csproj" />
   <Project Path="TPCalcLibUnitTests/TPCalcLibUnitTests.csproj" />
   <Project Path="TPSharedLibraryNet2/TPSharedLibraryNet2.csproj" />
+  <Project Path="TPSharedLibraryNet2UnitTests/TPSharedLibraryNet2UnitTests.csproj" />
   <Project Path="WorldApp/WorldApp.csproj" />
 </Solution>

@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="TPMathLib/TPMathLib.csproj" />
+  <Project Path="TPMathLibUnitTests/TPMathLibUnitTests.csproj" />
+  <Project Path="TPSharedLibNet2/TPSharedLibNet2.csproj" />
+</Solution>

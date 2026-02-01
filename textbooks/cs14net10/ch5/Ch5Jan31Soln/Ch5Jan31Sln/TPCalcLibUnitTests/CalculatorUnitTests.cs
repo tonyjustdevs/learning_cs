@@ -49,3 +49,4 @@ public class CalculatorUnitTests
         Assert.Equal(expected, result);
     }
 }
+

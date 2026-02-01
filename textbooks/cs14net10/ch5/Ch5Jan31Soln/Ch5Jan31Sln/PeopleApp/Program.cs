@@ -32,6 +32,7 @@ WriteLine($"- {bob.Name} now hates: {bob.SportsHated} (bits: {(int)bob.SportsHat
 
 
 
+
 /// testing ///
 //list, inefficient: bad big memory size 
 //bob.SportsHated = [PopularSports.Pickleball, PopularSports.Golf, PopularSports.Swimming];
