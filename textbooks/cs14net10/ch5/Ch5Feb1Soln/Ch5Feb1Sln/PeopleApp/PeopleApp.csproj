@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\TPSharedLibModern\TPSharedLibModern.csproj" />
     <ProjectReference Include="..\TPSharedLibNet2\TPSharedLibNet2.csproj" />
   </ItemGroup>
 	<ItemGroup>
