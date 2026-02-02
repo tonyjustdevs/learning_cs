@@ -1,4 +1,8 @@
 <Solution>
   <Project Path="CalculatorLib/CalculatorLib.csproj" />
   <Project Path="CalculatorLibUnitTests/CalculatorLibUnitTests.csproj" />
+  <Project Path="PeopleApp/PeopleApp.csproj" />
+  <Project Path="TPSharedLibModern/TPSharedLibModern.csproj" Id="bea18481-56e6-4815-ae4a-6e52d035a04a" />
+  <Project Path="TPSharedLibNet2/TPSharedLibNet2.csproj" />
+  <Project Path="TPSharedLibNet2UnitTests/TPSharedLibNet2UnitTests.csproj" />
 </Solution>
