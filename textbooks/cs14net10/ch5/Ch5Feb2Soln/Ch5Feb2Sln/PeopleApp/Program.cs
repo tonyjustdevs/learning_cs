@@ -2,6 +2,10 @@
 using TPNS.TPSharedLibModern;
 using TPNS.TPSharedLibNet2;
 
+using UnnamedParameters = (string, int);
+using FruitQtyPriceAliasedTuple = (string, int, decimal);
+using FruitAliasedTuples = (string fruit, int quantity);
+
 ConfigureDumpify();
 
 WriteLine("Welcome to PeopleApp");
@@ -41,17 +45,63 @@ WriteLine("{0} born in {1} at {2:hh:mm:ss.fff} on a {2:dddd}",
     blank_person.Instantiated);
 
 
+// use methods
+#region Methods1: return void
+alice.WriteOriginToConsole();
+var alice_origin_string = alice.GetOriginText();
+WriteLine(alice_origin_string);
+#endregion
+
+#region Methods2: return text
+alice.ParamsParameter("mate", [1, 2, 6, 40, 20]);
+#endregion
+
+var text_and_nbr = LifeTheUniverseAndEverything.GetData();
+
+Console.WriteLine("{0} {1}", text_and_nbr.Text, text_and_nbr.Number);
+
+Console.WriteLine("{0} {1}", 
+    LifeTheUniverseAndEverything.GetData().Text,
+    LifeTheUniverseAndEverything.GetData().Number);
 
 
+#region Tuples_1: Unnamed, Named, Aliased 
+(string, int) fruit = alice.GetFruit();
+WriteLine("(unnamed 2-tuples): {0}, there are {1}", fruit.Item1, fruit.Item2);
+
+UnnamedParameters fruit_aliased_tuple = alice.GetFruit(); //using UnnamedParameters = (string, int);
+WriteLine("(unnamed 2-tuples-aliased): {0}, there are {1}", fruit_aliased_tuple.Item1, fruit_aliased_tuple.Item2);
 
 
+(string, int, decimal) fruit2 = alice.GetUnnamedFruitV2();
+WriteLine("(unnamed 3-tuples: {0}, there are {1}, ${2} per kg", fruit2.Item1, fruit2.Item2, fruit2.Item3);
+
+FruitQtyPriceAliasedTuple fruit2_aliased_tuple = alice.GetUnnamedFruitV2(); //using FruitQtyPriceAliasedTuple = (string, int, decimal);
+WriteLine("(unnamed 3-tuples-aliased: {0}, there are {1}, ${2} per kg", fruit2_aliased_tuple.Item1, fruit2_aliased_tuple.Item2, fruit2_aliased_tuple.Item3);
 
 
+WriteLine("(named 2-tuples): {0}, there are {1}",
+alice.GetFruitNamedTuples().fruit,
+alice.GetFruitNamedTuples().quantity);
 
 
+var fruit3 = alice.GetFruitNamedTuples();
+WriteLine("(named 2-tuples-var: {0}, there are {1}",
+fruit3.fruit, fruit3.quantity);
 
+//using FruitAliasedTuples = (string fruit, int quantity);
+FruitAliasedTuples fruit3_named_aliased = alice.GetFruitNamedTuples();
 
+WriteLine("(named 2-tuples-aliased: {0}, there are {1}",
+fruit3_named_aliased.fruit, fruit3_named_aliased.quantity);
+#endregion
 
+#region Tuples_1: Deconstructing 
+//(string, int) fruit = alice.GetFruit();
+//WriteLine("(unnamed 2-tuples): {0}, there are {1}", fruit.Item1, fruit.Item2);
+(string alice_fruit, int alice_qty) = alice.GetFruit();
+WriteLine("(named 2-tuples-deconstructing): {0}, there are {1}", alice_fruit, alice_qty);
+#endregion  
 
 
 
