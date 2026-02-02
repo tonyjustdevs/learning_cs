@@ -11,7 +11,11 @@
     <ProjectReference Include="..\TPSharedLibModern\TPSharedLibModern.csproj" />
     <ProjectReference Include="..\TPSharedLibNet2\TPSharedLibNet2.csproj" />
   </ItemGroup>
+    <ItemGroup>
+	    <PackageReference Include="Dumpify" Version="0.6.6" />
+    </ItemGroup>
 	<ItemGroup>
-		<PackageReference Include="Dumpify" Version="0.6.6" />
+		<Using Include="System.Console" Static="true"/>
 	</ItemGroup>
+
 </Project>

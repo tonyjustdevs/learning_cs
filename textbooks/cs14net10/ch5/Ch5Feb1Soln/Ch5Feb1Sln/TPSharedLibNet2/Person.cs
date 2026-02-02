@@ -9,17 +9,21 @@
         public const string         Species = "Homo Sapien";    // compile-time
         public readonly string      HomePlanet = "Earth";       // instance read-only run-time field
 
-        private string              secretcode = "mate";
-        public string?              stringprop { get; } = "cunt";
-
         #region Constructors: called when using new instantiate a type
-        
-        private readonly DateTime _Instantiated;
+
+        public readonly DateTime Instantiated;
         public Person()
         {
             Name = "Unknown";
-            _Instantiated = DateTime.Now;
+            Instantiated = DateTime.Now;
         }
+        public Person(string initialName, string homePlanet)
+        {
+            Name = initialName;
+            HomePlanet = homePlanet;
+            Instantiated = DateTime.Now;
+        }
+
         #endregion
     }
 }

@@ -57,10 +57,15 @@ DumpConfig.Default.MembersConfig.IncludeProperties = true;
 DumpConfig.Default.MembersConfig.IncludeNonPublicMembers= true;
 nameless_person.Dump();
 
+WriteLine("'{0}' of '{1}' was created '{2:hh:mm:ss:fffffff}' on a '{2:dddd}'",
+    nameless_person.Name,
+    nameless_person.HomePlanet,
+    nameless_person.Instantiated);
 
-
-
-
+Book book = new(
+    isbn: "978-1803237800", 
+    title: "C# 14 and .NET 10 - Modern Cross-Platform Development Fundamentals")
+{};
 
 
 
