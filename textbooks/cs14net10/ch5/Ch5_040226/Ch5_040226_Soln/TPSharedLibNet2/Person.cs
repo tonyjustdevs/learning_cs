@@ -8,6 +8,7 @@ public partial class Person
     // moved to PersonAutoGen.cs as a property
     // public EnumSports SportsFav;
     public List<Person> Children = new();
+    public List<Person> Friends = new();
     public EnumByteSports SportsLiked;
     public const string Species = "Homo Sapiens";   // compile-time 
     public readonly string HomePlanet = "Earth";       // run-time

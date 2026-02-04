@@ -19,11 +19,18 @@ Person bob = new()
 };
 
 bob.Children.AddRange([         // add children
+    new Person {Name="kid0", FavouriteColour="blue"},
     new Person {Name="kid1", FavouriteColour="green"},
-    new Person {Name="kid2", FavouriteColour="blue"},
-
+    new Person {Name="kid2", FavouriteColour="red"},
 ]);
 
+bob.Friends.AddRange([
+    new Person{Name="Christina"},
+    new Person{Name="Soph"},
+    new Person{Name="Japeth"},
+    new Person{Name="Ronald"},
+    new Person{Name="Grace"}
+]);
 // Deconstruct
 // get name and dob via deconstruction
 //var (o_name, DateTime o_dob)= bob;
@@ -35,5 +42,17 @@ bob.SportsByteFav = (EnumByteSports)8;      // ok:      one of the valid bits
 //bob.SportsByteFav = (EnumByteSports)9;    // not-ok:  one of the valid bits
 bob.SportsLiked = EnumByteSports.Golf| EnumByteSports.Surfing; // ok
 //bob.SportsLiked = (EnumByteSports)69;     // ok
+
 bob.Dump();// Dump
 
+
+//WriteLine("{0}'s first kid is: {1}"  ,bob.Name,bob[0].Name);
+//WriteLine("{0}'s second kid is: {1}" ,bob.Name,bob[1].Name);
+//WriteLine("{0}'s final kid is: {1}"  ,bob.Name,bob[2].Name);
+
+//WriteLine("{0}'s first friend is: {1}"  ,bob.Name,bob[0].Name);
+
+foreach (var friend in bob.Friends)
+{
+    WriteLine("- {0}", friend.Name);
+}

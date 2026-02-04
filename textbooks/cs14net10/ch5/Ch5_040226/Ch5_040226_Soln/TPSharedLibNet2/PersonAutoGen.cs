@@ -80,5 +80,42 @@ public partial class Person
         }
     }
     #endregion
+    
+    #region Indexer
+    //public Person this[int i]
+    //{
+    //    get 
+    //    {
+    //        return Children[i];
+    //    }
+    //    set
+    //    {
+    //        Children[i]=value;
+    //    }
+    //}
+
+
+    //public Person this[string kid_name] // read-only string indexer
+    //{
+    //    get 
+    //    {
+    //        return Children.Find(p => p.Name == kid_name);
+    //    }
+    //}
+    
+    public Person this[int index]
+    {
+        get => Friends[index];
+        set
+        {
+            Friends[index] = value;
+        }
+    }
+    
+    public Person this[string friends_name]// readonly string indexer
+    {
+        get => Friends.Find(p => p.Name == friends_name);
+    }
+    #endregion
 
 }
