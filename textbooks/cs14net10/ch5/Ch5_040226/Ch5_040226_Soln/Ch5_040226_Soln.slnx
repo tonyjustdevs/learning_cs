@@ -1,4 +1,5 @@
 <Solution>
   <Project Path="PeopleApp/PeopleApp.csproj" />
+  <Project Path="TPSharedLibModern/TPSharedLibModern.csproj" Id="2a7e5f39-1166-4129-a489-d5ca9ac407cb" />
   <Project Path="TPSharedLibNet2/TPSharedLibNet2.csproj" />
 </Solution>

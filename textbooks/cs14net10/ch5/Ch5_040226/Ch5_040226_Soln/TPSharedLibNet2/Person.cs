@@ -10,8 +10,9 @@ public partial class Person
     public List<Person> Children = new();
     public List<Person> Friends = new();
     public EnumByteSports SportsLiked;
-    public const string Species = "Homo Sapiens";   // compile-time 
-    public readonly string HomePlanet = "Earth";       // run-time
+    public EnumByteGames GamesLiked;
+    public const string Species = "Homo Sapiens";       // compile-time 
+    public readonly string HomePlanet = "Earth";        // run-time
     public DateTime Instantiated = DateTime.Now;
     #endregion
 

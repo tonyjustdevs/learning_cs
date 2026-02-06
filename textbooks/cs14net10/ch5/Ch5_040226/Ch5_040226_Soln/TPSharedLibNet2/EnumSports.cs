@@ -26,3 +26,17 @@ public enum EnumByteSports : byte
     Pickleball      = 1 << 6,   // 64
 
 }
+
+[Flags]
+public enum EnumByteGames : byte
+{
+    None        = 0,   // 0
+    Terraria    = 1 << 0,   // 1
+    MarioKart64 = 1 << 1,   // 2
+    Fifa        = 1 << 2,   // 4
+    BanjoKazooie= 1 << 3,   // 8
+    Tetris      = 1 << 4,   // 16
+    Pokemon     = 1 << 5,   // 32
+    Chess       = 1 << 6,   // 64
+
+}

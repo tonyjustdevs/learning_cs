@@ -117,5 +117,31 @@ public partial class Person
         get => Friends.Find(p => p.Name == friends_name);
     }
     #endregion
-
+   
+    private EnumByteGames? _gamesByteFavProp;
+    public EnumByteGames? GamesByteFavProp {
+        get 
+        {
+            //return _gamesByteFavProp;
+            return field;
+        }
+        set 
+        { 
+            string? input_str = value?.ToString(); //test variable is singular (no commas)
+            if (input_str.Contains(','))
+            {
+                throw new ArgumentException(
+                    "Must be a single name",
+                    nameof(GamesByteFavProp));
+            };
+            if (!Enum.IsDefined(typeof(EnumByteGames),value))
+            {
+                throw new ArgumentException(
+                    "Not a valid game!!",
+                    nameof(GamesByteFavProp));
+            }
+            field = value;       
+            //_gamesByteFavProp = value;
+        }
+    }
 }
