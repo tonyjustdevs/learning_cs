@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="PeopleApp/PeopleApp.csproj" />
+  <Project Path="TPSharedLibNet2/TPSharedLibNet2.csproj" />
+</Solution>

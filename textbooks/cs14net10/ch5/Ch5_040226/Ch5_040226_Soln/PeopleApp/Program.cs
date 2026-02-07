@@ -1,5 +1,6 @@
 ﻿using Dumpify;
 using NSTP.TPSharedLibModern;
+using TPNS.TPSharedLibModern;
 using TPNS.TPSharedLibNet2;
 DumpConfig.Default.TableConfig.ShowMemberTypes = true;
 DumpConfig.Default.MembersConfig.IncludeFields = true;
@@ -124,3 +125,6 @@ WriteLine("{0} is a {1}", oreo_name, oreo_animal);
 // new record: lucky the dog
 ImmutableAnimal lucky = oreo with { Name = "lucky", Animal = "dog" };
 lucky.Dump();
+
+Headset vp = new("Apple", "Goggles");
+vp.Dump();
