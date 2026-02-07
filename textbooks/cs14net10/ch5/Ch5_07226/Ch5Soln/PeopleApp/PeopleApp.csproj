@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\TPSharedLibNet2\TPSharedLibNet2.csproj" />
+    <ProjectReference Include="..\TPSharedModernLib\TPSharedModernLib.csproj" />
   </ItemGroup>
 	<ItemGroup>
 		<Using Include="System.Console" Static="true" />

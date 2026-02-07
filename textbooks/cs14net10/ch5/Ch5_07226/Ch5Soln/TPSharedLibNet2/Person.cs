@@ -7,7 +7,7 @@ public partial class Person
     public EnumSports? SportsFav;
     public EnumByteSports? SportLiked;
     public List<Person> Children = new();
-    public const string Species = "Homo Sapien";
+    //public const string Species = "Homo Sapien";
     public static readonly string HomePlanet = "Earth";
 
     #region Indexer: use array syntax on a Person instance
