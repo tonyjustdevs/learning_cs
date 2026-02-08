@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Ch5Soln\TPSharedModernLib\TPSharedModernLib.csproj" />
+  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Dumpify" Version="0.6.6" />
+	</ItemGroup>
+	
+<ItemGroup>
+	<Using Include="System.Console" Static="true" />
+</ItemGroup>
+
+
+
+
+</Project>
