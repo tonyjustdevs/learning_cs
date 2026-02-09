@@ -1,4 +1,7 @@
-﻿using System.Diagnostics.Tracing;
+﻿using System;
+using System.Diagnostics.Tracing;
+using System.IO;
+using System.Runtime.Serialization;
 
 namespace TPSharedModernLib;
 
@@ -138,20 +141,39 @@ public partial class Person
     //    }
     //}
 
- 
-
-    // add instance method() 
-    public event EventHandler? ShoutEH;
-    public int AngerLevel { get; set; }
-    public void Poke() {
+    public event EventHandler? YellGood;
+    public EventHandler? YellBad;
+    public int AngerLevel;
+    public void Poke()
+    {
         AngerLevel++;
-        WriteLine($"{Name} got poked! [AngerLevel: {AngerLevel}]");
-
+        WriteLine($"{Name} was poked! (AngerLevel: {AngerLevel})");
         if (AngerLevel>=3)
         {
-            // invoke shout
-            ShoutEH?.Invoke(this, EventArgs.Empty);
+            // trigger some action 
+            // 1. related to Person
+            //WriteLine($"{Name}: piss off cunt! (Poke())");
+
+            // 2. non-related: invoke event-handler(sender, arguments)
+            YellGood?.Invoke(this, EventArgs.Empty);
+            YellBad?.Invoke(this, EventArgs.Empty);
         }
     }
+    #endregion
+
+    #region Interfaces: Common
+    //IComparable //: int CompareTo(object? obj)  // CompareTo(other)
+    //- comparison method that a type implements to order or sort its instances.
+
+    //IComparer : int Compare(T? x, T? y)       // Compare(first, second)
+
+    //IDisposable : void Dispose()              // Dispose()
+
+    //IFormattable : string ToString(string? format, IFormatProvider? formatProvider); //ToString(format, culture)  
+
+    //IFormatter: object Deserialize(Stream serializationStream);  //Serialize(stream, object) 
+    //            void Serialize(Stream serializationStream, object graph); //Deserialize(stream)
+
+    //IFormatProvider : object? GetFormat(Type? formatType); // GetFormat(type)
     #endregion
 }

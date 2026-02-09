@@ -1,5 +1,7 @@
 ﻿using TPSharedModernLib;
 //using Dumpify; // To use the Dump extension method.
+
+#region [Section 0a] Add 'harry' ('Person' instance)
 Person harry = new()
 {
     Name = "Harry",
@@ -7,9 +9,11 @@ Person harry = new()
     hour: 0, minute: 0, second: 0,
     offset: TimeSpan.Zero)
 };
+#endregion 
+
+#region [Section 0] TextBook Code Samples
+
 //harry.WriteToConsole();
-
-
 // Implementing functionality using methods.
 //Person lamech = new() { Name = "Lamech" };
 //Person adah = new() { Name = "Adah" };
@@ -83,27 +87,56 @@ Person harry = new()
 //  arg0: key,
 //  arg1: lookupIntString[key]);
 
+#endregion
 
-// Assign the method to the Shout delegate.
-//harry.Shout = Harry_Shout;
-// Assign the method to the Shout event delegate.
-//harry.Shout += Harry_Shout;
-//harry.Shout += Harry_Shout_2;
-//// Call the Poke method that eventually raises the Shout event.
-//harry.Poke();
-//harry.Poke();
-//harry.Poke();
-//harry.Poke();
-harry.ShoutEH += PersonHadEnoughEvent;
+#region [Section 1] EventHandler
+WriteLine("\n[Section 1] EventHandler");
+
+harry.YellGood += MethodToBeHandled;
+harry.YellGood += MethodToBeHandled2;
+
+harry.YellBad += MethodToBeHandled;
+harry.YellBad += MethodToBeHandled2;
+
+//harry.YellBad += null;                              // ok but bad1
+//harry.YellBad?.Invoke(harry, EventArgs.Empty);      // ok but bad2
+//harry.YellGood ?.Invoke(harry, EventArgs.Empty);  // ce
+//harry.YellGood = null;                            // ce2
+
 harry.Poke();
 harry.Poke();
 harry.Poke();
-harry.Poke();
-harry.Poke();
-harry.Poke();
+#endregion
 
+#region [Section 2a] Interfaces 'int' & 'string' Code Samples
+WriteLine("\n[Section 2a] Interfaces Samples\n");
+WriteLine("\nExisting 'int' and 'string' CompareTo()\n");
+WriteLine("- [string] \"mate\".CompareTo(\"meat\"): {0}", "mate".CompareTo("meat"));
+WriteLine("- [string] \"mate\".CompareTo(\"mate\"): {0}", "mate".CompareTo("mate"));
+WriteLine("- [string] \"mates\".CompareTo(\"mate\"): {0}", "mates".CompareTo("meat"));
 
+WriteLine($"- [int] 69.CompareTo(420): {69.CompareTo(420)}");
+WriteLine($"- [int] 420.CompareTo(420): {420.CompareTo(420)}");
+WriteLine($"- [int] 420.CompareTo(69): {420.CompareTo(69)}");
+// string CompareTo
+// int CompareTo
+// Interfaces Section
+#endregion
 
+#region [Section 2b] Task 1: Create Interface 'Person' Sorter 
+WriteLine("\n[Section 2b] Task 1: 'Person' Sorter" +
+    "\nIn Program.Helpers.cs." +
+    "\n1. define method partial Program class that outputs " +
+    "\n2. all the names collection of people " +
+    "\n3. passed as a parameter \n4. with a title beforehand");
+#endregion
 
-
-
+#region [Section 2c] Task 1: ShowPeopleNames(IEnumerable people)
+ShowPeopleNames([
+    new Person {Name="p1"},
+    new Person {Name="p2"},
+    new Person {Name="p3"},
+    new Person {Name="p4"},
+    new Person {Name="p5"}
+]);
+#endregion
