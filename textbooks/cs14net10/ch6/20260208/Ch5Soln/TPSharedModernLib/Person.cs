@@ -1,14 +1,17 @@
-﻿using System;
+﻿#nullable enable
+using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Diagnostics.Tracing;
 using System.IO;
 using System.Runtime.Serialization;
 
 namespace TPSharedModernLib;
 
-public partial class Person
+public partial class Person : IComparable<Person>
 {
     #region Properties
     public string? Name { get; set; }
+    //public string OtherName { get; set; }
     public DateTimeOffset Born { get; set; }
     public List<Person> Children { get; set; } = new();
     #endregion
@@ -22,7 +25,6 @@ public partial class Person
         string term = Children.Count == 1 ? "child" : "children";
         WriteLine($"{Name} has {Children.Count} {term}.");
     }
-    #endregion
 
 
     // Allow multiple spouses to be stored for a person.
@@ -103,8 +105,7 @@ public partial class Person
         return Procreate(this, partner);
     }
 
-
-
+    #endregion
     #region Operators
     // Define the + operator to "marry".
     public static bool operator +(Person p1, Person p2)
@@ -121,8 +122,6 @@ public partial class Person
         return Procreate(p1, p2);
     }
     #endregion
-
-
     #region Events
     //// Delegate field to define the event.
     //public event EventHandler? Shout; // null initially.
@@ -159,21 +158,87 @@ public partial class Person
             YellBad?.Invoke(this, EventArgs.Empty);
         }
     }
+
+    public int CompareTo(Person? other)
+    {
+        int position;
+        if (other is not null)
+        {
+            if ((Name is not null) && (other.Name is not null))
+            {
+                // If both Name values are not null, then
+                // use the string implementation of CompareTo.
+                position = Name.CompareTo(other.Name);
+            }
+            else if ((Name is not null) && (other.Name is null))
+            {
+                position = -1; // this Person precedes other Person.
+            }
+            else if ((Name is null) && (other.Name is not null))
+            {
+                position = 1; // this Person follows other Person.
+            }
+            else // Name and other.Name are both null.
+            {
+                position = 0; // this and other are at same position.
+            }
+        }
+        else if (other is null)
+        {
+            position = -1; // this Person precedes other Person.
+        }
+        else // this and other are both null.
+        {
+            position = 0; // this and other are at same position.
+        }
+        return position;
+    }
+        public void Hire(Person manager, Person employee)
+        {
+            ArgumentNullException.ThrowIfNull(manager);
+            ArgumentNullException.ThrowIfNull(employee);
+
+        }
+
+
     #endregion
 
-    #region Interfaces: Common
-    //IComparable //: int CompareTo(object? obj)  // CompareTo(other)
-    //- comparison method that a type implements to order or sort its instances.
 
-    //IComparer : int Compare(T? x, T? y)       // Compare(first, second)
 
-    //IDisposable : void Dispose()              // Dispose()
-
-    //IFormattable : string ToString(string? format, IFormatProvider? formatProvider); //ToString(format, culture)  
-
-    //IFormatter: object Deserialize(Stream serializationStream);  //Serialize(stream, object) 
-    //            void Serialize(Stream serializationStream, object graph); //Deserialize(stream)
-
-    //IFormatProvider : object? GetFormat(Type? formatType); // GetFormat(type)
-    #endregion
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#region TextbookStuff - Interfaces: Common
+//IComparable //: int CompareTo(object? obj)  // CompareTo(other)
+//- comparison method that a type implements to order or sort its instances.
+
+//IComparer : int Compare(T? x, T? y)       // Compare(first, second)
+
+//IDisposable : void Dispose()              // Dispose()
+
+//IFormattable : string ToString(string? format, IFormatProvider? formatProvider); //ToString(format, culture)  
+
+//IFormatter: object Deserialize(Stream serializationStream);  //Serialize(stream, object) 
+//            void Serialize(Stream serializationStream, object graph); //Deserialize(stream)
+
+//IFormatProvider : object? GetFormat(Type? formatType); // GetFormat(type)
+//public void PrintNameLength() 
+//{ 
+////#pragma warning disable CS8602
+//    WriteLine(OtherName.Length); //CS8602: A dereference of a possibly null reference.
+////#pragma warning restore CS8602
+//}
+#endregion
+

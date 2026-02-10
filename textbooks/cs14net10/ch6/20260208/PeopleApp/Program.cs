@@ -132,11 +132,54 @@ WriteLine("\n[Section 2b] Task 1: 'Person' Sorter" +
 #endregion
 
 #region [Section 2c] Task 1: ShowPeopleNames(IEnumerable people)
-ShowPeopleNames([
-    new Person {Name="p1"},
-    new Person {Name="p2"},
-    new Person {Name="p3"},
-    new Person {Name="p4"},
-    new Person {Name="p5"}
-]);
+Person?[] people =
+{
+  null,
+  new() { Name = "Simon" },
+  new() { Name = "Jenny" },
+  new() { Name = "Adam" },
+  null,
+  new() { Name = null },
+  new() { Name = "Richard" }
+};
+
+OutputPeopleNames(people, "\n Unsorted list");
+
+Array.Sort(people);
+OutputPeopleNames(people, "\n Sorted list");
+
+
+#endregion
+
+#region Hooman losing via interfaces
+Hooman hooman = new();
+WriteLine("\n[Interface Section]");
+Write("\nhooman.Lose(): ");
+hooman.Lose();
+//Write("(expected: \"keys lost!\")\n");
+Write("\n((IGamer)hooman).Lose(): ");
+//((IGamer)hooman).Lose();
+
+IGamer igamer = hooman;
+var igamer2 = hooman as IGamer;
+// hooman -> gamer
+
+igamer.Lose();
+igamer2.Lose();
+//WriteLine(sizeof(long));
+//WriteLine(sizeof(int));
+
+DisplacementVector dv1 = new(3, 5);
+DisplacementVector dv5 = new(3, 5);
+WriteLine($"\ndv1.Equals(dv5): {dv1.Equals(dv5)}");
+
+//Equals method, which has a default implementation that compares all fields within the struct for equality/
+//WriteLine($"dv1 == dv5: {dv1 == dv5})");
+
+
+#endregion
+
+#region Null Stuff
+
+
 #endregion

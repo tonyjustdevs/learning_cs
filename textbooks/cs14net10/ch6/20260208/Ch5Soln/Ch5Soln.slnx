@@ -1,5 +1,6 @@
 <Solution>
   <Project Path="../PeopleApp/PeopleApp.csproj" />
   <Project Path="LumonApp/LumonApp.csproj" Id="375c14a5-b535-461b-af7d-9cddfa499563" />
+  <Project Path="NullHandling/NullHandling.csproj" Id="c55d6607-06ee-4b04-bc52-d1d8e2d2e164" />
   <Project Path="TPSharedModernLib/TPSharedModernLib.csproj" />
 </Solution>

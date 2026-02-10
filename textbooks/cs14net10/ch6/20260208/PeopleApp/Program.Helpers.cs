@@ -8,22 +8,31 @@ partial class Program
         WriteLine("hi");
     }
 
-    private static void ShowPeopleNames(IEnumerable<Person> people) 
+    private static void ShowPeopleNames(IEnumerable<Person?> people) 
     {
         WriteLine("In ShowPeopleNames() of [Program.Helpers.cs]");
-        foreach (Person person in people)
+        foreach (Person? person in people)
         {
-            WriteLine($"- {person.Name}");
-            
+            //WriteLine($"- {person.Name}");
+            string? names_string = person is null ? "<null> Person" : person.Name ?? "<null> Name";
+            WriteLine(names_string);
         }
     }
-    // In Program.Helpers.cs.
-    // - 1. define method partial Program class that outputs
-    // - 2. all the names collection of people
-    // - 3. passed as a parameter
-    // - 4. with a title beforehand
 
 
+  private static void OutputPeopleNames(
+    IEnumerable<Person?> people, string title)
+    {
+        WriteLine(title);
+        foreach (Person? p in people)
+        {
+            WriteLine(" {0}",
+              p is null ? "<null> Person" : p.Name ?? "<null> Name");
+            /* if p is null then output: <null> Person
+               else output: p.Name
+               unless p.Name is null then output: <null> Name */
+        }
+    }
 }
 
 
