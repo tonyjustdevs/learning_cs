@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="Exercise_Inheritance_App/Exercise_Inheritance_App.csproj" />
+  <Project Path="TPSharedModernLib/TPSharedModernLib.csproj" />
+</Solution>
