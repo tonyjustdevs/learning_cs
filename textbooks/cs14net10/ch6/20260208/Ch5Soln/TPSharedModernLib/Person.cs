@@ -1,5 +1,6 @@
 ﻿#nullable enable
 using System;
+using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Diagnostics.Tracing;
 using System.IO;
@@ -13,8 +14,11 @@ public partial class Person : IComparable<Person>
     public string? Name { get; set; }
     //public string OtherName { get; set; }
     public DateTimeOffset Born { get; set; }
+    public int Age{ get; set; }
+
     public List<Person> Children { get; set; } = new();
     #endregion
+
     #region Methods
     public void WriteToConsole()
     {
@@ -106,6 +110,7 @@ public partial class Person : IComparable<Person>
     }
 
     #endregion
+    
     #region Operators
     // Define the + operator to "marry".
     public static bool operator +(Person p1, Person p2)
@@ -122,6 +127,7 @@ public partial class Person : IComparable<Person>
         return Procreate(p1, p2);
     }
     #endregion
+    
     #region Events
     //// Delegate field to define the event.
     //public event EventHandler? Shout; // null initially.
@@ -203,7 +209,38 @@ public partial class Person : IComparable<Person>
 
     #endregion
 
+    #region Custom Exception
+    public void TimeTravel(DateTime when)
+    {
+        var born_utc = Born.UtcDateTime;
+        if (when < born_utc)
+        {
+            throw new PersonalException("if you travel before you're born, the universe will explode!");
+        }
+        int age = when.Year - born_utc.Year;
+        WriteLine($"Travelled back to {when:yyyy}, you were only {(age)} years old");
+        //WriteLine($"Welcome to {when:yyyy}!");
+    }
 
+
+    #endregion
+
+    #region Method-Chaining or Fluent-Style
+    
+    public Person SetName(string name)
+    {
+        Name = name;
+        return this;
+    }
+
+    public Person SetAge(int age)
+    {
+        Age = age;
+        return this;
+    }
+
+
+    #endregion
 
 }
 
