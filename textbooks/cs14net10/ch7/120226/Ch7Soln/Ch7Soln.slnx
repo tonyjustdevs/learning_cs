@@ -1,4 +1,5 @@
 <Solution>
   <Project Path="AssembliesAndNamespaces/AssembliesAndNamespaces.csproj" />
   <Project Path="DotNetEverywhere/DotNetEverywhere.csproj" Id="b4f2e9d6-3d12-473f-8596-32def6b857cf" />
+  <Project Path="HelloWorld/HelloWorld.csproj" Id="15851458-5338-4cb6-8e65-9d1d6f0c68c2" />
 </Solution>

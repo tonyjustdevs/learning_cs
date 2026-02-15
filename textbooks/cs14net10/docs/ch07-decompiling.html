@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>ch07-decompiling</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="ch07-decompiling_files/libs/clipboard/clipboard.min.js"></script>
+<script src="ch07-decompiling_files/libs/quarto-html/quarto.js"></script>
+<script src="ch07-decompiling_files/libs/quarto-html/popper.min.js"></script>
+<script src="ch07-decompiling_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="ch07-decompiling_files/libs/quarto-html/anchor.min.js"></script>
+<link href="ch07-decompiling_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="ch07-decompiling_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="ch07-decompiling_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="ch07-decompiling_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="ch07-decompiling_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+
+
+
+<p><strong>Decompiling .NET assemblies</strong></p>
+<ul>
+<li><a href="#decompiling-using-the-ilspy-extension-for-visual-studio">Decompiling using the ILSpy extension for Visual Studio</a></li>
+<li><a href="#viewing-source-links-with-visual-studio">Viewing source links with Visual Studio</a></li>
+<li><a href="#no-you-cannot-technically-prevent-decompilation">No, you cannot technically prevent decompilation</a></li>
+</ul>
+<p>One of the best ways to learn how to code for .NET is to see how professionals do it. Most code editors have an extension for decompiling .NET assemblies. Visual Studio and VS Code can use the ILSpy extension. Rider has a built-in IL Viewer tool.</p>
+<blockquote class="blockquote">
+<p><strong>Good Practice</strong>: You could decompile someone else’s assemblies for non-learning purposes, like copying their code for use in your own production library or application, but remember that you are viewing their intellectual property, so please respect that.</p>
+</blockquote>
+<section id="decompiling-using-the-ilspy-extension-for-visual-studio" class="level1">
+<h1>Decompiling using the ILSpy extension for Visual Studio</h1>
+<p>For learning purposes, you can decompile any .NET assembly with a tool like ILSpy: 1. In Visual Studio, navigate to <strong>Extensions</strong> | <strong>Manage Extensions</strong>. 2. In the search box, enter <code>ilspy</code>. 3. For the <strong>ILSpy 2022</strong> extension, click <strong>Download</strong>. 4. Click <strong>Close</strong>. 5. Close Visual Studio to allow the extension to be installed. 6. Restart Visual Studio and reopen the <code>Chapter07</code> solution. 7. In <strong>Solution Explorer</strong>, right-click the <code>DotNetEverywhere</code> project and select <strong>Open output in ILSpy</strong>. 8. In ILSpy, in the toolbar, make sure that <strong>C#</strong> is selected in the drop-down list of languages to decompile into. 9. In ILSpy, in the <strong>Assemblies</strong> navigation tree on the left, expand <strong>DotNetEverywhere (1.0.0.0, .NETCoreApp, v9.0)</strong>. 10. In ILSpy, in the <strong>Assemblies</strong> navigation tree on the left, expand <strong>{ }</strong> and then expand <strong>Program</strong>. 11. Select <code>&lt;Main&gt;$(string[]) : void</code> to show the statements in the compiler-generated <code>Program</code> class and its <code>&lt;Main&gt;$</code> method, as shown in <em>Figure 7.4</em>:</p>
+<p><img src="assets/B22322_07_04.png" class="img-fluid" alt="Revealing the"> <em>Figure 7.4: Revealing the <code>&lt;Main&gt;$</code> method using ILSpy</em></p>
+<ol start="12" type="1">
+<li>In ILSpy, navigate to <strong>File</strong> | <strong>Open…</strong>.</li>
+<li>Navigate to the following folder: <code>cs14net10/Chapter07/DotNetEverywhere/bin/Release/net10.0/linux-x64</code></li>
+<li>Select the <code>System.Linq.dll</code> assembly and click <strong>Open</strong>.</li>
+<li>In the <strong>Assemblies</strong> tree, expand the <strong>System.Linq (9.0.0.0, .NETCoreApp, v9.0)</strong> assembly, expand the <strong>System.Linq</strong> namespace, expand the <strong>Enumerable</strong> class, and then click the <strong>Count<tsource>(this IEnumerable<tsource>) : int</tsource></tsource></strong> method.</li>
+<li>In the <code>Count</code> method, note the good practice of checking the source parameter and throwing an <code>ArgumentNullException</code> if it is <code>null</code>, checking for interfaces that the source might implement with their own <code>Count</code> properties that would be more efficient to read, and finally, the last resort of enumerating through all the items in the source and incrementing a counter, which would be the least efficient implementation, as shown in <em>Figure 7.5</em>:</li>
+</ol>
+<p><img src="assets/B22322_07_05.png" class="img-fluid" alt="Decompiled Count method of the Enumerable class"> <em>Figure 7.5: Decompiled Count method of the Enumerable class</em></p>
+<blockquote class="blockquote">
+<p>Note that different decompiler tools are likely to produce slightly different code, for example, variable names, but the functionality will be the same.</p>
+</blockquote>
+<ol start="17" type="1">
+<li>Review the C# source code for the <code>Count</code> method, as shown in the following code, in preparation for reviewing the same code in IL:</li>
+</ol>
+<div class="sourceCode" id="cb1"><pre class="sourceCode cs code-with-copy"><code class="sourceCode cs"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span> <span class="kw">static</span> <span class="dt">int</span> Count<span class="op">&lt;</span>TSource<span class="op">&gt;(</span><span class="kw">this</span> IEnumerable<span class="op">&lt;</span>TSource<span class="op">&gt;</span> source<span class="op">)</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">if</span> <span class="op">(</span>source <span class="op">==</span> <span class="kw">null</span><span class="op">)</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="op">{</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    ThrowHelper<span class="op">.</span><span class="fu">ThrowArgumentNullException</span><span class="op">(</span>ExceptionArgument<span class="op">.</span><span class="fu">source</span><span class="op">);</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="kw">if</span> <span class="op">(</span>source <span class="kw">is</span> ICollection<span class="op">&lt;</span>TSource<span class="op">&gt;</span> collection<span class="op">)</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="op">{</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">return</span> collection<span class="op">.</span><span class="fu">Count</span><span class="op">;</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  <span class="kw">if</span> <span class="op">(</span>source <span class="kw">is</span> IIListProvider<span class="op">&lt;</span>TSource<span class="op">&gt;</span> iIListProvider<span class="op">)</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  <span class="op">{</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    <span class="kw">return</span> iIListProvider<span class="op">.</span><span class="fu">GetCount</span><span class="op">(</span>onlyIfCheap<span class="op">:</span> <span class="kw">false</span><span class="op">);</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  <span class="kw">if</span> <span class="op">(</span>source <span class="kw">is</span> ICollection collection2<span class="op">)</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  <span class="op">{</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    <span class="kw">return</span> collection2<span class="op">.</span><span class="fu">Count</span><span class="op">;</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span> num <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>  <span class="kw">using</span> IEnumerator<span class="op">&lt;</span>TSource<span class="op">&gt;</span> enumerator <span class="op">=</span> source<span class="op">.</span><span class="fu">GetEnumerator</span><span class="op">();</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>  <span class="kw">while</span> <span class="op">(</span>enumerator<span class="op">.</span><span class="fu">MoveNext</span><span class="op">())</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>  <span class="op">{</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    num <span class="op">=</span> <span class="kw">checked</span><span class="op">(</span>num <span class="op">+</span> <span class="dv">1</span><span class="op">);</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>  <span class="kw">return</span> num<span class="op">;</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<blockquote class="blockquote">
+<p><strong>Good Practice</strong>: You will often see LinkedIn posts and blog articles warning you to always use the <code>Count</code> property of a sequence instead of calling the LINQ <code>Count()</code> extension method. As you can see above, this advice is unnecessary because the <code>Count()</code> method always checks if the sequence implements <code>ICollection&lt;T&gt;</code> or <code>ICollection</code> and then uses the <code>Count</code> property anyway. Also note that the <code>System.Array</code> class implements <code>IList</code> (a superset of <code>ICollection</code>), and its <code>Count</code> property implementation returns the <code>Length</code>.</p>
+</blockquote>
+<p>The final part of the <code>Count</code> method implementation shows how the <code>foreach</code> statement works internally. It calls the <code>GetEnumerator</code> method and then calls the <code>MoveNext</code> method in a <code>while</code> loop. To calculate the count, the loop increments an <code>int</code> value. It does all this in a <code>checked</code> statement so that an exception will be thrown in the case of an overflow. The <code>Count</code> method can, therefore, only count sequences with up to about 2 billion items.</p>
+<ol start="18" type="1">
+<li>In the ILSpy toolbar, click the <strong>Select language to decompile</strong> dropdown and select <strong>IL</strong>, and then review the IL source code of the <code>Count</code> method.</li>
+</ol>
+<pre class="il"><code></code></pre>
+<blockquote class="blockquote">
+<p><strong>Good Practice</strong>: The IL code is not especially useful unless you get very advanced with C# and .NET development, when knowing how the C# compiler translates your source code into IL code can be important. The much more useful edit windows contain the equivalent C# source code written by Microsoft experts. You can learn a lot of good practices from seeing how professionals implement types. For example, the <code>Count</code> method shows how to check arguments for <code>null</code>.</p>
+</blockquote>
+<ol start="19" type="1">
+<li>Close ILSpy.</li>
+</ol>
+<p>You can learn how to use the ILSpy extension for VS Code at the following link: https://github.com/markjprice/cs14net10/blob/main/docs/code-editors/vscode.md#decompiling-using-the-ilspy-extension-for-visual-studio-code.</p>
+</section>
+<section id="viewing-source-links-with-visual-studio" class="level1">
+<h1>Viewing source links with Visual Studio</h1>
+<p>Instead of decompiling, Visual Studio has a feature that allows you to view the original source code using source links. This feature is not available in Code.</p>
+<p>Let’s see how it works: 1. In Visual Studio, enable <strong>Source Link</strong>: - Navigate to <strong>Tools</strong> | <strong>Options</strong>. - In the search box, enter <code>navigation to source</code>. - Select <strong>Text Editor</strong> | <strong>C#</strong> | <strong>Advanced</strong>. - Select the <strong>Enable navigation to Source Link and Embedded sources</strong> check box, and then click <strong>OK</strong>. 2. In Visual Studio, add a new <strong>Console App</strong> / <code>console</code> project to the <code>Chapter07</code> solution named <code>SourceLinks</code>. 3. In <code>Program.cs</code>, delete the existing statements,and then add statements to declare a <code>string</code> variable and then output its value and the number of characters it has, as shown in the following code:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode cs code-with-copy"><code class="sourceCode cs"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="dt">string</span> name <span class="op">=</span> <span class="st">"Timothée Chalamet"</span><span class="op">;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> length <span class="op">=</span> name<span class="op">.</span><span class="fu">Count</span><span class="op">();</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>Console<span class="op">.</span><span class="fu">WriteLine</span><span class="op">(</span>$<span class="st">"{name} has {length} characters."</span><span class="op">);</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="4" type="1">
+<li>Right-click in the <code>Count()</code> method and select <strong>Go To Implementation</strong>.</li>
+<li>Note the source code file is named <code>Count.cs</code> and it defines a <code>partial Enumerable</code> class with implementations of five count-related methods, as shown in <em>Figure 7.6</em>:</li>
+</ol>
+<p><img src="assets/B22322_07_06.png" class="img-fluid" alt="Viewing the original source file for LINQ’s Count method implementation"> <em>Figure 7.6: Viewing the original source file for LINQ’s Count method implementation</em></p>
+<p>You can learn more from viewing source links than decompiling because they show best practices for situations like how to divide up a class into partial classes for easier management. When we used the ILSpy compiler, all it could do was show all the hundreds of methods of the <code>Enumerable</code> class. You can learn more about how a source link works and how any NuGet package can support it at the following link: https://learn.microsoft.com/en-us/dotnet/standard/library-guidance/sourcelink.</p>
+<ol start="6" type="1">
+<li>If you prefer decompiling rather than viewing source links, then you can disable the source link feature now.</li>
+</ol>
+</section>
+<section id="no-you-cannot-technically-prevent-decompilation" class="level1">
+<h1>No, you cannot technically prevent decompilation</h1>
+<p>I sometimes get asked if there is a way to protect compiled code to prevent decompilation. The quick answer is no, and if you think about it, you’ll see why this must be the case. You can make it harder using obfuscation tools like Dotfuscator, but ultimately, you cannot completely prevent it.</p>
+<p>All compiled applications contain instructions for the platform, operating system, and hardware on which it runs. Those instructions must be functionally the same as the original source code but are harder for a human to read. Those instructions must be readable to execute your code; therefore, they must be readable to be decompiled. If you were to protect your code from decompilation using some custom technique, then you would also prevent your code from running!</p>
+<p>Virtual machines simulate hardware and so can capture all interaction between your running application and the software and hardware that it thinks it is running on.</p>
+<p>If you could protect your code, then you would also prevent attaching to it with a debugger and stepping through it. If the compiled application has a <code>.pdb</code> file, then you can attach a debugger and step through the statements line by line. Even without the <code>.pdb</code> file, you can still attach a debugger and get some idea of how the code works.</p>
+<p>This is true for all programming languages. Not just .NET languages like C#, Visual Basic, and F#, but also C, C++, Delphi, and assembly language: all can be attached to for debugging or to be disassembled or decompiled. Some tools used by professionals are shown in <em>Table 7.7</em>:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Type</th>
+<th>Product</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Virtual Machine</td>
+<td>VMware</td>
+<td>Professionals like malware analysts always run software inside a VM.</td>
+</tr>
+<tr class="even">
+<td>Debugger</td>
+<td>SoftICE</td>
+<td>Runs underneath the operating system, usually in a VM.</td>
+</tr>
+<tr class="odd">
+<td>Debugger</td>
+<td>WinDbg</td>
+<td>Useful for understanding Windows internals because it knows more about Windows data structures than other debuggers.</td>
+</tr>
+<tr class="even">
+<td>Disassembler</td>
+<td>IDA Pro</td>
+<td>Used by professional malware analysts.</td>
+</tr>
+<tr class="odd">
+<td>Decompiler</td>
+<td>HexRays</td>
+<td>Decompiles C apps. Plugin for IDA Pro.</td>
+</tr>
+<tr class="even">
+<td>Decompiler</td>
+<td>DeDe</td>
+<td>Decompiles Delphi apps.</td>
+</tr>
+<tr class="odd">
+<td>Decompiler</td>
+<td>dotPeek</td>
+<td>.NET decompiler from JetBrains.</td>
+</tr>
+</tbody>
+</table>
+<p><em>Table 7.7: Professional debugger, decompiler, and disassembler tools</em></p>
+<blockquote class="blockquote">
+<p><strong>Good Practice</strong>: Debugging, disassembling, and decompiling someone else’s software is likely against its license agreement and illegal in many jurisdictions. Instead of trying to protect your intellectual property with a technical solution, the law is sometimes your only recourse.</p>
+</blockquote>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

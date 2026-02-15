@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="DirectoryApp/DirectoryApp.csproj" Id="8bf61ed4-4863-454a-8df2-413249151b01" />
+  <Project Path="DirectoryMgmtApp/DirectoryMgmtApp.csproj" Id="be36bb80-8361-4e26-940e-b38df4c7e959" />
+  <Project Path="FilesApp/FilesApp.csproj" Id="b4c1ed99-9eb1-4e02-a3b2-c4c285d40942" />
+  <Project Path="FilestreamApp/FilestreamApp.csproj" Id="bbf457d3-5a4d-4c70-96f5-20f3a6f255bb" />
+</Solution>
