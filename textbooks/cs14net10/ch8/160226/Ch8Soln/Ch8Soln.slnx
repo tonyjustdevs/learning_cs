@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="FileCreateCopierApp/FileCreateCopierApp.csproj" />
+  <Project Path="TxtReaderApp/TxtReaderApp.csproj" />
+  <Project Path="Viper/Viper.csproj" />
+  <Project Path="ViperCallSignsApp/ViperCallSignsApp.csproj" />
+</Solution>
