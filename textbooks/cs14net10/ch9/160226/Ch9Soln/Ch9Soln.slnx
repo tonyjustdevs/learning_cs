@@ -1,4 +1,5 @@
 <Solution>
   <Project Path="Viper/Viper.csproj" />
   <Project Path="ViperTextApp/ViperTextApp.csproj" />
+  <Project Path="XmlExporterApp/XmlExporterApp.csproj" />
 </Solution>
