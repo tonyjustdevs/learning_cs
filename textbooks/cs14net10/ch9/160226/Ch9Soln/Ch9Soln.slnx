@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="Viper/Viper.csproj" />
+  <Project Path="ViperTextApp/ViperTextApp.csproj" />
+</Solution>
