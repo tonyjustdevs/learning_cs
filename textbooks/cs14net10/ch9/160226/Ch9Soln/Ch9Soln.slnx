@@ -1,5 +1,6 @@
 <Solution>
   <Project Path="Viper/Viper.csproj" />
+  <Project Path="ViperCallsApp/ViperCallsApp.csproj" Id="a7bd5c98-0481-4f43-b2f0-1aec82585c81" />
   <Project Path="ViperTextApp/ViperTextApp.csproj" />
   <Project Path="XmlExporterApp/XmlExporterApp.csproj" />
 </Solution>
