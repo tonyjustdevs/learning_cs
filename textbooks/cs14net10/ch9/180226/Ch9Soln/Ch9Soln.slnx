@@ -1,5 +1,6 @@
 <Solution>
   <Project Path="CallSignsXmlApp/CallSignsXmlApp.csproj" />
+  <Project Path="ViperCSAppWithCompression/ViperCSAppWithCompression.csproj" Id="ad897e34-e4ff-4edf-bc7a-cd6096bc4c45" />
   <Project Path="XmlApp/XmlApp.csproj" />
   <Project Path="XMLViperCSApp/XMLViperCSApp.csproj" Id="584d828c-fe68-40fc-a271-ab528bbf4b11" />
 </Solution>
