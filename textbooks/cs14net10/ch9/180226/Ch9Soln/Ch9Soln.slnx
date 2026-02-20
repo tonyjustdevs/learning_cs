@@ -1,7 +1,9 @@
 <Solution>
+  <Project Path="AsyncReviewApp/AsyncReviewApp.csproj" Id="ef660dfc-3f13-4d97-b539-60eecad21b50" />
   <Project Path="CallSignsXmlApp/CallSignsXmlApp.csproj" />
   <Project Path="ViperCSAppDeCompression/ViperCSAppDeCompression.csproj" Id="2c02cbd2-c21a-4852-adcb-84845aedb009" />
   <Project Path="ViperCSAppWithCompression/ViperCSAppWithCompression.csproj" Id="ad897e34-e4ff-4edf-bc7a-cd6096bc4c45" />
+  <Project Path="ViperXMLDecompApp/ViperXMLDecompApp.csproj" Id="d4d5fc59-a793-4121-9e80-1d13ae30a9b1" />
   <Project Path="XmlApp/XmlApp.csproj" />
   <Project Path="XMLViperCSApp/XMLViperCSApp.csproj" Id="584d828c-fe68-40fc-a271-ab528bbf4b11" />
 </Solution>
