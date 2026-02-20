@@ -1,4 +1,5 @@
 <Solution>
   <Project Path="HandlesAndRandomAccessApp/HandlesAndRandomAccessApp.csproj" />
+  <Project Path="HighPerfFileCopyApp/HighPerfFileCopyApp.csproj" Id="c9d290e8-6f6c-4044-9eed-16687a82e789" />
   <Project Path="ViperCallSignsXMLApp/ViperCallSignsXMLApp.csproj" />
 </Solution>
