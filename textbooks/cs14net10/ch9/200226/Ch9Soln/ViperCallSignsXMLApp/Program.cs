@@ -8,8 +8,9 @@ Console.WriteLine("\nHello to ViperCallSignsApp\n");
 string xml_path = Combine(GetCurrentDirectory(), "viper.xml");
 string xml_gz_path = Combine(GetCurrentDirectory(), "viper.xml.gz");
 string xml_br_path = Combine(GetCurrentDirectory(), "viper.br");
+string xml_zip_path = Combine(GetCurrentDirectory(), "viper.xml.zip");
 
-string[] file_paths = [xml_path, xml_gz_path, xml_br_path];
+string[] file_paths = [xml_path, xml_gz_path, xml_br_path, xml_zip_path];
 //string[] file_paths = [xml_path];
 
 foreach (var file_path in file_paths)
