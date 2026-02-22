@@ -14,11 +14,11 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <None Update="cafe.txt">
+	  <None Update="coffee.txt">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </None>
-	  <None Update="coffee.txt">
-	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  <None Update="cafe.txt">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </None>
 	</ItemGroup>
 
