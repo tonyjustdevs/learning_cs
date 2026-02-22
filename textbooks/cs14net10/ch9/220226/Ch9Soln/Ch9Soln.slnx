@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="ReadTxtViaHandleApp/ReadTxtViaHandleApp.csproj" />
+  <Project Path="WorkingWithRandomAccessApp/WorkingWithRandomAccessApp.csproj" />
+</Solution>
