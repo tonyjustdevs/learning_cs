@@ -41,11 +41,12 @@ List<Person> people = new()
 //    // Serialize the object graph to the stream.
 //    xs.Serialize(stream, people);
 //} // Closes the stream.
-//DoSerialization(people, "cool_beans.xml");
-SerializeOnceAgain(people);
+DoSerialization(people, "cool_beans.xml");
+SerializeOnceAgain(people,"serial_business.xml");
 //OutputFileInfo(path);
-
-
+GenerateFileInfo("serial_business.xml");
+DoJsonSeralzsation(people, "serial.json");
+TPJsonSerialisater(people, "TPserial.json");
 //WriteLine($"people.GetType(): {people.GetType()}");
 //WriteLine($"new Person(): {new Person().GetType()}");
 
