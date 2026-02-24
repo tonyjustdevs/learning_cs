@@ -1,5 +1,7 @@
 ﻿
+
 // See https://aka.ms/new-console-template for more information
+using System.Diagnostics;
 using System.Xml.Serialization;
 using TP.SharedLib;
 
@@ -32,28 +34,18 @@ using (var xml_file_stream = File.Create(xml_full_path))
 {
     xs.Serialize(xml_file_stream, people);
     WriteLine($"{file_name} has been xml-serialized.");
-}
-
-// show file info
-ShowFileInfo(xml_full_path);
-
-
-static void ShowFileInfo(string full_path)
-{
-    WriteLine($"File: \t{GetFileName(full_path)}");
-    WriteLine($"Dir: \t{GetDirectoryName(full_path)}");
-    WriteLine($"Size: \t{new FileInfo(full_path).Length:N0} bytes");
-    WriteLine($"Contents: ");
-    WriteLine($"/ ----------------------------- /");
-    //WriteLine($"{File.ReadAllLines(full_path)}");
-    var string_list = File.ReadAllLines(full_path);
-    foreach (var line in string_list)
-    {
-        WriteLine(line);
-    }
-    //WriteLine($"{File.ReadAllLines(full_path)}");
-    //WriteLine($"{File.ReadAllText(full_path)}");
-    WriteLine($"/ ----------------------------- /");
     
 }
 
+file_name = "serialized_people.json";
+string json_full_path = Combine(GetCurrentDirectory(), file_name);
+
+using (StreamWriter s_writer = new StreamWriter(json_full_path)) { 
+    Newtonsoft.Json.JsonSerializer json_serializer = new();
+    json_serializer.Serialize(s_writer, people);
+}
+// show file info
+
+
+ShowFileInfo(xml_full_path);    // 1037 bytes
+ShowFileInfo(json_full_path);   // 475 bytes
