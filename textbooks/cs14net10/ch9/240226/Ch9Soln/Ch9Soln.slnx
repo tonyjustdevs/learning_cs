@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="EncoderApp/EncoderApp.csproj" />
+  <Project Path="SerializationPeopleApp/SerializationPeopleApp.csproj" />
+  <Project Path="XMLDeserializerPeopleApp/XMLDeserializerPeopleApp.csproj" />
+</Solution>
