@@ -4,11 +4,12 @@
 using System.Diagnostics;
 using System.Xml.Serialization;
 using TP.SharedLib;
-
+using System.Text.Json; // To use JsonSerializerOptions.
+using System.Text.Json.Schema; // To use JsonSchemaExporter.
 Console.WriteLine("Hello, World!");
 
 // create some people
-var jason_bourne = new Person{FullName="Jason Bourne",DobOfBirth=new DateTimeOffset(1980,1,1,0,0,0,TimeSpan.Zero)};
+var jason_bourne = new Person{FullName= "Jason Bourné", DobOfBirth=new DateTimeOffset(1980,1,1,0,0,0,TimeSpan.Zero)};
 var leo_messi = new Person{FullName="Lionel Messi",DobOfBirth=new DateTimeOffset(1987,6,24,0,0,0,TimeSpan.Zero),
     Children = [
         new Person{FullName="kid1"},
@@ -47,5 +48,7 @@ using (StreamWriter s_writer = new StreamWriter(json_full_path)) {
 // show file info
 
 
-ShowFileInfo(xml_full_path);    // 1037 bytes
+ShowFileInfo(xml_full_path);    // 1038 bytes
 ShowFileInfo(json_full_path);   // 475 bytes
+
+

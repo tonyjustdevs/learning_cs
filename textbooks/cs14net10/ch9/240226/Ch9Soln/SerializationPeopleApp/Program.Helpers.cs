@@ -15,7 +15,13 @@
         WriteLine($"{File.ReadAllText(full_path)}");
         WriteLine($"/ ----------------------------- /");
     }
-
+    static void SectionTitle(string title)
+    {
+        var bgcolor = BackgroundColor;
+        BackgroundColor = ConsoleColor.DarkBlue;
+        WriteLine($"\n ------------ {title} ------------ \n");
+        BackgroundColor = bgcolor;
+    }
 
 }
 

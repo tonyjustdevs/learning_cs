@@ -17,6 +17,9 @@
 	<Using Include="System.IO.Path" Static="true" />
 </ItemGroup>
 <ItemGroup>
+  <None Update="serialized_people.json">
+    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+  </None>
   <None Update="serialized_people.xml">
     <CopyToOutputDirectory>Always</CopyToOutputDirectory>
   </None>

@@ -3,7 +3,7 @@ namespace TP.SharedLib;
 
 public class Person
 {
-    public string? FullName;
-    public DateTimeOffset DobOfBirth;
-    public List<Person> Children = new();
+    public string? FullName { get; set; }
+    public DateTimeOffset DobOfBirth { get; set; }
+    public List<Person> Children { get; set; } = new ();
 }
