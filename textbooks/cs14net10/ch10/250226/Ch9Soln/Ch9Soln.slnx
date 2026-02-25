@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="EFCoreApp/EFCoreApp.csproj" />
+  <Project Path="TPSharedLib.EntityModels/TPSharedLib.EntityModels.csproj" Id="9894cdb2-23be-43cb-a191-2c2ca79ac981" />
+</Solution>
