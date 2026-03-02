@@ -21,7 +21,7 @@ public class Product
 
     // references to other ents (classes)
     public int CategoryId { get; set; }
-    public Category Category { get; set; } = new();
+    public virtual Category Category { get; set; } = new();
 
 }
 

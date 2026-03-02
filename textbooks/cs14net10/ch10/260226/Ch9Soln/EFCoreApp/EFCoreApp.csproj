@@ -9,11 +9,16 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="10.0.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="10.0.3">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="10.0.3" />
-	  <Using Include="System.Console" Static="true" />
-	  <Using Include="System.Environment" Static="true" />
-	  <Using Include="System.IO.Directory" Static="true" />
-	  <Using Include="System.IO.Path" Static="true" />
+    <ProjectReference Include="..\TPSharedLib.EntityModels\TPSharedLib.EntityModels.csproj" />
+	<Using Include="System.Console" Static="true" />
+	<Using Include="System.Environment" Static="true" />
+	<Using Include="System.IO.Directory" Static="true" />
+	<Using Include="System.IO.Path" Static="true" />
   </ItemGroup>
 
   <ItemGroup>

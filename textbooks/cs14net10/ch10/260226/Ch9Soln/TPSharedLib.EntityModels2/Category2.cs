@@ -2,8 +2,8 @@
 
 public class Category2
 {
-	public int CategoryId { get; set; }
-	public string CategoryName { get; set; } = null!;
+	public int Category2Id { get; set; }
+	public string Category2Name { get; set; } = null!;
 	public string? Description { get; set; }
 
 	// add Product2 Entity Class
