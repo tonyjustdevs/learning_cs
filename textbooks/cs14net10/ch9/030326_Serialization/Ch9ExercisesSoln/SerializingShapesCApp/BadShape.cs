@@ -10,12 +10,12 @@ public abstract class BadShape
     public abstract double Area { get; }
 }
 
-public class Rectangle : BadShape
+public class BadRectangle: BadShape
 {
     public override double Area => Width * Height;
 }
 
-public class Circle : BadShape
+public class BadCircle : BadShape
 {
     public override double Area => (Width) * double.Pi;
 }

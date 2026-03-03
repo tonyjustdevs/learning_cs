@@ -1,8 +1,9 @@
-﻿using SerializingShapesCApp;
-Console.WriteLine("Hello Serializer");
+﻿//using SerializingShapesCApp;
+using SerializingShapesCApp;
+using System.Xml.Serialization;
+Console.WriteLine("Xin Chao Shape Serializer!");
 
-// Create a list of Shapes to serialize.
-List<Shape> listOfShapes = new()
+List<BetterShape> listOfShapes = new()
 {
     new Circle { Color = "Red", Radius = 2.5 },
     new Rectangle { Color = "Blue", Height = 20.0, Width = 10.0 },
@@ -11,14 +12,14 @@ List<Shape> listOfShapes = new()
     new Rectangle { Color = "Blue", Height = 45.0, Width = 18.0 }
 };
 
-//List<Shape> loadedShapesXml =
-//    serializerXml.Deserialize(fileXml) as List<Shape>;
+var xml_file_path = Combine(GetCurrentDirectory(), "shapes.xml");
 
-//foreach (Shape item in loadedShapesXml)
-//{
-//    WriteLine("{0} is {1} and has an area of {2:N2}",
-//        item.GetType().Name, item.Color, item.Area);
-//}
+
+using (FileStream xml_filestream = File.Open(xml_file_path, FileMode.Create))
+{
+    XmlSerializer serializerXml = new(listOfShapes.GetType());
+    serializerXml.Serialize(xml_filestream, listOfShapes);
+}
 
 
 //Loading shapes from XML:
