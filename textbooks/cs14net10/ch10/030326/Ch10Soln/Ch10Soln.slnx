@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="EFCoreNorthwind/EFCoreNorthwind.csproj" />
+  <Project Path="NorthwindDb/NorthwindDb.csproj" />
+</Solution>

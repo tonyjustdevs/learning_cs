@@ -15,12 +15,36 @@ List<BetterShape> listOfShapes = new()
 var xml_file_path = Combine(GetCurrentDirectory(), "shapes.xml");
 
 
-using (FileStream xml_filestream = File.Open(xml_file_path, FileMode.Create))
+XmlSerializer serializerXml = new(listOfShapes.GetType());
+using (FileStream xml_create_filestream = File.Open(xml_file_path, FileMode.Create))
+{   
+    serializerXml.Serialize(xml_create_filestream, listOfShapes);
+}
+List<BetterShape>? loadedShapesXml = null;
+using (FileStream xml_open_filestream = File.Open(xml_file_path, FileMode.Open))
 {
-    XmlSerializer serializerXml = new(listOfShapes.GetType());
-    serializerXml.Serialize(xml_filestream, listOfShapes);
+    loadedShapesXml =
+    serializerXml.Deserialize(xml_open_filestream) as List<BetterShape>;
+
+    if (loadedShapesXml is not null)
+    {
+        foreach (BetterShape item in loadedShapesXml)
+        {
+            WriteLine("{0} is {1} and has an area of {2:N2}",
+                item.GetType().Name, item.Color, item.Area);
+        }
+
+    }
 }
 
+
+
+// DESERIALIZE
+
+//Shapes read-only property:Area
+//deserialize:
+//- output list of shapes,
+//- including their areas
 
 //Loading shapes from XML:
 //Circle is Red and has an area of 19.63
