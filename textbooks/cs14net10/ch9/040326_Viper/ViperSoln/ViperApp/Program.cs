@@ -28,6 +28,7 @@ using (FileStream xml_filestream = File.Create(viper_xml_file_path)){
 try
 {
     GetFileInfo(viper_xml_file_path);
+    ReadFirst8Bytes(viper_xml_file_path);
 }
 catch (Exception e) 
 {

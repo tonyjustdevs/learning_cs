@@ -24,10 +24,37 @@ partial class Program
 
     }
 
-    static void ReadFirst8Bytes(string file_path)
+    //static void ReadFirst8Bytes(string file_path)
+    //{
+    //    // create stream to file
+    //    FileStream file_stream = File.OpenRead(file_path);
+    //    // read bytes from stream
+    //    Span<byte> span_buffer = new byte[8];
+    //    file_stream.ReadExactly(span_buffer);
+
+    //    WriteLine($"span_buffer: ");
+    //    foreach (var buf in span_buffer)
+    //    {
+    //        WriteLine($"{buf:X}");
+    //    }
+    //}
+
+    static void ReadFirst8Bytes(string filePath)
     {
-        FileStream file_stream = File.OpenRead(file_path);
-        //file_stream.Read(,)
+        using FileStream fileStream = File.OpenRead(filePath);
+
+        Span<byte> buffer = stackalloc byte[8];
+        fileStream.ReadExactly(buffer);
+
+        PrintBytes(buffer);
+    }
+
+    static void PrintBytes(ReadOnlySpan<byte> bytes)
+    {
+        foreach (byte b in bytes)
+        {
+            Console.WriteLine($"{b:X2}");
+        }
     }
 }
 //
