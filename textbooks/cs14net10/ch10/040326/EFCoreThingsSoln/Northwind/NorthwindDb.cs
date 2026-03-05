@@ -7,13 +7,21 @@ public class NorthwindDb : DbContext
 {
     
     DbSet<Product> Products { get; set; }
-    DbSet<Category> Categories{ get; set; }
+    DbSet<Category> Categories { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        string db_name = "Northwind.db";                            // db name
-        string sql_connection_string = $"Data Source={db_name}";    // db sql string
-        optionsBuilder.UseSqlite(sql_connection_string);            
+
+        //string db_name = "Northwind.db";                            // db name
+        //string sql_connection_string = $"Data Source={db_name}";    // db sql string
+        //optionsBuilder.UseSqlite(sql_connection_string);            
+
+        string databaseFile = "Northwind.db";
+        string path = Path.Combine(
+          Environment.CurrentDirectory, databaseFile);
+        string connectionString = $"Data Source={path}";
+        WriteLine($"Connection: {connectionString}");
+        optionsBuilder.UseSqlite(connectionString);
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -32,9 +40,6 @@ public class NorthwindDb : DbContext
                 .HasConversion<double>();
         }
 
-        //{
-
-        //}
     }
 
 }

@@ -15,10 +15,4 @@
 	  <Using Include="System.IO.Path" Static="true" />
   </ItemGroup>
 
-  <ItemGroup>
-    <None Update="Northwind.db">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-
 </Project>
