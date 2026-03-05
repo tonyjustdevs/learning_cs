@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="Northwind.EntityModels/Northwind.EntityModels.csproj" Id="5906805a-b9cb-4578-8bc7-dc4e8eaebc94" />
+  <Project Path="Northwind/NorthwindDb.csproj" />
+  <Project Path="NorthwindApp/NorthwindApp.csproj" Id="4fcb57ba-9689-478f-8f46-e0589df2cae5" />
+</Solution>
