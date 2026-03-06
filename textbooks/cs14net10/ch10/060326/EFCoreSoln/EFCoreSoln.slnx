@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="NorthwindDb/NorthwindDb.csproj" />
+  <Project Path="TPEFCoreApp/TPEFCoreApp.csproj" />
+</Solution>
