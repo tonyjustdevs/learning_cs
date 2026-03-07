@@ -1,6 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore; // To use Include method.
+﻿using Dumpify;
+using Microsoft.EntityFrameworkCore; // To use Include method.
 using Northwind.EntityModels;
 using System.ComponentModel; // To use Northwind, Category, Product.
+using System.Reflection.Metadata;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 partial class Program
 {
     private static void QueryingCategories()
@@ -30,14 +33,55 @@ partial class Program
     }
     // id   CatName     Desc    Products
      //1	Beverages	Soft... Dict<Product>{"Product"}
+    private static void LoadSingleCategoryQueryCatId4()
+    {
+        using (var db_context_instance = new NorthwindDb())
+        {
+            //var blog = await db_context_instance.Categories
+            //    .SingleAsync(b => b.CategoryId== 4)     ;
+            //var cat_ent_4_query = db_context_instance.Categories
+            //    .Single(b => b.CategoryId == 4);
+            var cat_ent_4_query = db_context_instance.Categories
+                .Where(b => b.CategoryId == 4);
+
+            WriteLine($"/ ------------------------------------ ");
+            WriteLine($"{cat_ent_4_query.ToQueryString()}");
+            WriteLine($"------------------------------------ /");
+
+            //foreach (var item in cat_ent_4_query)
+            //{
+            //    WriteLine($"[pid {item.CategoryId}]:{item.CategoryName}");
+                
+            //}
+
+
+            //WriteLine($"cat_ent_4_id: {cat_ent_4_query.CategoryId} [{cat_ent_4_query.CategoryId.GetType()}]");
+            //WriteLine($"cat_ent_4_nm: {cat_ent_4_query.CategoryName} [{cat_ent_4_query.CategoryName.GetType()}]");
+            //WriteLine($"cat_ent_4_ds: {cat_ent_4_query.Description} [{cat_ent_4_query.Description?.GetType()}]");
+        }
+    }
     private static void LoadSingleCategoryEntityCatId4()
     {
         using (var db_context_instance = new NorthwindDb())
         {
             //var blog = await db_context_instance.Categories
             //    .SingleAsync(b => b.CategoryId== 4)     ;
+            //var cat_ent_4_query = db_context_instance.Categories
+            //    .Single(b => b.CategoryId == 4);
             var cat_ent_4 = db_context_instance.Categories
                 .Single(b => b.CategoryId == 4);
+
+            WriteLine($"/ ------------------------------------ ");
+            WriteLine($"{cat_ent_4.GetType()}");
+            WriteLine($"------------------------------------ /");
+
+            //foreach (var item in cat_ent_4_query)
+            //{
+            //    WriteLine($"[pid {item.CategoryId}]:{item.CategoryName}");
+
+            //}
+
+
             WriteLine($"cat_ent_4_id: {cat_ent_4.CategoryId} [{cat_ent_4.CategoryId.GetType()}]");
             WriteLine($"cat_ent_4_nm: {cat_ent_4.CategoryName} [{cat_ent_4.CategoryName.GetType()}]");
             WriteLine($"cat_ent_4_ds: {cat_ent_4.Description} [{cat_ent_4.Description?.GetType()}]");
@@ -127,4 +171,120 @@ partial class Program
         WriteLine("DB Context Ended.");
     }
 
+    private static void TxtbookQueryingProducts()
+    {
+        using NorthwindDb db = new();
+        SectionTitle("Products that cost more than a price, highest at top");
+        string? input;
+        decimal price;
+        do
+        {
+            Write("Enter a product price: ");
+            input = ReadLine();
+        } while (!decimal.TryParse(input, out price));
+        IQueryable<Product>? products = db.Products?
+          .Where(product => product.Cost > price)
+          .OrderByDescending(product => product.Cost);
+        if (products is null || !products.Any())
+        {
+            Fail("No products found.");
+            return;
+        }
+
+        // Calling ToQueryString does not execute against the database.
+        // LINQ to Entities just converts the LINQ query to an SQL statement.
+        Info($"ToQueryString: {products.ToQueryString()}");
+
+        foreach (Product p in products)
+        {
+            WriteLine(
+              "{0}: {1} costs {2:$#,##0.00} and has {3} in stock.",
+              p.ProductId, p.ProductName, p.Cost, p.Stock);
+        }
+    }
+
+    private static void CategoriesByProduct()
+    {
+        using var db_context = new NorthwindDb();
+
+        var cats_by_prods = db_context.Categories
+            .Include(c => c.Products);
+        
+        WriteLine($"cats_by_prods.ToQueryString()\n: {cats_by_prods.ToQueryString()}\n\n");
+
+        foreach (var item in cats_by_prods)
+        {
+            //WriteLine($"{item.CategoryId}: {item.CategoryName} {item.Products}");
+            WriteLine($"{item.CategoryId}: {item.CategoryName}: ");
+            foreach (var prod in item.Products)
+            {
+                WriteLine($"[pid: {prod.ProductId}]: {prod.ProductName}");
+            }
+            // cat_id1, catname:
+            // - prod1
+            // - prod2
+            // ....
+        }
+    } //item.Dump(label: "Default output");
+    private static void CategoriesByProductSummary()
+    {
+        using var db_context = new NorthwindDb();
+
+        var cats_by_prods = db_context.Categories
+            .Include(c => c.Products);
+
+        WriteLine($"cats_by_prods.ToQueryString()\n: {cats_by_prods.ToQueryString()}\n\n");
+
+        foreach (var item in cats_by_prods)
+        {
+            //WriteLine($"{item.CategoryId}: {item.CategoryName} {item.Products}");
+            WriteLine($"[CatId {item.CategoryId}] {item.CategoryName} has {item.Products.Count} of Product(s)");
+            // cat_id1, catname, '#' of prods
+            // cat_id2, catname, '#' of prods
+        }
+    }
+
+    private static void CategoriesByProductWithMinStockSummary(decimal min_stock=100)
+    {
+        using var db_context = new NorthwindDb();
+
+        var query = db_context.Categories
+            .Include(c => c.Products.Where(p =>p.Stock>min_stock));
+            
+        WriteLine($"/ ------------------------------------ ");
+        WriteLine($"{query.ToQueryString()}");
+        WriteLine($"------------------------------------ /");
+
+        WriteLine($"\nProducts with a minimum of {min_stock} stock:\n");
+        foreach (var item in query)
+        {
+            WriteLine($"[CatId {item.CategoryId}] {item.CategoryName} has {item.Products.Count} of Product(s)");
+        }
+    }
+
+    private static void CategoriesByProductWithMinStockDetailed(decimal min_stock = 100)
+    {
+        using var db_context = new NorthwindDb();
+
+        var query = db_context.Categories
+            .Include(c => c.Products.Where(p => p.Stock > min_stock));
+
+        WriteLine($"/ ------------------------------------ ");
+        WriteLine($"{query.ToQueryString()}");
+        WriteLine($"------------------------------------ /");
+
+        WriteLine($"\nProducts with a minimum of {min_stock} stock:\n");
+        foreach (var item in query)
+        {
+            WriteLine($"[CatId {item.CategoryId}] {item.CategoryName} has {item.Products.Count} of Product(s):");
+            foreach (var prod in item.Products)
+            {
+                WriteLine($"- [Pid {prod.ProductId}]: {prod.ProductName} has minimum {prod.Stock} stock");
+            }
+        }
+    }
+
+
+
+    // end partial program
 }

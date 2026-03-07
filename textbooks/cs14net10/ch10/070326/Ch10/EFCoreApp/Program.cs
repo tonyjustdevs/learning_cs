@@ -1,4 +1,6 @@
 ﻿// See https://aka.ms/new-console-template for more information
+//using Dumpify; // To use the Dump extension method.
+     
 Console.WriteLine("Hello, World!");
 
 // 1. use db_first to create classes
@@ -8,9 +10,14 @@ Console.WriteLine("Hello, World!");
 ConfigureConsole();
 //QueryingCategories();
 
-//LoadSingleCategoryEntityCatId4();
+LoadSingleCategoryEntityCatId4();
 
 //LoadAllDataCat();
 //FilterSweetCategories();
 //GetProductsOverPx(1000);
-GetProductsOverPxUserInput();
+//GetProductsOverPxUserInput();
+//TxtbookQueryingProducts();
+//CategoriesByProduct();
+//CategoriesByProductSummary();/
+//CategoriesByProductWithMinStockSummary(5);
+//CategoriesByProductWithMinStockDetailed(100);

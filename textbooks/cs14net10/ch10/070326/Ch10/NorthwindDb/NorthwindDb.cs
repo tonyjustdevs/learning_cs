@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore; // To use DbContext and so on.
+using Microsoft.EntityFrameworkCore.Diagnostics; // To use RelationalEventId.
 namespace Northwind.EntityModels;
 // This manages interactions with the Northwind database.
 public class NorthwindDb : DbContext
@@ -14,5 +15,13 @@ public class NorthwindDb : DbContext
         string connectionString = $"Data Source={path}";
         WriteLine($"Connection: {connectionString}");
         optionsBuilder.UseSqlite(connectionString);
+
+        //optionsBuilder.LogTo(WriteLine) // WriteLine is the Console method.
+        optionsBuilder.LogTo(WriteLine, new[] { RelationalEventId.CommandExecuting })
+        #if DEBUG
+          .EnableSensitiveDataLogging() // Include SQL parameters.
+          .EnableDetailedErrors()
+        #endif
+        ; // This is the end of the method call.
     }
 }
