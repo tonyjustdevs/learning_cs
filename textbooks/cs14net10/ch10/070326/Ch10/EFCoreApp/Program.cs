@@ -37,4 +37,5 @@ Console.WriteLine("Hello, World!");
 //LoadAllProductViaIGNOREQueryFilterCatIdDbContext(1);
 //GetProdByProdsIdFixedBySql();
 
-GetProdByProdsInputIdBySql(69);
+//GetProdByProdsInputIdBySql(69);
+GetEagerTriggeredLoading(false);

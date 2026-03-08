@@ -37,7 +37,7 @@ public class NorthwindDb : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         //base.OnModelCreating(modelBuilder);
-        //modelBuilder.Entity<Category>().HasQueryFilter("CatCatIdFilter",c => c.CategoryId == _cat_id);
+        modelBuilder.Entity<Category>().HasQueryFilter("CatCatIdFilter",c => c.CategoryId == _cat_id);
 
         modelBuilder.Entity<Product>().HasQueryFilter("ProdCatIdFilter",p => p.CategoryId == _cat_id);
           //.HasQueryFilter("TenantFilter", customer => customer.TenantId == tenantId);

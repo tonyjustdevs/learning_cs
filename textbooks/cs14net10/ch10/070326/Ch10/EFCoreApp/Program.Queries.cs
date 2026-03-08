@@ -1,5 +1,6 @@
 ﻿using Dumpify;
 using Microsoft.EntityFrameworkCore; // To use Include method.
+using Microsoft.EntityFrameworkCore.Metadata.Conventions;
 using Northwind.EntityModels;
 using System.ComponentModel; // To use Northwind, Category, Product.
 using System.Net.Quic;
@@ -59,6 +60,35 @@ partial class Program
             //WriteLine($"cat_ent_4_id: {cat_ent_4_query.CategoryId} [{cat_ent_4_query.CategoryId.GetType()}]");
             //WriteLine($"cat_ent_4_nm: {cat_ent_4_query.CategoryName} [{cat_ent_4_query.CategoryName.GetType()}]");
             //WriteLine($"cat_ent_4_ds: {cat_ent_4_query.Description} [{cat_ent_4_query.Description?.GetType()}]");
+        }
+    }
+
+    private static void GetEagerTriggeredLoading(bool eager_bool=true)
+    {
+        using var db_context = new NorthwindDb();
+        //DbSet<Product> query;
+        List<Category> cats_list;
+        WriteLine($"\n Eager Loading Setting Chosen: ------ '{eager_bool}' ------ ");
+        if (!eager_bool)
+        {
+            cats_list = db_context.Categories
+                .IgnoreQueryFilters(["ProdCatIdFilter"])
+                .IgnoreQueryFilters(["CatCatIdFilter"])
+                .ToList();
+
+        }
+        else
+        {
+            cats_list = db_context.Categories.Include(c=>c.Products)
+                .IgnoreQueryFilters(["ProdCatIdFilter"])
+                .IgnoreQueryFilters(["CatCatIdFilter"])
+                .ToList();
+        }
+        
+        foreach (var item in cats_list)
+        {
+            WriteLine("- {0},{1},{2}",
+            item.CategoryId, item.CategoryName, item.Products.Count);
         }
     }
     private static void LoadSingleCategoryEntityCatId4()
@@ -463,6 +493,6 @@ partial class Program
             WriteLine($"{item.ProductId}: {item.ProductName}");
         }
     }
-
+    
 
 }
