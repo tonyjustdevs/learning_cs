@@ -102,6 +102,49 @@ partial class Program
         }
     }
 
+    private static void LoadAllDataCatIdInDbContext(int cat_id)
+    {
+        using (var db_context = new NorthwindDb(cat_id))
+        {
+            List<Category>? categories_all = db_context.Categories.ToList();
+            WriteLine($"Loading All Categories filtered for {cat_id}: ");
+            foreach (var item in categories_all)
+            {
+                WriteLine($"- {item.CategoryId}: {item.CategoryName}");
+
+            }
+        }
+    }
+
+    private static void LoadAllProductViaQueryFilterCatIdDbContext(int cat_id)
+    {
+        using (var db_context = new NorthwindDb(cat_id))
+        {
+            List<Product>? prods_all = db_context.Products.ToList();
+            WriteLine($"Loading All Prods by Cat Id '{cat_id}': ");
+            foreach (var item in prods_all)
+            {
+                WriteLine($"- [cat: {item.CategoryId}]: {item.ProductName} [pid:{item.ProductId}]");
+            }
+        }
+    }
+    
+    private static void LoadAllProductViaIGNOREQueryFilterCatIdDbContext(int cat_id)
+    {
+        using (var db_context = new NorthwindDb(cat_id))
+        {
+            List<Product>? prods_all = db_context.Products.IgnoreQueryFilters(["ProdCatIdFilter"]).ToList();
+            WriteLine($"Loading All Prods by Cat Id '{cat_id}': ");
+            int ctr = 1;
+            int total = prods_all.Count;
+            foreach (var item in prods_all)
+            {
+                WriteLine($"- [{ctr}/{total}][cat: {item.CategoryId}]: {item.ProductName} [pid:{item.ProductId}]");
+                ctr++;
+            }
+        }
+    }
+
     private static void FilterSweetCategories()
     {
         using var db_context = new NorthwindDb();
@@ -393,5 +436,9 @@ partial class Program
 
     }
 
+    private static void GetProdsViaLIKEanysglchrPatternMatching()
+    {
+
+    }
 
 }

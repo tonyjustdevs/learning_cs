@@ -28,4 +28,10 @@ Console.WriteLine("Hello, World!");
 //GetProdsViaLIKECrabPatternMatching();
 
 //GetProdsViaLIKEstrinputPatternMatching("cha");
-//GetProdsViaLIKEuserinputPatternMatching();
+//GetProdsViaLIKEuserinputPatternMatching();    
+
+//LoadAllDataCatIdInDbContext(3);
+
+//LoadAllProductViaQueryFilterCatIdDbContext(1);
+
+LoadAllProductViaIGNOREQueryFilterCatIdDbContext(1);

@@ -6,6 +6,14 @@ public class NorthwindDb : DbContext
 {
     public DbSet<Category> Categories { get; set; }
     public DbSet<Product> Products { get; set; }
+    //public DbSet<Question> Questions{ get; set; }
+
+    private readonly int _cat_id;
+    public NorthwindDb(int cat_id)
+    {
+        _cat_id = cat_id;
+    }
+    public NorthwindDb() { }
     protected override void OnConfiguring(
       DbContextOptionsBuilder optionsBuilder)
     {
@@ -23,5 +31,15 @@ public class NorthwindDb : DbContext
           .EnableDetailedErrors()
         #endif
         ; // This is the end of the method call.
+
+    }
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        //base.OnModelCreating(modelBuilder);
+        //modelBuilder.Entity<Category>().HasQueryFilter("CatCatIdFilter",c => c.CategoryId == _cat_id);
+
+        modelBuilder.Entity<Product>().HasQueryFilter("ProdCatIdFilter",p => p.CategoryId == _cat_id);
+          //.HasQueryFilter("TenantFilter", customer => customer.TenantId == tenantId);
     }
 }
