@@ -32,7 +32,7 @@ partial class Program
         }
     }
     // id   CatName     Desc    Products
-     //1	Beverages	Soft... Dict<Product>{"Product"}
+    //1	Beverages	Soft... Dict<Product>{"Product"}
     private static void LoadSingleCategoryQueryCatId4()
     {
         using (var db_context_instance = new NorthwindDb())
@@ -51,7 +51,7 @@ partial class Program
             //foreach (var item in cat_ent_4_query)
             //{
             //    WriteLine($"[pid {item.CategoryId}]:{item.CategoryName}");
-                
+
             //}
 
 
@@ -97,17 +97,17 @@ partial class Program
             foreach (var item in categories_all)
             {
                 WriteLine($"- {item.CategoryId}: {item.CategoryName}");
-                
+
             }
         }
     }
-    
+
     private static void FilterSweetCategories()
     {
         using var db_context = new NorthwindDb();
 
         IQueryable<Category> sweets = db_context.Categories.
-            Where(c => c.Description == null||
+            Where(c => c.Description == null ||
             c.Description.ToLower().Contains("sweet"));
 
         WriteLine("sweet stuff: ");
@@ -118,12 +118,13 @@ partial class Program
         }
     }
 
-    private static void GetProductsOverPx(decimal price_limit=100)
+    private static void GetProductsOverPx(decimal price_limit = 100)
     {
-        using (var db_context = new NorthwindDb()){
+        using (var db_context = new NorthwindDb())
+        {
             var prods_under_px = db_context.Products.Where(p => p.Cost > price_limit).
-                OrderByDescending(p=>p.Cost);
-            int i=1;
+                OrderByDescending(p => p.Cost);
+            int i = 1;
             if (prods_under_px is null || !prods_under_px.Any())
             {
                 WriteLine($"No products over {price_limit}.");
@@ -148,8 +149,8 @@ partial class Program
                 WriteLine($"Type in max price: ");
                 user_input_str = Console.ReadLine();
                 // do-whiel: leave while loop if we successfully tryparse, and turn into false to continue code
-            } while (!decimal.TryParse(user_input_str, out price_limit)); 
-            
+            } while (!decimal.TryParse(user_input_str, out price_limit));
+
             var prods_under_px = db_context.Products.Where(p => p.Cost > price_limit).
                 OrderByDescending(p => p.Cost);
 
@@ -209,7 +210,7 @@ partial class Program
 
         var cats_by_prods = db_context.Categories
             .Include(c => c.Products);
-        
+
         WriteLine($"cats_by_prods.ToQueryString()\n: {cats_by_prods.ToQueryString()}\n\n");
 
         foreach (var item in cats_by_prods)
@@ -244,13 +245,13 @@ partial class Program
         }
     }
 
-    private static void CategoriesByProductWithMinStockSummary(decimal min_stock=100)
+    private static void CategoriesByProductWithMinStockSummary(decimal min_stock = 100)
     {
         using var db_context = new NorthwindDb();
 
         var query = db_context.Categories
-            .Include(c => c.Products.Where(p =>p.Stock>min_stock));
-            
+            .Include(c => c.Products.Where(p => p.Stock > min_stock));
+
         WriteLine($"/ ------------------------------------ ");
         WriteLine($"{query.ToQueryString()}");
         WriteLine($"------------------------------------ /");
@@ -267,6 +268,7 @@ partial class Program
         using var db_context = new NorthwindDb();
 
         var query = db_context.Categories
+            .TagWith("[TagWith] Products filtered by min stock and category.")
             .Include(c => c.Products.Where(p => p.Stock > min_stock));
 
         WriteLine($"/ ------------------------------------ ");
@@ -284,7 +286,112 @@ partial class Program
         }
     }
 
+    private static void GetEntityByCatId(int cat_id)
+    {
+        using var db_context = new NorthwindDb();
+        var result_entity = db_context.Categories.Where(c => c.CategoryId == cat_id).First();
+        Console.WriteLine($"[id {result_entity.CategoryId}]: {result_entity.CategoryName}");
+    }
+
+    private static void GetEntityByCatIdUserInput()
+    {
+        using var db_context = new NorthwindDb();
+        int cat_id;
+        string? user_input;
+        do
+        {
+            Write($"Enter a Category Id: ");
+            user_input = ReadLine();
+        } while (!int.TryParse(user_input, out cat_id));
 
 
-    // end partial program
+        if (user_input is null)
+        {
+            throw new ArgumentException("Cannot be empty id");
+        }
+        WriteLine($"You entered: {cat_id}");
+        var result_entity = db_context.Categories.Where(c => c.CategoryId == cat_id).First();
+        Console.WriteLine($"[id {result_entity.CategoryId}]: {result_entity.CategoryName}");
+    }
+
+    private static void GetEntityByProdIdUserInput()
+    {
+        using var db_context = new NorthwindDb();
+        int prod_id;
+        string? user_input;
+        do
+        {
+            Write($"Enter a Product Id: ");
+            user_input = ReadLine();
+        } while (!int.TryParse(user_input, out prod_id));
+
+        if (user_input is null)
+        {
+            throw new ArgumentException("Cannot be empty id");
+        }
+        WriteLine($"You entered: {prod_id}");
+        var result_entity = db_context.Products.Single(c => c.ProductId == prod_id);
+        Console.WriteLine($"[Single()][id {result_entity.ProductId}]: {result_entity.ProductName}");
+        result_entity = db_context.Products.First(c => c.ProductId == prod_id);
+        Console.WriteLine($"[First()][id {result_entity.ProductId}]: {result_entity.ProductName}");
+    }
+
+    private static void GetProdsViaLIKECrabPatternMatching()
+    {
+        Write($"Matching 'crab' to Product Name: ");
+        using var db_context = new NorthwindDb();
+        var crab_like_query = db_context.Products.Where(p => EF.Functions.Like(p.ProductName, "%crab%"));
+
+        foreach (var item in crab_like_query)
+        {
+            WriteLine($"[id {item.ProductId}]: {item.ProductName}");
+        }
+    }
+    private static void GetProdsViaLIKEstrinputPatternMatching(string str_input)
+    {
+        Write($"Matching like 'str_input' to Product Name: ");
+        //string? user_input = ReadLine();
+        //while (string.IsNullOrWhiteSpace(user_input) || user_input.Contains(' '))
+        //{
+        //    Write($"Try again cunt: ");
+        //    user_input = ReadLine();
+        //}
+
+        using var db_context = new NorthwindDb();
+        //WriteLine($"Good job Einstein, lets look for : '{user_input}' in products");
+        // get product name
+        //"%mate%"
+        var str_input_like_query = db_context.Products
+            .Where(p => EF.Functions.Like(p.ProductName, $"%{str_input}%"));
+
+        foreach (var item in str_input_like_query)
+        {
+            WriteLine($"[id {item.ProductId}]: {item.ProductName}");
+        }
+
+    }
+
+    private static void GetProdsViaLIKEuserinputPatternMatching()
+    {
+        Write($"Please enter part of to Product Name: ");
+        string? user_input = ReadLine();
+        while (string.IsNullOrWhiteSpace(user_input) || user_input.Contains(' '))
+        {
+            Write($"Try again cunt: ");
+            user_input = ReadLine();
+        }
+
+        using var db_context = new NorthwindDb();
+        WriteLine($"Good job Einstein, lets look for : '{user_input}' in Products");
+        var str_input_like_query = db_context.Products
+            .Where(p => EF.Functions.Like(p.ProductName, $"%{user_input}%"));
+
+        foreach (var item in str_input_like_query)
+        {
+            WriteLine($"[id {item.ProductId}]: {item.ProductName}");
+        }
+
+    }
+
+
 }

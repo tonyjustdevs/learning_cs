@@ -7,10 +7,10 @@ Console.WriteLine("Hello, World!");
 // 2. run sqlite -init
 
 
-ConfigureConsole();
+//ConfigureConsole();
 //QueryingCategories();
 
-LoadSingleCategoryEntityCatId4();
+//LoadSingleCategoryEntityCatId4();
 
 //LoadAllDataCat();
 //FilterSweetCategories();
@@ -20,4 +20,12 @@ LoadSingleCategoryEntityCatId4();
 //CategoriesByProduct();
 //CategoriesByProductSummary();/
 //CategoriesByProductWithMinStockSummary(5);
-//CategoriesByProductWithMinStockDetailed(100);
+//CategoriesByProductWithMinStockDetailed(69);
+//GetEntityByCatId(5);
+//GetEntityByCatIdUserInput();
+//GetEntityByProdIdUserInput();
+
+//GetProdsViaLIKECrabPatternMatching();
+
+//GetProdsViaLIKEstrinputPatternMatching("cha");
+//GetProdsViaLIKEuserinputPatternMatching();
