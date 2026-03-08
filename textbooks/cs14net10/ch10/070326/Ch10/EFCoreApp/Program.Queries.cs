@@ -71,10 +71,10 @@ partial class Program
         WriteLine($"\n Eager Loading Setting Chosen: ------ '{eager_bool}' ------ ");
         if (!eager_bool)
         {
-            cats_list = db_context.Categories
-                .IgnoreQueryFilters(["ProdCatIdFilter"])
-                .IgnoreQueryFilters(["CatCatIdFilter"])
-                .ToList();
+            var db_set_cats = db_context.Categories;
+            //.IgnoreQueryFilters(["ProdCatIdFilter"])
+            //.IgnoreQueryFilters(["CatCatIdFilter"])
+            cats_list = db_set_cats.ToList();
 
         }
         else
@@ -494,5 +494,24 @@ partial class Program
         }
     }
     
+    private static void TestingEagerLoading()
+    {
+        using var db_context = new NorthwindDb();
 
+        DbSet<Category> cat_unrun_query = db_context.Categories; // this is IQuertable<Cat>: query defn
+        List<Category> cat_unrun_list = db_context.Categories.ToList(); // this is a un-run sql query??
+
+        WriteLine("running an un-run query 'cat_unrun_query: 'db_context.Categories'");
+        foreach (var category in cat_unrun_query)
+        {
+            WriteLine($"[cid {category.CategoryId}]: {category.CategoryName}");
+        }
+
+        WriteLine("\nrunning an un-run list 'db_context.Categories.ToList()'");
+
+        foreach (var category in cat_unrun_list)
+        {
+            WriteLine($"[cid {category.CategoryId}]: {category.CategoryName}");
+        }
+    }
 }

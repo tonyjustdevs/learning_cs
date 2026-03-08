@@ -38,4 +38,7 @@ Console.WriteLine("Hello, World!");
 //GetProdByProdsIdFixedBySql();
 
 //GetProdByProdsInputIdBySql(69);
-GetEagerTriggeredLoading(false);
+//GetEagerTriggeredLoading(false);
+TestingEagerLoading();
+
+
