@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore; // To use Include method.
 using Northwind.EntityModels;
 using System.ComponentModel; // To use Northwind, Category, Product.
+using System.Net.Quic;
 using System.Reflection.Metadata;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 partial class Program
@@ -436,9 +437,32 @@ partial class Program
 
     }
 
-    private static void GetProdsViaLIKEanysglchrPatternMatching()
+    private static void GetProdByProdsIdFixedBySql()
     {
+        using var db_context = new NorthwindDb();
 
+        FormattableString fs_sql_str = $"select * from Products where Products.ProductId='69'";
+        var query = db_context.Products
+            .FromSql(fs_sql_str)
+            .IgnoreQueryFilters(["ProdCatIdFilter"]);
+        foreach (var item in query)
+        {
+            WriteLine($"{item.ProductId}: {item.ProductName}");
+        }
     }
+    private static void GetProdByProdsInputIdBySql(int input_pid)
+    {
+        using var db_context = new NorthwindDb();
+
+        FormattableString fs_sql_str = $"select * from Products where Products.ProductId={input_pid}";
+        var query = db_context.Products
+            .FromSql(fs_sql_str)
+            .IgnoreQueryFilters(["ProdCatIdFilter"]);
+        foreach (var item in query)
+        {
+            WriteLine($"{item.ProductId}: {item.ProductName}");
+        }
+    }
+
 
 }

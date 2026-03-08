@@ -34,4 +34,7 @@ Console.WriteLine("Hello, World!");
 
 //LoadAllProductViaQueryFilterCatIdDbContext(1);
 
-LoadAllProductViaIGNOREQueryFilterCatIdDbContext(1);
+//LoadAllProductViaIGNOREQueryFilterCatIdDbContext(1);
+//GetProdByProdsIdFixedBySql();
+
+GetProdByProdsInputIdBySql(69);
