@@ -1,7 +1,9 @@
 ﻿using Dumpify;
 using Microsoft.EntityFrameworkCore; // To use Include method.
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore.Metadata.Conventions;
 using Northwind.EntityModels;
+using System;
 using System.ComponentModel; // To use Northwind, Category, Product.
 using System.Net.Quic;
 using System.Reflection.Metadata;
@@ -513,5 +515,95 @@ partial class Program
         {
             WriteLine($"[cid {category.CategoryId}]: {category.CategoryName}");
         }
+    }
+
+    // tables
+    // Catergory: cat_id, cat_name, description, ICollection<Product>
+    // Product: p_id, p_name, cat_id, cat_name
+
+    private static void GetCatId1_EagerLoad(int cat_id=1)
+    {
+        using var db = new NorthwindDb();
+
+        Category? cat_first_row = db.Categories.Find(cat_id); // filter by unique id and return instance
+        //Category? cat_first_row = db.Categories.SingleOrDefault(p=>p.CategoryId == 1); // filter by unique id and return instance
+
+        if (cat_first_row is null)
+        {
+            WriteLine($"Could not find id: {cat_id}");
+        }
+        WriteLine($"- {cat_first_row?.CategoryId},{cat_first_row?.CategoryName} [exp: 1,Beverages]");
+    }
+
+    private static void GetCatId1To3_EagerLoad(int limit_results = 3)
+    {
+        using var db = new NorthwindDb();
+        IQueryable<Category>? query = db.Categories.Take(limit_results);
+        List<Category>? results_list = query.ToList(); // filter by unique id and return instance
+        //Category? cat_first_row = db.Categories.SingleOrDefault(p=>p.CategoryId == 1); // filter by unique id and return instance
+
+        if (results_list is null) return;
+        foreach (var category in results_list)
+            {
+                WriteLine($"- {category.CategoryId},{category.CategoryName}");
+            }
+
+        var entities_tracked = db.ChangeTracker.Entries();
+        if (entities_tracked is null) return;
+
+        WriteLine("Printing tracked entities/entries:");
+        foreach (var entry in entities_tracked)
+        {
+            WriteLine("- Type: {0}, State:{1}, Entry:{2}", entry.Entity.GetType().Name, entry.State, entry);
+        }
+    }
+
+    private static void LazyLoadingProdPid1()
+    {
+        using var db = new NorthwindDb();
+        var cats = db.Categories.ToList(); // load all cats
+
+        foreach (var cat in cats)
+        {
+            WriteLine($"{cat.CategoryId},{cat.CategoryName}, {cat.Products.Count}");
+        }
+        //var products = categories[0].Products;
+        // lazily get product 1
+        foreach (var cat0_prod in cats[0].Products)
+        {
+            WriteLine($"[cats[0].prod {cat0_prod.ProductId}] {cat0_prod.ProductName} (lazy test)");
+
+        }
+
+
+        //var entities_tracked = db.ChangeTracker.Entries();
+        //if (entities_tracked is null) return;
+        //WriteLine("Printing tracked entities/entries:");
+        //foreach (var entry in entities_tracked)
+        //{
+        //    WriteLine("- Type: {0}, State:{1}, Entry:{2}", entry.Entity.GetType().Name, entry.State, entry);
+        //}
+
+    }
+    // entity stuff
+    //https://learn.microsoft.com/en-us/ef/core/change-tracking/entity-entries
+
+    // do a filter without selecting columns
+    private static Func<int, int> squarer = x => x * x;
+
+    private static void LazyLoadingWithNoTracking() {
+        /// add request for 'products' 'no tracking query' 
+        /// when enumerate
+        /// - lazy loading to fetch the related [category] name
+        /// 
+
+        using var db_context = new NorthwindDb();
+
+        var prod_list = db_context.Products.ToList();
+        foreach (var prod in prod_list)
+        {
+            WriteLine($"[id: {prod.ProductId}] '{prod.ProductName}' is Category {prod.Category.CategoryName}");
+        }
+    
     }
 }

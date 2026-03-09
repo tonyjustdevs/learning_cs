@@ -39,6 +39,11 @@ Console.WriteLine("Hello, World!");
 
 //GetProdByProdsInputIdBySql(69);
 //GetEagerTriggeredLoading(false);
-TestingEagerLoading();
+//TestingEagerLoading();
 
+//GetCatId1_EagerLoad(1);
+//GetCatId1To3_EagerLoad(3);
 
+//LazyLoadingProdPid1();
+//WriteLine(squarer(5));
+LazyLoadingWithNoTracking();
