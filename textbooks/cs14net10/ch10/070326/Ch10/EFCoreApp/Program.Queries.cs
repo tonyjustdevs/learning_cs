@@ -604,6 +604,71 @@ partial class Program
         {
             WriteLine($"[id: {prod.ProductId}] '{prod.ProductName}' is Category {prod.Category.CategoryName}");
         }
-    
+
     }
+
+    // create a lazyloader and show each query as it loads
+    private static void EagerAndLazyGetProdsPerEvenCatID()
+    {
+        using (var db_context = new NorthwindDb()){
+            var query =db_context.Categories
+                .Where(p => p.CategoryId % 2 == 0) // loads the whole thing
+                .Include(p => p.Products); // eager loading!
+
+                foreach (var cat_obj in query)
+                {
+                    WriteLine($"{cat_obj.CategoryId}: {cat_obj.CategoryName} has {cat_obj.Products.Count} products.");
+                }
+        }
+
+        using (var db_context = new NorthwindDb())
+        {
+            var query = db_context.Categories
+                .Where(p => p.CategoryId % 2 == 0); 
+                //.Include(p => p.Products); // this is the query
+
+            foreach (var cat_obj in query)
+            { // lazy loading
+                WriteLine($"{cat_obj.CategoryId}: {cat_obj.CategoryName} has {cat_obj.Products.Count} products.");
+            }
+        }
+    }
+
+    private static void ExplictLoadingTesting()
+    {
+        using (var db = new NorthwindDb()){
+            var categories = db.Categories;
+            foreach (var category in categories) // loads the whole categorieson first loop?
+            {   // reader created: stream each row, create 'instance' per row, track each 'instance'
+                // goal: explict load for each cate: explicit load collection<product> via load();
+                WriteLine($"[pre-load]{category.CategoryId}: {category.CategoryName} has {category.Products.Count} [exp: 0 lazyload is off]");
+
+                Write($"Do you want to explicitly load {category.CategoryName} products? (Y/N)");
+                var key = Console.ReadKey();
+                if (key.Key == ConsoleKey.Y)
+                {
+                    var entityentry = db.Entry(category);
+                    var nav_relo =entityentry.Collection(propertyName: "Products");// query
+                    nav_relo.Load();
+                }
+                WriteLine($"[pst-load]{category.CategoryId}: {category.CategoryName} has {category.Products.Count} [exp: n load() ran]");
+                                                                    // .Load();
+            }
+        }
+
+
+
+
+
+
+    }
+
+
+
+
+
+
+
+
+    // end of partial program
 }

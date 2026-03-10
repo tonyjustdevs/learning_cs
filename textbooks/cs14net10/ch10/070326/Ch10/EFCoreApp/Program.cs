@@ -46,4 +46,6 @@ Console.WriteLine("Hello, World!");
 
 //LazyLoadingProdPid1();
 //WriteLine(squarer(5));
-LazyLoadingWithNoTracking();
+//LazyLoadingWithNoTracking();
+//EagerAndLazyGetProdsPerEvenCatID();
+ExplictLoadingTesting();
