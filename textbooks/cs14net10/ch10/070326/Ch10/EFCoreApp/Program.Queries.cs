@@ -7,6 +7,7 @@ using System;
 using System.ComponentModel; // To use Northwind, Category, Product.
 using System.Net.Quic;
 using System.Reflection.Metadata;
+using System.Runtime.CompilerServices;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 partial class Program
 {
@@ -648,27 +649,67 @@ partial class Program
                 if (key.Key == ConsoleKey.Y)
                 {
                     var entityentry = db.Entry(category);
-                    var nav_relo =entityentry.Collection(propertyName: "Products");// query
-                    nav_relo.Load();
+                    //var prods_nav_relo =entityentry.Collection(propertyName: "Products");// query
+                    var prods_nav_relo = entityentry.Collection(p => p.Products);// query
+                    // is prods_nav_relo a IEnumerable<PRoduct?>
+                    if (prods_nav_relo.IsLoaded )
+                    {
+                        prods_nav_relo.Load();
+
+                    }
                 }
-                WriteLine($"[pst-load]{category.CategoryId}: {category.CategoryName} has {category.Products.Count} [exp: n load() ran]");
-                                                                    // .Load();
             }
         }
-
-
-
-
-
-
     }
+    /// [goal] lazy loading (of entities)
+    /// - not being tracked.
+
+
+
+    /// [current] lazy loading: once lazily-loaded, entity is tracked
+    //  [1] - add a method to request a no tracking query for products,
+    //      - and when you enumerate the products,
+    //      - use lazy loading to fetch the related category name
+
+    // [attempt-1s]
+    // - [A1.1] create lazily-loading of products aka it is tracked
+    //      - add query {dbset}
+    //      -
+     //- [A1.2] do [A1.1] into as untracked??
+    private static void LazilyUntrackedProdAndCats(bool tracking_bool = false)
+    {
+        using (var db = new NorthwindDb())
+        {   // IQuerable/IEnumrable , gets data, create instance & does tracking
+            IQueryable<Product> non_tracked_prods_query;
+            // [1] tracking criteria
+            if (tracking_bool == false)
+            {
+                non_tracked_prods_query = db.Products.AsNoTracking();
+                WriteLine($"[pre-tracked: {db.ChangeTracker.Entries().Count()}]");
+            }
+            else 
+            { 
+                non_tracked_prods_query = db.Products;
+            }
+
+            // [2] show results
+            foreach (var prod_row in non_tracked_prods_query)
+            {
+                Write($"{prod_row.ProductId}: {prod_row.ProductName} [cat: {prod_row.Category}] ( lazily-loaded ??) ");
+                WriteLine($"[mid-tracked: {db.ChangeTracker.Entries().Count()}]");
+
+            }
+        WriteLine($"[pos-tracked: {db.ChangeTracker.Entries().Count()}]");
+        }
+    }   
 
 
 
 
 
+    ///////////////////////////////////////////////////////
 
-
-
-    // end of partial program
+    // ---------------------------------- // 
+    // end of partial program             //
+    // ---------------------------------- // 
 }

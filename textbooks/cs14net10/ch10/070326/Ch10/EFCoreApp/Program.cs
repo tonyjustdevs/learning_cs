@@ -48,4 +48,6 @@ Console.WriteLine("Hello, World!");
 //WriteLine(squarer(5));
 //LazyLoadingWithNoTracking();
 //EagerAndLazyGetProdsPerEvenCatID();
-ExplictLoadingTesting();
+//ExplictLoadingTesting();
+
+LazilyUntrackedProdAndCats();
