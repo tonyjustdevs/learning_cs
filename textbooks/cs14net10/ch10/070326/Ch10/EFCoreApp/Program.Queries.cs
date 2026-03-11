@@ -701,8 +701,8 @@ partial class Program
             }
         WriteLine($"[pos-tracked: {db.ChangeTracker.Entries().Count()}]");
         }
-    }   
 
+    }
 
 
 

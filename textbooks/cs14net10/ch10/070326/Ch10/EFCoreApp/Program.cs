@@ -50,4 +50,16 @@ Console.WriteLine("Hello, World!");
 //EagerAndLazyGetProdsPerEvenCatID();
 //ExplictLoadingTesting();
 
-LazilyUntrackedProdAndCats();
+//LazilyUntrackedProdAndCats();
+
+//ListProducts();
+//ListProducts2();
+//ListProducts3();
+ListProducts4_HighlightPIDS([67]);
+
+//var results = AddProduct(11, "Tonys MysteryBox", 420M, 666);
+//AddProduct(8, "Tonys MysteryBox", 420M, 666);
+var res =  AddProduct(6, "Tonys MysteryBox2", 420.69M, 888);
+
+WriteLine($"{res.result}, {res.pid}");
+ListProducts4_HighlightPIDS([res.pid]);
