@@ -20,7 +20,11 @@ public class NorthwindDb : DbContext
         string databaseFile = "Northwind.db";
         string path = Path.Combine(
           Environment.CurrentDirectory, databaseFile);
+        //string debug_path = "C:\\Users\\tonyp\\learn\\csharp\\textbooks\\cs14net10\\ch10\\070326\\" +
+        //    "Ch10\\EFCoreApp\\bin\\Debug\\net10.0\\Northwind.db";
+
         string connectionString = $"Data Source={path}";
+        //string connectionString = $"Data Source={debug_path}";
         WriteLine($"Connection: {connectionString}");
         optionsBuilder
             .UseLazyLoadingProxies()
@@ -31,6 +35,7 @@ public class NorthwindDb : DbContext
         #if DEBUG
           .EnableSensitiveDataLogging() // Include SQL parameters.
           .EnableDetailedErrors()
+          //.Ene
         #endif
         ; // This is the end of the method call.
     }

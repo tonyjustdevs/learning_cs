@@ -55,11 +55,22 @@ Console.WriteLine("Hello, World!");
 //ListProducts();
 //ListProducts2();
 //ListProducts3();
-ListProducts4_HighlightPIDS([67]);
+//ListProducts4_HighlightPIDS([68]);s
+//ListProducts4_HighlightPIDS([68]);
+//var res = AddProduct(6, "Tonys Mystery68Box", 420M, 666);
+//WriteLine($"{res.result}, {res.pid}");
+//ListProducts4_HighlightPIDS([68]);
 
-//var results = AddProduct(11, "Tonys MysteryBox", 420M, 666);
-//AddProduct(8, "Tonys MysteryBox", 420M, 666);
-var res =  AddProduct(6, "Tonys MysteryBox2", 420.69M, 888);
+//ListAndHighlightProducts();
+//var new_prod_res = AddNewProduct("Tonys Fun-Box", 69, 420, false, 3);
 
-WriteLine($"{res.result}, {res.pid}");
-ListProducts4_HighlightPIDS([res.pid]);
+//ListAndHighlightProducts([new_prod_res.pid]);
+
+//ListAndHighlightProducts();
+
+var res = IncreaseProdPx("Fun");
+
+if (res.entries_affected>0)
+{
+    WriteLine($"{res.pid} price increased sucessfully!");
+}

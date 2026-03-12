@@ -1,7 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Query;
 using Northwind.EntityModels;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 partial class Program
 {
@@ -106,7 +108,8 @@ partial class Program
 
         using (var db = new NorthwindDb())
         {
-            var new_entity = db.Products.Add(   new_prod);
+            
+            var new_entity = db.Products.Add(new_prod);
             
             WriteLine($"\nState: {new_entity.State} PID: {new_prod.ProductId}");
             int db_rv =  db.SaveChanges();
@@ -115,4 +118,112 @@ partial class Program
             return (db_rv, new_prod.ProductId);
         }
     }
+
+    private static void ListAndHighlightProducts(int[]? ints=null)
+    {
+        using var db = new NorthwindDb();
+
+        var products = db.Products;
+
+        WriteLine("| {0,-3} | {1,-35} | {2,8} | {3,5} | {4,5} | ",
+            "PID", "Product", "Price", "Stock", "Disc");
+        var prev_color = ForegroundColor;
+        foreach (var p in products)
+        {
+            if (ints.Contains(p.ProductId))
+            {
+                ForegroundColor = ConsoleColor.DarkRed;
+            }
+            
+            WriteLine("| {0,-3} | {1,-35} | {2,8} | {3,5} | {4,5} | ",
+                p.ProductId, p.ProductName, p.Cost, p.Stock, p.Discontinued);
+            ForegroundColor = prev_color;
+        }
+    }
+
+    private static (int entries_written, int pid) AddNewProduct(
+        string prod_name, decimal cost, short stock, bool disc, int cat_id
+        )
+    {
+        using var db = new NorthwindDb();
+        var products = db.Products;
+        var new_prod = new Product() // create product instance
+        {
+            ProductName = prod_name,
+            Cost = cost,
+            Stock = stock,
+            Discontinued = disc,
+            CategoryId = cat_id
+        };
+        var entity = products.Add(new_prod);
+        WriteLine($"Entity.State: {entity.State}, PID: {new_prod.ProductId} [pre-save]");
+
+        int entries_written = db.SaveChanges();
+        WriteLine($"Entity.State: {entity.State}, PID: {new_prod.ProductId} [pst-save]");
+        
+        return (entries_written, new_prod.ProductId);
+    }
+
+    private static (int entries_affected, int pid) IncreaseProdPx(string? LikeProductName=null)
+    {
+        using var db = new NorthwindDb();
+        //WriteLine($"product_default: {default(Product)}");
+
+        Product? product_instance = db.Products
+            .Where(p => EF.Functions.Like(p.ProductName, $"%{LikeProductName}%"))
+            .FirstOrDefault();
+        
+        if (product_instance is null) return (0, 0);
+        
+        var entity = db.Entry(product_instance); // product_instance => Castle.Proxies.ProductProx
+        
+        if (LikeProductName is null)
+        {
+            WriteLine("Note: No string entered! Returning first entry in db...");
+            WriteLine($"Entity.State: {entity.State} [exp: Unchanged], PID: {product_instance.ProductId} [exp: 1] [pre-save]");
+            return (0, product_instance.ProductId);
+        }
+
+        int entries_written;
+        if (LikeProductName is not null && product_instance is not null)
+        {
+            // ------------- [1] pre-update ------------- //
+            //entity = db.Entry(product_instance);
+            WriteLine($"\nEntity.State: {entity.State} [exp: Unchanged], " +
+                $"PID: {product_instance.ProductId}, " +
+                $"Px: {product_instance.Cost} [pre-chg]");
+
+            // ------------- [2] conduct update ------------- //
+            // ------------- [3] pre-save to db ------------- //
+            product_instance.Cost += 1000;
+            //entity = db.Entry(product_instance);
+            db.ChangeTracker.DetectChanges();
+            WriteLine($"\nEntity.State: {entity.State} [exp: Modified], " +
+                $"PID: {product_instance.ProductId}, " +
+                $"Px: {product_instance.Cost} [pst-chg, pre-save]");
+
+            // ------------- [4] pst-save to db ------------- //
+            entries_written = db.SaveChanges();
+            //entity = db.Entry(product_instance);
+
+            WriteLine($"\nEntity.State: {entity.State} [exp: Unchanged], " +
+                $"PID: {product_instance.ProductId}, " +
+                $"Px: {product_instance.Cost} [pst-chg, pst-save]");
+
+
+            return (entries_written, product_instance.ProductId);
+        }
+        WriteLine("something went wrong!");
+        return (420, 420);
+    }
+
+
+
+
+
+
+
+
+
+    // --------------- end of partial program --------------- //
 }
