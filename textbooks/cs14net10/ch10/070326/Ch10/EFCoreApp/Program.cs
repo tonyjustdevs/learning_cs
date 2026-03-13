@@ -94,18 +94,30 @@ Console.WriteLine("Hello, World!");
 //ListAndHighlightProducts();
 
 
+//ListAndHighlightProducts();
+//var new_prod_res1 = AddNewProduct("Tonys Fun-Box-1", 5000, 500, false, 3);
+//var new_prod_res2 = AddNewProduct("Tonys Fun-Box-2", 6000, 600, true, 6);
+//var new_prod_res3 = AddNewProduct("Tonys Fun-Box-3", 7000, 700, false, 1);
+//var new_prod_res4 = AddNewProduct("Tonys Fun-Box-4", 8000, 800, false, 1);
+
+//ListAndHighlightProducts([new_prod_res1.pid, new_prod_res2.pid, new_prod_res3.pid, new_prod_res4.pid]);
+//int deleted_no = DeleteExecProdsAbovePx(1000);
+
+//if (deleted_no > 0)
+//{
+//    WriteLine($"'{deleted_no}' prodcuts deleted successfully");
+//}
+
+//ListAndHighlightProducts();
+
 ListAndHighlightProducts();
-var new_prod_res = AddNewProduct("Tonys Fun-Box-1", 5555, 420, false, 3);
-var new_prod_res2 = AddNewProduct("Tonys Fun-Box-2", 6666, 422, true, 6);
-var new_prod_res3 = AddNewProduct("Tonys Fun-Box-3", 7777, 423, false, 1);
-var new_prod_res4 = AddNewProduct("Tonys Fun-Box-4", 8888, 423, false, 1);
 
-ListAndHighlightProducts([new_prod_res.pid, new_prod_res2.pid, new_prod_res3.pid, new_prod_res4.pid]);
-int deleted_no = DeleteExecProdsAbovePx(1000);
+int results_updated_no = SetPriceViaExec("tony", (decimal)0.1);
+//= DeleteExecProdsAbovePx(1000);
 
-if (deleted_no > 0)
+if (results_updated_no > 0)
 {
-    WriteLine($"'{deleted_no}' prodcuts deleted successfully");
+    WriteLine($"'{results_updated_no}' products updated successfully");
 }
-
 ListAndHighlightProducts();
+

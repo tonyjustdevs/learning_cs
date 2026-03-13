@@ -258,6 +258,17 @@ partial class Program
             .ExecuteDelete();
     }
 
+    private static int SetPriceViaExec(string string_match, decimal inflation_pct)
+    {
+        using var db = new NorthwindDb();
+
+        var prods = db.Products.Where(p => EF.Functions.Like(p.ProductName, $"%{string_match}%"));
+        
+        return prods.ExecuteUpdate(s => s.SetProperty(
+            p => p.Cost,
+            p => p.Cost*(1+inflation_pct)));
+
+    }
 
 
 
