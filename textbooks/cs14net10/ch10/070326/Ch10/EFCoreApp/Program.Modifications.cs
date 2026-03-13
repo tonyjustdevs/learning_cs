@@ -1,8 +1,14 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
+using Microsoft.EntityFrameworkCore.Diagnostics;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Query;
 using Northwind.EntityModels;
+using System;
+using System.Data;
+using System.Reflection.Metadata;
+using System.Security.Cryptography;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 partial class Program
@@ -217,7 +223,48 @@ partial class Program
         return (420, 420);
     }
 
+    static (int products_deleted_no, List<Product>? products_deleted_list) DeleteProdsByWhereCriteria(string matching_string)
+    {
+        using var db = new NorthwindDb();
 
+        var products_query = db.Products.Where(p => p.ProductName.StartsWith(matching_string)).ToList();
+        if (products_query is null) 
+        {
+            WriteLine("Nothing to delete!");
+            return (0, null);
+        }
+
+        var products_list = products_query.ToList();
+
+        WriteLine("\nList of Products to Delete: ");
+        foreach (var product in products_list)
+        {
+            WriteLine($"- {product.ProductName}");
+        }
+        WriteLine("\nPress 'Y' to Delete.");
+        ConsoleKeyInfo key_pressed = ReadKey();
+         
+        db.RemoveRange(products_query);
+
+        int products_deleted = db.SaveChanges();
+        return (products_deleted, products_list);
+// why is it looping?
+        //dbug: 13 / 03 / 2026 16:48:21.197 RelationalEventId.CommandExecuting[20100](Microsoft.EntityFrameworkCore.Database.Command)
+        //  Executing DbCommand[Parameters = [@p0 = '78'], CommandType = 'Text', CommandTimeout = '30']
+        //  DELETE FROM "Products"
+        //  WHERE "ProductId" = @p0
+        //  RETURNING 1;
+        //dbug: 13 / 03 / 2026 16:48:21.207 RelationalEventId.CommandExecuting[20100](Microsoft.EntityFrameworkCore.Database.Command)
+        //  Executing DbCommand[Parameters = [@p0 = '79'], CommandType = 'Text', CommandTimeout = '30']
+        //  DELETE FROM "Products"
+        //  WHERE "ProductId" = @p0
+        //  RETURNING 1;
+        //dbug: 13 / 03 / 2026 16:48:21.209 RelationalEventId.CommandExecuting[20100](Microsoft.EntityFrameworkCore.Database.Command)
+        //  Executing DbCommand[Parameters = [@p0 = '80'], CommandType = 'Text', CommandTimeout = '30']
+        //  DELETE FROM "Products"
+        //  WHERE "ProductId" = @p0
+        //  RETURNING 1
+    }
 
 
 
@@ -227,3 +274,26 @@ partial class Program
 
     // --------------- end of partial program --------------- //
 }
+
+        //var entities = db.ChangeTracker.Entries();
+        //foreach (var ent in entities)
+        //{
+        //    ent.
+        //    foreach (var memberEntry in ent.Members)
+        //    {
+        //        Console.WriteLine(
+        //            $"- {memberEntry.Metadata.Name} is of type {memberEntry.Metadata.ClrType.ShortDisplayName()} and has value {memberEntry.CurrentValue}");
+        //    }
+        //}
+//- Member ProductId is of type int and has value 78
+//- Member CategoryId is of type int and has value 6
+//- Member Cost is of type decimal? and has value 420
+//- Member Discontinued is of type bool and has value False
+//- Member ProductName is of type string and has value Tonys Mystery68Box
+//- Member Stock is of type short? and has value 666
+//- Member Category is of type Category and has value
+        //if (key_pressed.Key==ConsoleKey.Y)
+        //{
+        //    db.RemoveRange(products_query);
+
+        //}
