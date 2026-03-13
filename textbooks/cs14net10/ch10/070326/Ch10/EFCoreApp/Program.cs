@@ -80,16 +80,32 @@ Console.WriteLine("Hello, World!");
 //}
 
 
+//ListAndHighlightProducts();
+//var del_res = DeleteProdsByWhereCriteria("tony");
+//if (del_res.products_deleted_no > 0 && del_res.products_deleted_list is not null)
+//{
+//	WriteLine($"Deleted '{del_res.products_deleted_no}' Successfully: ");
+//	foreach (var prod in del_res.products_deleted_list)
+//	{
+//		WriteLine($"- {prod.ProductName}");
+
+//	}
+//}
+//ListAndHighlightProducts();
+
+
 ListAndHighlightProducts();
-var del_res = DeleteProdsByWhereCriteria("tony");
-if (del_res.products_deleted_no > 0 && del_res.products_deleted_list is not null)
+var new_prod_res = AddNewProduct("Tonys Fun-Box-1", 5555, 420, false, 3);
+var new_prod_res2 = AddNewProduct("Tonys Fun-Box-2", 6666, 422, true, 6);
+var new_prod_res3 = AddNewProduct("Tonys Fun-Box-3", 7777, 423, false, 1);
+var new_prod_res4 = AddNewProduct("Tonys Fun-Box-4", 8888, 423, false, 1);
+
+ListAndHighlightProducts([new_prod_res.pid, new_prod_res2.pid, new_prod_res3.pid, new_prod_res4.pid]);
+int deleted_no = DeleteExecProdsAbovePx(1000);
+
+if (deleted_no > 0)
 {
-	WriteLine($"Deleted '{del_res.products_deleted_no}' Successfully: ");
-	foreach (var prod in del_res.products_deleted_list)
-	{
-		WriteLine($"- {prod.ProductName}");
-
-	}
+    WriteLine($"'{deleted_no}' prodcuts deleted successfully");
 }
-ListAndHighlightProducts();
 
+ListAndHighlightProducts();

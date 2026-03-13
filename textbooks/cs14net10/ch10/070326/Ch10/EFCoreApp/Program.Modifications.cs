@@ -248,25 +248,15 @@ partial class Program
 
         int products_deleted = db.SaveChanges();
         return (products_deleted, products_list);
-// why is it looping?
-        //dbug: 13 / 03 / 2026 16:48:21.197 RelationalEventId.CommandExecuting[20100](Microsoft.EntityFrameworkCore.Database.Command)
-        //  Executing DbCommand[Parameters = [@p0 = '78'], CommandType = 'Text', CommandTimeout = '30']
-        //  DELETE FROM "Products"
-        //  WHERE "ProductId" = @p0
-        //  RETURNING 1;
-        //dbug: 13 / 03 / 2026 16:48:21.207 RelationalEventId.CommandExecuting[20100](Microsoft.EntityFrameworkCore.Database.Command)
-        //  Executing DbCommand[Parameters = [@p0 = '79'], CommandType = 'Text', CommandTimeout = '30']
-        //  DELETE FROM "Products"
-        //  WHERE "ProductId" = @p0
-        //  RETURNING 1;
-        //dbug: 13 / 03 / 2026 16:48:21.209 RelationalEventId.CommandExecuting[20100](Microsoft.EntityFrameworkCore.Database.Command)
-        //  Executing DbCommand[Parameters = [@p0 = '80'], CommandType = 'Text', CommandTimeout = '30']
-        //  DELETE FROM "Products"
-        //  WHERE "ProductId" = @p0
-        //  RETURNING 1
     }
 
-
+    private static int DeleteExecProdsAbovePx(decimal? px_ceiling)
+    {
+        using var db = new NorthwindDb();
+        return db.Products
+            .Where(p => p.Cost > px_ceiling)
+            .ExecuteDelete();
+    }
 
 
 
