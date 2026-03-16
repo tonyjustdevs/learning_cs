@@ -4,4 +4,5 @@
 //JoinCategoriesAndProducts();
 //GroupJoinCategoriesAndProducts();
 
-ProductsLookup();
+//ProductsLookup();
+ProdsCatsLeftJoin();

@@ -105,4 +105,35 @@ partial class Program
             }
         }
     }
+    static void ProdsCatsLeftJoin()
+    {
+        using var db = new NorthwindDb();
+        var catprod_leftjoin_query = 
+            db.Categories.LeftJoin(
+                inner:              db.Products,
+                outerKeySelector:   c => c.CategoryId,
+                innerKeySelector:   p => p.CategoryId,
+                resultSelector:     (c, p_entity) => new{c.CategoryId,c.CategoryName,p_entity});
+        WriteLine($"catprodleftjoin.count: {catprod_leftjoin_query.Count()}");
+        foreach (var category in catprod_leftjoin_query)
+        {
+            WriteLine($"[{category.CategoryId}]: {category.CategoryName}, [pid {category.p_entity.ProductId}]: {category.p_entity.ProductName}");
+        }
+    }
+
+    static void ProdsCatRightJoin()
+    {
+        using var db = new NorthwindDb();
+        var catprod_rightjoin_query =
+            db.Categories.RightJoin(
+                inner: db.Products,
+                outerKeySelector: c => c.CategoryId,
+                innerKeySelector: p => p.CategoryId,
+                resultSelector: (c, p_entity) => new { c.CategoryId, c.CategoryName, p_entity });
+        WriteLine($"catprodleftjoin.count: {catprod_rightjoin_query.Count()}");
+        foreach (var category in catprod_rightjoin_query)
+        {
+            WriteLine($"[{category.CategoryId}]: {category.CategoryName}, [pid {category.p_entity.ProductId}]: {category.p_entity.ProductName}");
+        }
+    }
 }
