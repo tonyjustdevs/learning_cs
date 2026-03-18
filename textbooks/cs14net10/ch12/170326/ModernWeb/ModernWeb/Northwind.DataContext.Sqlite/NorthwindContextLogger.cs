@@ -16,5 +16,5 @@ public class NorthwindContextLogger
         StreamWriter textFile = File.AppendText(path);
         textFile.WriteLine(message);
         textFile.Close();
-    }
+    } 
 }

@@ -31,7 +31,6 @@ Database Layer
   ↳ Physical data storage (e.g., SQL Server)
 ```
 Each layer is logically distinct. For instance:
-
 - The Presentation Layer calls the Business Logic Layer (not directly the database).
 - The Business Logic Layer performs business rules (e.g., validate the product’s name or price).
 - The Data Access Layer abstracts the database operations, such as querying or persisting data.
@@ -51,7 +50,6 @@ For the Products Management slice, a typical structure might look like this:
   /Products.Tests        → Unit/Integration Tests
 ```
 Here, the code is divided into projects that reflect logical layers, helping developers work modularly. For instance:
-
 - `Products.Web` contains ASP.NET MVC controllers (like `ProductsController.cs`) or Razor pages.
 - `Products.Services` contains services implementing business logic (like `ProductService.cs`).
 - `Products.Data` contains the database access code (like `ProductRepository.cs` or EF Core DbContext).
@@ -61,7 +59,6 @@ Here, the code is divided into projects that reflect logical layers, helping dev
 This diagram describes how and where the artifacts (compiled assemblies, services, or packages) are deployed in a runtime environment. It’s focused on the physical or logical deployment topology and runtime components.
 
 For our Products Management example, let’s assume this is a web application with a backend API and a database. The deployment might look like this:
-
 ```markdown
 - Frontend Web Server (e.g., IIS or Azure App Service)
     - Deployed: Presentation Layer artifacts (e.g., `Products.Web.dll` or a Blazor WASM app)
@@ -71,7 +68,6 @@ For our Products Management example, let’s assume this is a web application wi
     - Deployed: The database (e.g., `ProductsDB`)
 ```
 Here, we’re concerned about where the compiled code (DLLs, executables, etc.) and data reside during deployment:
-
 - The frontend artifacts handle user interactions and API requests.
 - The backend artifacts host business logic and database interactions.
 - The database server stores data like product details.
@@ -106,7 +102,6 @@ By thinking in these layers and diagrams, you separate conceptual design (logica
 **DTOs (Data Transfer Objects)** are a crucial part of many architectures, but their role can sometimes feel a little ambiguous because they don’t belong neatly to a single logical layer. Instead, they typically facilitate communication between layers, especially when crossing boundaries like between the Presentation Layer and Business Logic Layer.
 
 DTOs are plain objects used to transfer data across application boundaries (e.g., from the frontend to the backend or between layers within the backend). They are simplified representations of data that:
-
 - Contain no behavior (e.g., no business logic or methods).
 - Avoid exposing implementation details of other layers (e.g., no direct database entities).
 - Are tailored to specific use cases (e.g., a subset of fields for a particular API endpoint).
