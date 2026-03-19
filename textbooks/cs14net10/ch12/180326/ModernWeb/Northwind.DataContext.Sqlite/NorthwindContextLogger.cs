@@ -6,7 +6,8 @@ public class NorthwindContextLogger
     //Environment.GetFolderPat
     // create directory if not exists
 
-    public static void WriteToNwLogs(string msg) // instance method
+    public static void WriteLine(string msg) // instance method
+    //public static void WriteToNwLogs(string msg) // instance method
     {
         string log_folder = Combine(Environment.GetFolderPath(SpecialFolder.Desktop), "nw_logs");
         if (!Directory.Exists(log_folder))

@@ -29,7 +29,8 @@ public partial class Product
     public string? QuantityPerUnit { get; set; }
 
     [Column(TypeName = "money")]
-    public double? UnitPrice { get; set; }
+    //public double? UnitPrice { get; set; }
+    public decimal? UnitPrice { get; set; }
 
     [Column(TypeName = "smallint")]
     public short? UnitsInStock { get; set; }

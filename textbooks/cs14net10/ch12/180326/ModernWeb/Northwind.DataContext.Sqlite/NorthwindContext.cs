@@ -41,62 +41,84 @@ public partial class NorthwindContext : DbContext
     #endregion
 
     #region 3_ON_CONFIG
-    // ------------------- 2_OnConfigurion(): BEG ------------------- //
+    // ------------------- 3_OnConfigurion(): BEG ------------------- //
     // - 1 OnConfiguring(optinosBuilder)
-    #endregion
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        => optionsBuilder.UseSqlite("Data Source=../Northwind.db");
+    {
+        if (!optionsBuilder.IsConfigured)
+        {
+            string database = "Northwind.db";
+            string dir = Environment.CurrentDirectory;
+            string path = string.Empty;
+            if (dir.EndsWith("net10.0"))
+            {
+                // In the <project>\bin\<Debug|Release>\net10.0 directory.
+                path = Path.Combine("..", "..", "..", "..", database);
+            }
+            else
+            {
+                // In the <project> directory.
+                path = Path.Combine("..", database);
+            }
+            path = Path.GetFullPath(path); // Convert to absolute path.
+            try
+            {
+                //NorthwindContextLogger.WriteLine($"Database path: {path}");
+                WriteLine($"Database path: {path}");
+            }
+            catch (Exception ex)
+            {
+                WriteLine(ex.Message);
+            }
+            if (!File.Exists(path))
+            {
+                throw new FileNotFoundException(
+                  message: $"{path} not found.", fileName: path);
+            }
+            optionsBuilder.UseSqlite($"Data Source={path}");
+        //    optionsBuilder.LogTo(NorthwindContextLogger.WriteLine,
+        //      [ Microsoft.EntityFrameworkCore
+        //.Diagnostics.RelationalEventId.CommandExecuting ]);
+        }
+    }
 
-    
-    
-    
+    #endregion
+
+
     #region 4_ON_MODEL_CREATING
-    protected override void OnModelCreating(ModelBuilder modelBuilder)
-    {   // Use modelBuilder to
-        // - Get Entity (SQLTables) & Configure Property (Columns) via FluentAPI:
-        // -   .ValueGeneratedNever(),
-        // -   .HasDefaultValue(0.0 or (short)0), 
-        // -   .HasOne(col1).WithMany(col2).OnDelete(DeleteBehavior.ClientSetNull);
-        // -   then Call OnModelCreatingPartial(modelBuilder)
-
-        modelBuilder.Entity<Category>(entity =>
-        {
-            entity.Property(e => e.CategoryId).ValueGeneratedNever();
-        });
-        modelBuilder.Entity<Employee>(entity =>
-        {
-            entity.Property(e => e.EmployeeId).ValueGeneratedNever();
-        });
+    protected override void OnModelCreating(
+    ModelBuilder modelBuilder)
+    {
         modelBuilder.Entity<Order>(entity =>
         {
-            entity.Property(e => e.OrderId).ValueGeneratedNever();
-            entity.Property(e => e.Freight).HasDefaultValue(0.0);
+            //entity.Property(e => e.Freight).HasDefaultValue(0.0);
+            entity.Property(e => e.Freight).HasDefaultValue(0.0M);
         });
         modelBuilder.Entity<OrderDetail>(entity =>
         {
-            entity.Property(e => e.Quantity).HasDefaultValue((short)1);
-
-            entity.HasOne(d => d.Order).WithMany(p => p.OrderDetails).OnDelete(DeleteBehavior.ClientSetNull);
-
-            entity.HasOne(d => d.Product).WithMany(p => p.OrderDetails).OnDelete(DeleteBehavior.ClientSetNull);
+            entity.Property(e =>
+              e.Quantity).HasDefaultValue((short)1);
+            entity.HasOne(d => d.Order)
+              .WithMany(p => p.OrderDetails)
+              .OnDelete(DeleteBehavior.ClientSetNull);
+            entity.HasOne(d => d.Product)
+              .WithMany(p => p.OrderDetails)
+              .OnDelete(DeleteBehavior.ClientSetNull);
         });
         modelBuilder.Entity<Product>(entity =>
         {
-            entity.Property(e => e.ProductId).ValueGeneratedNever();
-            entity.Property(e => e.ReorderLevel).HasDefaultValue((short)0);
-            entity.Property(e => e.UnitPrice).HasDefaultValue(0.0);
-            entity.Property(e => e.UnitsInStock).HasDefaultValue((short)0);
-            entity.Property(e => e.UnitsOnOrder).HasDefaultValue((short)0);
+            entity.Property(e => e.ReorderLevel)
+              .HasDefaultValue((short)0);
+            entity.Property(e => e.UnitPrice)
+              .HasDefaultValue(0.0M);
+            entity.Property(e => e.UnitsInStock)
+              .HasDefaultValue((short)0);
+            entity.Property(e => e.UnitsOnOrder)
+              .HasDefaultValue((short)0);
+            entity.Property(product => product.UnitPrice)
+              .HasConversion<double>();
         });
-        modelBuilder.Entity<Shipper>(entity =>
-        {
-            entity.Property(e => e.ShipperId).ValueGeneratedNever();
-        });
-        modelBuilder.Entity<Supplier>(entity =>
-        {
-            entity.Property(e => e.SupplierId).ValueGeneratedNever();
-        });
-
         OnModelCreatingPartial(modelBuilder);
     }
     #endregion

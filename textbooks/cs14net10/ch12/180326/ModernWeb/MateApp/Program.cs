@@ -3,7 +3,5 @@ using Northwind.EntityModels;
 
 Console.WriteLine("Hello, Mate!");
 
-NorthwindContextLogger.WriteToNwLogs("hey mate");
-
-await Task.Delay(2);
-string s = null;
+//NorthwindContextLogger.WriteLine("hey mate");
+GetCategoriesId();
