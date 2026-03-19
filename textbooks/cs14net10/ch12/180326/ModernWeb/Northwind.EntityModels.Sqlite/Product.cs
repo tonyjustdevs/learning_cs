@@ -28,7 +28,7 @@ public partial class Product
     [Column(TypeName = "nvarchar (20)")]
     public string? QuantityPerUnit { get; set; }
 
-    [Column(TypeName = "money")]
+    [Column(TypeName = "money")] 
     //public double? UnitPrice { get; set; }
     public decimal? UnitPrice { get; set; }
 

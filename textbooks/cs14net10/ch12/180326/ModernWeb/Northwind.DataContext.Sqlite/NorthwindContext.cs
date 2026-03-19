@@ -40,6 +40,19 @@ public partial class NorthwindContext : DbContext
     // ------------------- 2_PROPERTIES: END ------------------- //
     #endregion
 
+    #region 2A_METHODS
+    
+    public static NorthwindContext Create()
+    {
+        return new NorthwindContext();
+    }
+
+
+    #endregion
+
+
+
+
     #region 3_ON_CONFIG
     // ------------------- 3_OnConfigurion(): BEG ------------------- //
     // - 1 OnConfiguring(optinosBuilder)
@@ -126,4 +139,17 @@ public partial class NorthwindContext : DbContext
     #region 5_ON_MODEL_CREATING_PARTIAL
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder); // DEFINE OURSELVES
 #endregion
+}
+
+public class DbFactory
+{
+    public static NorthwindContext CreateNorthwindContext()
+    {
+        return new NorthwindContext();
+    }
+
+    public static NorthwindContext CreateNorthwindSQLiteContext()
+    {
+        return new NorthwindContext();
+    }
 }
