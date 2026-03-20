@@ -1,16 +1,30 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using Northwind.EntityModels;
 
-Console.WriteLine("Hello, Mate!");
+Console.WriteLine("Hello Northwind!");
 
-//NorthwindContextLogger.WriteLine("hey mate");
-//GetCategoriesId1();
-//GetCategoriesId2();
-//GetCategoriesId3();
+var sqlite_db = new NorthwindContext();
 
-GetCategoriesId4_DI(new NorthwindContext());
+// V1: Services
+var product_service = new ProductService(sqlite_db);
+var order_service   = new OrderService(sqlite_db);
+//var mofo_service    = new MofoService(sqlite_db);
 
-var product_service = new ProductService(new NorthwindContext());
+// V2: Services w' Benefits (sqlite_db)
+//var product_service = new ProductService2().AddDbContext();
+//var order_service = new OrderService2().AddDbContext();
+//var mofo_service = new MofoService2().AddDbContext();
+
+//
+//product_service.GetAllCats();
+//order_service.GetRecentAllOrders();
+
+//ServiceContainer.GetTypeHowToCreateANwContext();
+
+NormalFuckenMethod("im a stupid ass normal method");
+GenericFkenMethod<string>();
+
+GenericFkenMethod<int>();
 
 
-//DbFactory()
+GenericFkenMethod<NorthwindContext>();

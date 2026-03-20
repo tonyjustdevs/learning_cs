@@ -59,6 +59,7 @@ public partial class NorthwindContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
+        WriteLine("OnConfiguring() called.");
         if (!optionsBuilder.IsConfigured)
         {
             string database = "Northwind.db";
@@ -139,17 +140,4 @@ public partial class NorthwindContext : DbContext
     #region 5_ON_MODEL_CREATING_PARTIAL
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder); // DEFINE OURSELVES
 #endregion
-}
-
-public class DbFactory
-{
-    public static NorthwindContext CreateNorthwindContext()
-    {
-        return new NorthwindContext();
-    }
-
-    public static NorthwindContext CreateNorthwindSQLiteContext()
-    {
-        return new NorthwindContext();
-    }
 }
