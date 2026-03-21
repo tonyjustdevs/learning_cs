@@ -4,6 +4,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Northwind.EntityModels;
 
+//public interface IDbContext { /* common methods */ }
+
 public partial class NorthwindContext : DbContext
 {
     #region 1_CONSTRUCTORS

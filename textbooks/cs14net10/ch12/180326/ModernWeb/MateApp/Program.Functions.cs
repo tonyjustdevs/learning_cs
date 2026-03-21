@@ -1,197 +1,134 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Northwind.EntityModels;
-using System.ComponentModel;
-using System.Diagnostics;
-using System.Reflection.Metadata;
-using System.Runtime.CompilerServices;
-
+﻿using Northwind.EntityModels;
 partial class Program
 {
-    private static void GetCategoriesId1()
-    {
-        using var db = new NorthwindContext();
-        foreach (var category in db.Categories)
-        {
-            WriteLine($"{category.CategoryId}, {category.CategoryName}");
-        }
-    }
-    private static void GetCategoriesId2()
-    {
-        //using var db = new NorthwindContext();    // v1
-        using var db = NorthwindContext.Create();   // v2
-        foreach (var category in db.Categories)
-        {
-            WriteLine($"{category.CategoryId}, {category.CategoryName}");
-        }
-    }
-    private static void GetCategoriesId3()
-    {
-        //using var db = new NorthwindContext();    // v1
-        //using var db = NorthwindContext.Create();   // v2
-        //var db = DbFactory.CreateNorthwindContext();
-        //foreach (var category in db.Categories)
-        //{
-        //    WriteLine($"{category.CategoryId}, {category.CategoryName}");
-        //}
-    }
-    private static void GetCategoriesId4_DI(NorthwindContext db) // v4 inject it
-    {
-        //using var db = new NorthwindContext();            // v1
-        //using var db = NorthwindContext.Create();         // v2
-        //var db = DbFactory.CreateNorthwindContext();      // v3
-        //var db = DbFactory.CreateNorthwindSQLiteContext();
-        foreach (var category in db.Categories)
-        {
-            WriteLine($"{category.CategoryId}, {category.CategoryName}");
-        }
-    }
+    // create tightly coupled Product/Category Service with Database Context
 
-
-    // [1.] create a NORMAL method
-
-    private static void NormalFuckenMethod(string? stupidmsg)
-    {
-        Console.WriteLine($"{stupidmsg}");
-    }
-
-    // [2.] create a GENERIC method
-   
-    private static void GenericFkenMethod<T>()  
-    {
-        Console.WriteLine($"I'm a generic fken method operating on T: {typeof(T)}");
-    }
 
 }
 
 public class ProductService
-{
-    /// <summary>
-    /// Holds the instance of the Northwind database context used by the ProductService.    
-    /// </summary>
-
-    /// <remarks>
-    /// This field '_DBContext' stores a single instance of NorthwindContext
-    /// This field '_DBContext' is injected from external sources as a parameter into this class 'ProductService'
-    /// All instance methods use this injected 'context' to interact with database,
-    /// ensuring consistent data access and improved performance compared to creating a new context for each operation.
-    /// 
-    /// </remarks>
-    /// 
-    private NorthwindContext? _DBContext;
-
-    public ProductService() { }
-
-    public ProductService(NorthwindContext dbcontext)
+{ 
+    public ProductService()
     {
-        _DBContext = dbcontext;
+        var db = new NorthwindContext();
+        var products = db.Products;
+    }
+}
+
+public class CategoryService1
+{
+    public CategoryService1()
+    {
     }
 
-    public void GetAllCats()
+    public void GetCatNames()
     {
-        //var categories = this._DBContext?.Categories ?? null ;
-        var categories = this._DBContext?.Categories;
-        if (categories is null) 
-        {
-            WriteLine("no cats found!");
-            return;
-        }
-        WriteLine("\nAll Categories:");
+        using var db = new NorthwindContext();
+        var categories = db.Categories;
+        
+        WriteLine("\nCatNames:");
         foreach (var item in categories)
         {
             WriteLine($"- {item.CategoryName}");
-
         }
     }
 }
 
-public class OrderService
+public class CategoryService2
 {
-    private readonly NorthwindContext _db = null!;
-    public OrderService(NorthwindContext db)
+    private readonly NorthwindContext _db;
+
+    public CategoryService2(NorthwindContext db)
     {
         _db = db;
     }
 
-    public void GetRecentAllOrders()
+    public void GetNames()
     {
-        var orders = this._db.Orders.OrderByDescending(o => o.Freight).Take(10);
-        WriteLine("\nTop 10 Orders by Freight Costs: ");
-        foreach (var order in orders)
+        //using var db = new NorthwindContext();
+        var items = _db.Categories;
+
+        WriteLine("\nCatNames2:");
+        foreach (var item in items)
         {
-            WriteLine($"- {order.ShipName}: {order.Freight?.ToString("C")}");
-            
+            WriteLine($"- {item.CategoryName}");
         }
     }
 }
+
 
 public class ProductService2
 {
-    // lets keep db as a field 
-    private NorthwindContext _db = null!;
+    private readonly NorthwindContext _db;
 
-    public ProductService2()
+    public ProductService2(NorthwindContext db)
     {
+        _db = db;
     }
 
-    public ProductService2 AddDBContext(NorthwindContext db)
+    public void GetNames()
     {
-        this._db = db;
-        return this;
-    }
-}
+        //using var db = new NorthwindContext();
+        var items = _db.Products.Take(10);
 
-public class ServiceContainer
-    {   // create a dictionary with type: <typeof(T), method_instructions>
-        //public static Dictionary<typeof(NorthwindContext),>
+        WriteLine("\nProdNames2:");
 
-    //some_dict[typeof(NorthwindDB)] => how to create db
-    //Dictionary<Type,>
-    //
-    // create method to create db
-
-        Dictionary<string,string> InstructionsDict = new();
-        // given a type return method_instructions()??
-        public static void GetTypeHowToCreateANwContext()
-        {   // ServiceContainer.GetTypeHowToCreateANwContext
-            //var db = new NorthwindContext();
-            Func<NorthwindContext> HowToCreateANwContext = () => new NorthwindContext();
-
-            WriteLine($"HowToCreateANwContext() is of type {HowToCreateANwContext.GetType()}");
-            WriteLine($"HowToCreateANwContext() is of type {typeof(Func<NorthwindContext>)}");
-            WriteLine($"typeof(Northwind) is of type {typeof(NorthwindContext)}");
-            //System.Func`1[Northwind.EntityModels.NorthwindContext]
-        }
-            // some_dict[key,metho]
-        public static Dictionary<Type, Func<object>> InstructionsDict2(Type type, Object someobj) 
+        foreach (var item in items)
         {
-            var somedict = new Dictionary<Type, Func<object>>();
-            return somedict;
+            WriteLine($"- {item.ProductName}");
         }
-
-    // create a class that has a variable of dict
-    // the variable is a dictionary
-    // - set [k,v]  via dict[key]=value
-    // - get [v]    via [k] on dict[key]
-    //ServiceCont.
-}
-
-
-
-class SimpleContainer
-{
-    Dictionary<Type, Func<object>> map = new();
-
-    public void Register<T>(Func<T> factory) 
-    {  
-        map[typeof(T)] = factory;
     }
-        // q: what is Func<T>?
-        // a: it is a generic method that operates on generic type 'T'
-        // a: it is the body of a method, not the running of it
-
-        // goal of Registion(): create a key-value pair map_dict:
-        // - map[typeof(T) = factory]
-        // container.Register<NorthwindContext>(()=> new NorthwindDB());
-
-    //public T Resolve<T>() { ... }
 }
+
+public class ServiceFactoryNWContext
+{
+    public ServiceFactoryNWContext() { }
+    public ProductService2 CreateProductService()
+    {
+        return new ProductService2(new NorthwindContext());
+    }
+    public CategoryService2 CreateCategoryService()
+    {
+        return new CategoryService2(new NorthwindContext());
+    }
+}
+
+public class ServiceFactoryNWContext2
+{
+    private NorthwindContext _db = new();
+    public ServiceFactoryNWContext2() { }
+    public ProductService2 CreateProductService()
+    {
+        return new ProductService2(_db);
+    }
+    public CategoryService2 CreateCategoryService()
+    {
+        return new CategoryService2(_db);
+    }
+}
+
+public class ServiceFactoryNWContext3
+{
+    //private NorthwindContext _db = new();
+    public static NorthwindContext CreateNorthwindContext() => new();
+    //public static ServiceFactoryNWContext3() { }
+    public static ProductService2 CreateProductService()
+    {
+        return new ProductService2(CreateNorthwindContext());
+    }
+    public static CategoryService2 CreateCategoryService()
+    {
+        return new CategoryService2(CreateNorthwindContext());
+    }
+}
+
+public class ServiceFactoryNWContext4
+{
+    //private NorthwindContext _db = new();
+    public static NorthwindContext CreateNorthwindContext() => new();
+    //public static ServiceFactoryNWContext3() { }
+    public static ProductService2 CreateProductService() => new ProductService2(CreateNorthwindContext());
+    public static CategoryService2 CreateCategoryService() => new CategoryService2(CreateNorthwindContext());
+}
+
+
