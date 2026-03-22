@@ -41,3 +41,10 @@ public class EvaluateImportance : IMoreImportant<int>, IMoreImportant<string>
 
     }
 }
+
+public class SampleClass4<T> where T : IMoreImportant<T>
+{ }
+
+public class SampleClass5<T> : IMoreImportant<T>
+{ }
+// https://www.youtube.com/watch?v=Ld5D6B2Ntjg

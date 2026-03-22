@@ -84,15 +84,36 @@ if (!run)
 
 
 //var person1 = new PersonClass1();
+if (!run)
+{
+    var evaluate = new EvaluateImportance();
+    WriteLine($"evaluate.IsMoreImportant(420, 69): {evaluate.IsMoreImportant(69, 420)}");
+    string res;
+    res = evaluate.IsMoreImportant("mate", "broskies");
+    WriteLine($"evaluate.IsMoreImportant(\"mate\", \"broskies\"): {res}");
+    res = evaluate.IsMoreImportant("legendary", "broskies");
+    WriteLine($"evaluate.IsMoreImportant(\"legendary\", \"broskies\"): {res}");
 
-var evaluate = new EvaluateImportance();
-WriteLine($"evaluate.IsMoreImportant(420, 69): {evaluate.IsMoreImportant(69, 420)}");
-string res;
-res = evaluate.IsMoreImportant("mate", "broskies");
-WriteLine($"evaluate.IsMoreImportant(\"mate\", \"broskies\"): {res}");
-res = evaluate.IsMoreImportant("legendary", "broskies");
-WriteLine($"evaluate.IsMoreImportant(\"legendary\", \"broskies\"): {res}");
+
+    // type decs
+    //record PersonRecord(string? fname=null, string? lname = null);
+
+}
+    
+if (run)
+{
+    "mate".TonysWordCounter();
+}
 
 
-// type decs
-record PersonRecord(string? fname=null, string? lname = null);
+
+
+
+
+
+
+
+
+
+
+
