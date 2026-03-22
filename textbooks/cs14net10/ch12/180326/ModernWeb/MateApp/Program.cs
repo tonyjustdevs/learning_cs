@@ -1,6 +1,7 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Migrations.Operations;
+using Microsoft.Extensions.DependencyInjection;
 using Northwind.EntityModels;
 
 Console.WriteLine("Hello Northwind!");
@@ -74,8 +75,8 @@ if (!run)
     {
         WriteLine($"{data}");
     }
-    var ppl_list = new BetterList<PersonRecord>();
-    ppl_list.AddToList(new PersonRecord());
+    //var ppl_list = new BetterList<PersonRecord>();
+    //ppl_list.AddToList(new PersonRecord());
  }
 
 // goals
@@ -100,13 +101,24 @@ if (!run)
 
 }
     
-if (run)
+if (!run)
 {
     "mate".TonysWordCounter();
+    var cslogger = new CSLogger();
+    cslogger.Log("mateeee");
+    cslogger.Log("sup...");
+    cslogger.ErrorLog("we done...");
 }
 
+if (run)
+{
+    //IServiceCollection
+    var service = new ServiceCollection();
+    WriteLine($"service.Count: {service.Count}");
+    //service.AddSingleton
 
-
+   // keep learning Singleton through ai and ms f12 docs
+}
 
 
 
