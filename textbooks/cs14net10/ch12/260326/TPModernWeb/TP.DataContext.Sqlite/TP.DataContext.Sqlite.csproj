@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TP.EntityModels.Sqlite\TP.EntityModels.Sqlite.csproj" />
+  </ItemGroup>
+	<ItemGroup>
+		<Using Include="System.Console" Static="true" />
+		<Using Include="System.IO.Path" Static="true" />
+</ItemGroup>
+	
+</Project>
