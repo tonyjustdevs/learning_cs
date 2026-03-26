@@ -1,4 +1,5 @@
-﻿using Northwind.EntityModels;
+﻿using Microsoft.EntityFrameworkCore;
+using Northwind.EntityModels;
 partial class Program
 {
     // create tightly coupled Product/Category Service with Database Context
@@ -8,13 +9,34 @@ partial class Program
 
 public class ProductService
 { 
+    private readonly NorthwindContext _db;
     public ProductService()
     {
-        var db = new NorthwindContext();
+        _db = new NorthwindContext();
+        var products = _db.Products;
+    }
+
+    public ProductService(NorthwindContext db)
+    {
+        //var db = new NorthwindContext();
+        _db = db;
         var products = db.Products;
     }
-}
 
+    //public ProductService(INorthwindContext db)
+    //{
+    //    //var db = new NorthwindContext();
+    //    _db = db;
+    //    var products = db.Products;
+    //}
+}
+public interface INorthwindContext
+{
+    DbSet<Product> Productss { get; }
+    DbSet<Animal> Animals { get; }
+    //DbSet<Product> Products { get; }
+
+}
 public class CategoryService1
 {
     public CategoryService1()

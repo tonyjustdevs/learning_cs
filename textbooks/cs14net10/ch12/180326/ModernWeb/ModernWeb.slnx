@@ -1,4 +1,7 @@
 <Solution>
+  <Project Path="CalcConsoleApp1/CalcConsoleApp1.csproj" Id="0e3ff960-2938-4be9-a7ad-33f838e63d2f" />
+  <Project Path="DIApp1/DIApp1.csproj" Id="e38c8817-83ba-479a-aea5-a705da0bf7d5" />
+  <Project Path="DIApp2/DIApp2.csproj" Id="41d1153a-769e-4dc7-8247-95758753fcc0" />
   <Project Path="MateApp/MateApp.csproj" />
   <Project Path="Northwind.DataContext.Sqlite/Northwind.DataContext.Sqlite.csproj" />
   <Project Path="Northwind.EntityModels.Sqlite/Northwind.EntityModels.Sqlite.csproj" />

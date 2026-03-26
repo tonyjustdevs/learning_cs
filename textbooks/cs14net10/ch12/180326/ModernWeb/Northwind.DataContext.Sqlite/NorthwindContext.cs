@@ -80,8 +80,8 @@ public partial class NorthwindContext : DbContext
             path = Path.GetFullPath(path); // Convert to absolute path.
             try
             {
-                //NorthwindContextLogger.WriteLine($"Database path: {path}");
-                WriteLine($"Database path: {path}");
+                NorthwindContextLogger.WriteLine($"Database path: {path}");
+                //WriteLine($"Database path: {path}");
             }
             catch (Exception ex)
             {

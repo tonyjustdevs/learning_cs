@@ -7,30 +7,6 @@ using Northwind.EntityModels;
 Console.WriteLine("Hello Northwind!");
 
 var sqlite_db = new NorthwindContext();
-
-//// V1: Services
-//var product_service = new ProductService(sqlite_db);
-//var order_service   = new OrderService(sqlite_db);
-//var mofo_service    = new MofoService(sqlite_db);
-
-// V2: Services w' Benefits (sqlite_db)
-//var product_service = new ProductService2().AddDbContext();
-//var order_service = new OrderService2().AddDbContext();
-//var mofo_service = new MofoService2().AddDbContext();
-
-//
-//product_service.GetAllCats();
-//order_service.GetRecentAllOrders();
-
-//ServiceContainer.GetTypeHowToCreateANwContext();
-
-//GetCat1(); // v1
-
-// 2 scenarios:
-// [1] consecutive dependencies
-
-//var categories = new CategoryService1();
-//categories.GetCatNames();
 bool run = true;
 if (!run)
 {
@@ -79,10 +55,6 @@ if (!run)
     //ppl_list.AddToList(new PersonRecord());
  }
 
-// goals
-// [A] services.AddDbContext<NorthwindContext>();
-// [B] services.AddScoped<ProductService2>();
-
 
 //var person1 = new PersonClass1();
 if (!run)
@@ -110,7 +82,7 @@ if (!run)
     cslogger.ErrorLog("we done...");
 }
 
-if (run)
+if (!run)
 {
     //IServiceCollection
     var service = new ServiceCollection();
@@ -120,12 +92,41 @@ if (run)
    // keep learning Singleton through ai and ms f12 docs
 }
 
+// GOALS:
+// - 
+// - ServiceCollection()
+// - (extension) Singleton: each signature (4?)
+// 
+
+
+// goals
+// [A] services.AddDbContext<NorthwindContext>();
+// [B] services.AddScoped<ProductService2>();
 
 
 
 
 
+//// V1: Services
+//var product_service = new ProductService(sqlite_db);
+//var order_service   = new OrderService(sqlite_db);
+//var mofo_service    = new MofoService(sqlite_db);
 
+// V2: Services w' Benefits (sqlite_db)
+//var product_service = new ProductService2().AddDbContext();
+//var order_service = new OrderService2().AddDbContext();
+//var mofo_service = new MofoService2().AddDbContext();
 
+//
+//product_service.GetAllCats();
+//order_service.GetRecentAllOrders();
 
+//ServiceContainer.GetTypeHowToCreateANwContext();
 
+//GetCat1(); // v1
+
+// 2 scenarios:
+// [1] consecutive dependencies
+
+//var categories = new CategoryService1();
+//categories.GetCatNames();
