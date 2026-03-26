@@ -62,9 +62,9 @@ public partial class NorthwindContext : DbContext
         optionsBuilder.LogTo(
             WriteLine, 
             [Microsoft.EntityFrameworkCore.Diagnostics.RelationalEventId.CommandExecuting]);
-        optionsBuilder.LogTo(
-            TPContextLogger.WriteToLog,
-            [Microsoft.EntityFrameworkCore.Diagnostics.RelationalEventId.CommandExecuting]);
+        //optionsBuilder.LogTo(
+        //    TPContextLogger.WriteToLog,
+        //    [Microsoft.EntityFrameworkCore.Diagnostics.RelationalEventId.CommandExecuting]);
 
         WriteLine($" \n ------------ OnConfiguring ending ------------ \n");
     }
@@ -74,46 +74,44 @@ public partial class NorthwindContext : DbContext
     {
         modelBuilder.Entity<Category>(entity =>
         {
-            entity.Property(e => e.CategoryId).ValueGeneratedNever();
+            entity.Property(e => e.CategoryId);
         });
 
         modelBuilder.Entity<Employee>(entity =>
         {
-            entity.Property(e => e.EmployeeId).ValueGeneratedNever();
+            entity.Property(e => e.EmployeeId);
         });
 
         modelBuilder.Entity<Order>(entity =>
         {
-            entity.Property(e => e.OrderId).ValueGeneratedNever();
-            entity.Property(e => e.Freight).HasDefaultValue(0.0);
+            entity.Property(e => e.OrderId);
+            entity.Property(e => e.Freight).HasDefaultValue(0.0M);
         });
 
         modelBuilder.Entity<OrderDetail>(entity =>
         {
             entity.Property(e => e.Quantity).HasDefaultValue((short)1);
-
             entity.HasOne(d => d.Order).WithMany(p => p.OrderDetails).OnDelete(DeleteBehavior.ClientSetNull);
-
             entity.HasOne(d => d.Product).WithMany(p => p.OrderDetails).OnDelete(DeleteBehavior.ClientSetNull);
         });
 
         modelBuilder.Entity<Product>(entity =>
         {
-            entity.Property(e => e.ProductId).ValueGeneratedNever();
+            entity.Property(e => e.ProductId);
             entity.Property(e => e.ReorderLevel).HasDefaultValue((short)0);
-            entity.Property(e => e.UnitPrice).HasDefaultValue(0.0);
+            entity.Property(e => e.UnitPrice).HasDefaultValue(0.0M);
             entity.Property(e => e.UnitsInStock).HasDefaultValue((short)0);
             entity.Property(e => e.UnitsOnOrder).HasDefaultValue((short)0);
         });
 
         modelBuilder.Entity<Shipper>(entity =>
         {
-            entity.Property(e => e.ShipperId).ValueGeneratedNever();
+            entity.Property(e => e.ShipperId);
         });
 
         modelBuilder.Entity<Supplier>(entity =>
         {
-            entity.Property(e => e.SupplierId).ValueGeneratedNever();
+            entity.Property(e => e.SupplierId);
         });
 
         OnModelCreatingPartial(modelBuilder);
