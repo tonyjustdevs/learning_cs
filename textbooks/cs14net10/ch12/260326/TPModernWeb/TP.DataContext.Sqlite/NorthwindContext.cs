@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query;
+using TP.EntityModels.Sqlite;
 
 namespace TP.EntityModels;
 
@@ -56,6 +57,15 @@ public partial class NorthwindContext : DbContext
         WriteLine($" --- 'Northwind.db' file exist!");
         WriteLine($" --- Running optionsBuilder.UseSqlite(\n --- Data Source = {db_path})");
         optionsBuilder.UseSqlite($"Data Source = {db_path}");
+
+        // do logs
+        optionsBuilder.LogTo(
+            WriteLine, 
+            [Microsoft.EntityFrameworkCore.Diagnostics.RelationalEventId.CommandExecuting]);
+        optionsBuilder.LogTo(
+            TPContextLogger.WriteToLog,
+            [Microsoft.EntityFrameworkCore.Diagnostics.RelationalEventId.CommandExecuting]);
+
         WriteLine($" \n ------------ OnConfiguring ending ------------ \n");
     }
 
