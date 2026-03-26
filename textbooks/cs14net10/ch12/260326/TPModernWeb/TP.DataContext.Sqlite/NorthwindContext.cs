@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Query;
 
 namespace TP.EntityModels;
 
@@ -8,6 +9,11 @@ public partial class NorthwindContext : DbContext
 {
     public NorthwindContext()
     {
+        WriteLine();
+        WriteLine($" ------------ NorthwindContext() starting ------------ ");
+        WriteLine($" ------------ NorthwindContext() ending ------------ ");
+        WriteLine();
+        
     }
 
     public NorthwindContext(DbContextOptions<NorthwindContext> options)
@@ -16,24 +22,43 @@ public partial class NorthwindContext : DbContext
     }
 
     public virtual DbSet<Category> Categories { get; set; }
-
     public virtual DbSet<Customer> Customers { get; set; }
-
     public virtual DbSet<Employee> Employees { get; set; }
-
     public virtual DbSet<Order> Orders { get; set; }
-
     public virtual DbSet<OrderDetail> OrderDetails { get; set; }
-
     public virtual DbSet<Product> Products { get; set; }
-
     public virtual DbSet<Shipper> Shippers { get; set; }
-
     public virtual DbSet<Supplier> Suppliers { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlite("Data Source=../Northwind.db");
+    {
+        WriteLine();
+        WriteLine($" \n ------------ OnConfiguring starting ------------ \n ");
+        string curr_dir = Environment.CurrentDirectory;
+        string db_path;
+        if (curr_dir.EndsWith("net10.0"))                   // debug dir
+        {   
+            WriteLine($" --- Running from :\n --- {curr_dir}");
+            db_path = "../../../../Northwind.db";
+        }
+        else
+        {                                                   // proj dir
+            WriteLine($" --- Running from :\n --- {curr_dir}");
+            db_path = "../Northwind.db";
+        }
+        db_path = GetFullPath(db_path);
+        WriteLine($" --- db path calculated: \n --- {db_path}");
+        if (!File.Exists(db_path))
+        {
+            WriteLine($" --- 'Northwind.db' file doesnt exist!");
+            return;
+        }
+        WriteLine($" --- 'Northwind.db' file exist!");
+        WriteLine($" --- Running optionsBuilder.UseSqlite(\n --- Data Source = {db_path})");
+        optionsBuilder.UseSqlite($"Data Source = {db_path}");
+        WriteLine($" \n ------------ OnConfiguring ending ------------ \n");
+    }
+
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
