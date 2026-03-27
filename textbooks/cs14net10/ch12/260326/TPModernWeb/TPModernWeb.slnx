@@ -2,4 +2,6 @@
   <Project Path="EFCoreApp1/EFCoreApp1.csproj" Id="3d696792-d1a4-4063-b5f4-1204aec17743" />
   <Project Path="TP.DataContext.Sqlite/TP.DataContext.Sqlite.csproj" />
   <Project Path="TP.EntityModels.Sqlite/TP.EntityModels.Sqlite.csproj" />
+  <Project Path="TP.Web/TP.Web.csproj" Id="7c9d7042-deda-4eb5-aac1-b5e4a79c52a0" />
+  <Project Path="TP.Web2/TP.Web2.csproj" Id="204d7ee6-5278-44d6-80e4-cc24c9001dad" />
 </Solution>
