@@ -24,8 +24,8 @@ bool useDefaultStuff = true;
 if (useDefaultStuff)
 {
     app.UseDefaultFiles();              // redirects / to index.html (or similar)
-    //app.UseStaticFiles();             // >.NET8 returns/serves file (index.html )
-    app.MapStaticAssets();              // >.NET9
+    app.UseStaticFiles();             // >.NET8 returns/serves file (index.html )
+    //app.MapStaticAssets();              // >.NET9
 }
 #endregion
 #region Routes
