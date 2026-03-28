@@ -57,6 +57,7 @@ static partial class Program
               if (affected == 1)
               {
                   return TypedResults.Created( // 201 Created.
+            //uri: $"/customers/{c.CustomerId}", value: c);
             uri: "/customers/{c.CustomerId}", value: c);
               }
               else
