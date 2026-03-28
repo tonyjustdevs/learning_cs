@@ -1,0 +1,22 @@
+﻿@using Microsoft.AspNetCore.Components.Web
+@page "/"
+@code
+{
+    public string? DayName { get; set; }
+    = DateTime.Now.ToString("dddd dd/MM/yyyy");
+}   
+
+<PageTitle>Tony's AI Technology</PageTitle>
+<div class="container">
+    <div class="jumbotron">
+        <h1 class="display-3">[h1_beg]Welcome broos[h1_end][Index.razor]</h1>
+        <p class="lead">We supply products to our customers.</p>
+        <hr />
+        <p>It's [@DayName!]</p>
+        <p>Unfortunately, we have no customers and are going bankrupt...🥲</p>
+        <p>
+            <a class="btn btn-primary"
+               href="https://www.asp.net/">Learn more</a>
+        </p>
+    </div>
+</div>

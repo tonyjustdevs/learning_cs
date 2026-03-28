@@ -4,4 +4,5 @@
   <Project Path="TP.EntityModels.Sqlite/TP.EntityModels.Sqlite.csproj" />
   <Project Path="TP.Web/TP.Web.csproj" Id="7c9d7042-deda-4eb5-aac1-b5e4a79c52a0" />
   <Project Path="TP.Web2/TP.Web2.csproj" Id="204d7ee6-5278-44d6-80e4-cc24c9001dad" />
+  <Project Path="TP.WebApi/TP.WebApi.csproj" Id="b1b8d9af-7435-496f-a1d9-91e172bd82f3" />
 </Solution>

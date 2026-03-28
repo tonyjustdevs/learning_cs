@@ -1,0 +1,22 @@
+@TP.WebApi_HostAddress = http://localhost:5150
+GET {{TP.WebApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
+
+@TP.WebApi_HostAddress = https://localhost:5151
+GET {{TP.WebApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
+
+@TP.WebApi_HostAddress = https://localhost:5151
+GET {{TP.WebApi_HostAddress}}/weatherforecast2/
+Accept: application/json
+
+
+###
+
+@TP.WebApi_HostAddress = https://localhost:5151
+GET {{TP.WebApi_HostAddress}}/weatherforecast2/2
+Accept: application/json
