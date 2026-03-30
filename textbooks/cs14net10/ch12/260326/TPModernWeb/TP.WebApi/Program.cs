@@ -4,7 +4,11 @@ using TP.DataContext;
 using TP.EntityModels;
 using Scalar.AspNetCore; // To use MapScalarApiReference method.
 using Microsoft.AspNetCore.HttpLogging; // To use HttpLoggingFields.
-//using Scalar.AspNetCore; // To use MapScalarApiReference method.
+
+
+#region [1] Configure CORS: Allow Clients To Make Requests
+const string corsPolicyName = "allowWasmClient";
+#endregion
 
 var builder = WebApplication.CreateBuilder(args); // Add services to the container.
 builder.Services.AddOpenApi(); // Developers can use OAS for a web service to automatically
@@ -12,13 +16,25 @@ builder.Services.AddOpenApi(); // Developers can use OAS for a web service to au
 builder.Services.AddOpenApi(documentName: "v2");
 builder.Services.AddValidation();
 builder.Services.AddDbContext<NorthwindContext>();
-
 builder.Services.AddHttpLogging(options =>
 {
     options.LoggingFields = HttpLoggingFields.All;
     options.RequestBodyLogLimit = 4096; // Default is 32k.
     options.ResponseBodyLogLimit = 4096; // Default is 32k.
 });
+
+
+#region [2] Add CORS: allow diff port numbers from web service 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: corsPolicyName,
+      policy =>
+      {
+          policy.WithOrigins("https://localhost:5152",
+          "http://localhost:5153");
+      });
+});
+#endregion
 
 var app = builder.Build();
 // Configure the HTTP request pipeline.
@@ -29,6 +45,7 @@ if (app.Environment.IsDevelopment())
 }
 app.UseHttpLogging();
 app.UseHttpsRedirection();
+app.UseCors(corsPolicyName);
 #endregion
 
 #region [2] Add Custom Data

@@ -1,6 +1,6 @@
 ﻿//namespace TP.WebApi;
 
-public partial class Program
+static partial class Program
 {
     static string[] summaries = { "Freezing", "Bracing",
     "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot",

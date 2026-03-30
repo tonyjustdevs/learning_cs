@@ -1,6 +1,6 @@
 ﻿
 
-partial class Program
+static partial class Program
 {
     /// <summary>
     /// Sends a greeting [for xml]

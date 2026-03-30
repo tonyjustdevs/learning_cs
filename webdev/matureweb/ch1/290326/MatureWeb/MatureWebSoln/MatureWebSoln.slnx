@@ -1,0 +1,7 @@
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path="../../../../.sql-scripts/Northwind4SqlServerContainer.sql" />
+  </Folder>
+  <Project Path="ConsoleApp1/ConsoleApp1.csproj" />
+  <Project Path="TP.EntityModels/TP.EntityModels.csproj" Id="31030515-f784-4924-967b-3993f5708e13" />
+</Solution>
