@@ -4,4 +4,6 @@
   <Project Path="TP.EntityModels/TP.EntityModels.csproj" Id="31030515-f784-4924-967b-3993f5708e13" />
   <Project Path="TP.Mvc/TP.Mvc.csproj" Id="7a49bdad-a7f9-49a9-83c8-2cc6bc38d82d" />
   <Project Path="TP.UnitTests/TP.UnitTests.csproj" Id="75d8b6f1-1036-4954-9ac6-db0175744c1b" />
+  <Project Path="TP.WebApi1/TP.WebApi1.csproj" Id="c5f6f5b2-e526-4380-8974-d4afc5099418" />
+  <Project Path="TPWebAppEmpty1/TPWebAppEmpty1.csproj" Id="1b476cc8-e11b-4349-b9f1-c9fb6d0c0169" />
 </Solution>

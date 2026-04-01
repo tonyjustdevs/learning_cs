@@ -84,6 +84,6 @@ app.MapRazorPages() // for auth page
 app.MapGet("/env", () => { WriteLine($"\napp.Environment: {app.Environment};"); });
 #endregion
 
-#region [6] Run app
+#region [7] Run app
 app.Run();
 #endregion
