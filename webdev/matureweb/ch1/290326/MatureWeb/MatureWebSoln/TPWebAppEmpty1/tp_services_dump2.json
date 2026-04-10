@@ -1,0 +1,612 @@
+[
+  {
+    "Service": "Microsoft.Extensions.Hosting.IHostingEnvironment",
+    "Implementation": "Microsoft.Extensions.Hosting.Internal.HostingEnvironment",
+    "Lifetime": "Singleton"
+  },
+  {
+    "Service": "Microsoft.Extensions.Hosting.IHostEnvironment",
+    "Implementation": "Microsoft.Extensions.Hosting.Internal.HostingEnvironment",
+    "Lifetime": "Singleton"
+  },
+  {
+    "Service": "Microsoft.Extensions.Hosting.HostBuilderContext",
+    "Implementation": "Microsoft.Extensions.Hosting.HostBuilderContext",
+    "Lifetime": "Singleton"
+  },
+  {
+    "Service": "Microsoft.Extensions.Configuration.IConfiguration",
+    "Implementation": "Factory/Unknown",
+    "Lifetime": "Singleton"
+  },
+  {
+    "Service": "Microsoft.Extensions.Hosting.IApplicationLifetime",
+    "Implementation": "Factory/Unknown",
+    "Lifetime": "Singleton"
+  },
+  {
+    "Service": "Microsoft.Extensions.Hosting.IHostApplicationLifetime",
+    "Implementation": "Microsoft.Extensions.Hosting.Internal.ApplicationLifetime",
+    "Lifetime": "Singleton"
+  },
+  {
+    "Service": "Microsoft.Extensions.Hosting.IHostLifetime",
+    "Implementation": "Microsoft.Extensions.Hosting.Internal.ConsoleLifetime",
+    "Lifetime": "Singleton"
+  },
+  {
+    "Service": "Microsoft.Extensions.Hosting.IHost",
+    "Implementation": "Factory/Unknown",
+    "Lifetime": "Singleton"
+  },
+  {
+    "Service": "Microsoft.Extensions.Options.IOptions\u00601",
+    "Implementation": "Microsoft.Extensions.Options.UnnamedOptionsManager\u00601",
+    "Lifetime": "Singleton"
+  },
+  {
+    "Service": "Microsoft.Extensions.Options.IOptionsSnapshot\u00601",
+    "Implementation": "Microsoft.Extensions.Options.OptionsManager\u00601",
+    "Lifetime": "Scoped"
+  },
+  {
+    "Service": "Microsoft.Extensions.Options.IOptionsMonitor\u00601",
+    "Implementation": "Microsoft.Extensions.Options.OptionsMonitor\u00601",
+    "Lifetime": "Singleton"
+  },
+  {
+    "Service": "Microsoft.Extensions.Options.IOptionsFactory\u00601",
+    "Implementation": "Microsoft.Extensions.Options.OptionsFactory\u00601",
+    "Lifetime": "Transient"
+  },
+  {
+    "Service": "Microsoft.Extensions.Options.IOptionsMonitorCache\u00601",
+    "Implementation": "Microsoft.Extensions.Options.OptionsCache\u00601",
+    "Lifetime": "Singleton"
+  },
+  {
+    "Service": "Microsoft.Extensions.Options.IConfigureOptions\u00601[[Microsoft.Extensions.Hosting.HostOptions, Microsoft.Extensions.Hosting, Version=10.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60]]",
+    "Implementation": "Microsoft.Extensions.Options.ConfigureNamedOptions\u00601[[Microsoft.Extensions.Hosting.HostOptions, Microsoft.Extensions.Hosting, Version=10.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60]]",
+    "Lifetime": "Singleton"
+  },
+  {
+    "Service": "Microsoft.Extensions.Logging.ILoggerFactory",
+    "Implementation": "Microsoft.Extensions.Logging.LoggerFactory",
+    "Lifetime": "Singleton"
+  },
+  {
+    "Service": "Microsoft.Extensions.Logging.ILogger\u00601",
+    "Implementation": "Microsoft.Extensions.Logging.Logger\u00601",
+    "Lifetime": "Singleton"
+  },
+  {
+    "Service": "Microsoft.Extensions.Options.IConfigureOptions\u00601[[Microsoft.Extensions.Logging.LoggerFilterOptions, Microsoft.Extensions.Logging, Version=10.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60]]",
+    "Implementation": "Microsoft.Extensions.Logging.DefaultLoggerLevelConfigureOptions",
+    "Lifetime": "Singleton"
+  },
+  {
+    "Service": "System.Diagnostics.Metrics.IMeterFactory",
+    "Implementation": "Microsoft.Extensions.Diagnostics.Metrics.DefaultMeterFactory",
+    "Lifetime": "Singleton"
+  },
+  {
+    "Service": "Microsoft.Extensions.Diagnostics.Metrics.MetricsSubscriptionManager",
+    "Implementation": "Microsoft.Extensions.Diagnostics.Metrics.MetricsSubscriptionManager",
+    "Lifetime": "Singleton"
+  },
+  {
+    "Service": "Microsoft.Extensions.Options.IStartupValidator",
+    "Implementation": "Microsoft.Extensions.Options.StartupValidator",
+    "Lifetime": "Transient"
+  },
+  {
+    "Service": "Microsoft.Extensions.Options.IConfigureOptions\u00601[[Microsoft.Extensions.Options.StartupValidatorOptions, Microsoft.Extensions.Options, Version=10.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60]]",
+    "Implementation": "Factory/Unknown",
+    "Lifetime": "Transient"
+  },
+  {
+    "Service": "Microsoft.Extensions.Options.IConfigureOptions\u00601[[Microsoft.Extensions.DependencyInjection.MetricsServiceExtensions\u002BNoOpOptions, Microsoft.Extensions.Diagnostics, Version=10.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60]]",
+    "Implementation": "Microsoft.Extensions.DependencyInjection.MetricsServiceExtensions\u002BSubscriptionActivator",
+    "Lifetime": "Singleton"
+  },
+  {
+    "Service": "Microsoft.Extensions.Diagnostics.Metrics.Configuration.IMetricListenerConfigurationFactory",
+    "Implementation": "Microsoft.Extensions.Diagnostics.Metrics.Configuration.MetricListenerConfigurationFactory",
+    "Lifetime": "Singleton"
+  },
+  {
+    "Service": "Microsoft.Extensions.Options.IConfigureOptions\u00601[[Microsoft.Extensions.Logging.LoggerFilterOptions, Microsoft.Extensions.Logging, Version=10.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60]]",
+    "Implementation": "Microsoft.Extensions.Options.ConfigureNamedOptions\u00601[[Microsoft.Extensions.Logging.LoggerFilterOptions, Microsoft.Extensions.Logging, Version=10.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60]]",
+    "Lifetime": "Singleton"
+  },
+  {
+    "Service": "Microsoft.Extensions.Logging.Configuration.ILoggerProviderConfigurationFactory",
+    "Implementation": "Microsoft.Extensions.Logging.Configuration.LoggerProviderConfigurationFactory",
+    "Lifetime": "Singleton"
+  },
+  {
+    "Service": "Microsoft.Extensions.Logging.Configuration.ILoggerProviderConfiguration\u00601",
+    "Implementation": "Microsoft.Extensions.Logging.Configuration.LoggerProviderConfiguration\u00601",
+    "Lifetime": "Singleton"
+  },
+  {
+    "Service": "Microsoft.Extensions.Options.IConfigureOptions\u00601[[Microsoft.Extensions.Logging.LoggerFilterOptions, Microsoft.Extensions.Logging, Version=10.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60]]",
+    "Implementation": "Microsoft.Extensions.Logging.LoggerFilterConfigureOptions",
+    "Lifetime": "Singleton"
+  },
+  {
+    "Service": "Microsoft.Extensions.Options.IOptionsChangeTokenSource\u00601[[Microsoft.Extensions.Logging.LoggerFilterOptions, Microsoft.Extensions.Logging, Version=10.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60]]",
+    "Implementation": "Microsoft.Extensions.Options.ConfigurationChangeTokenSource\u00601[[Microsoft.Extensions.Logging.LoggerFilterOptions, Microsoft.Extensions.Logging, Version=10.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60]]",
+    "Lifetime": "Singleton"
+  },
+  {
+    "Service": "Microsoft.Extensions.Logging.Configuration.LoggingConfiguration",
+    "Implementation": "Microsoft.Extensions.Logging.Configuration.LoggingConfiguration",
+    "Lifetime": "Singleton"
+  },
+  {
+    "Service": "Microsoft.Extensions.Logging.Console.ConsoleFormatter",
+    "Implementation": "Microsoft.Extensions.Logging.Console.JsonConsoleFormatter",
+    "Lifetime": "Singleton"
+  },
+  {
+    "Service": "Microsoft.Extensions.Options.IConfigureOptions\u00601[[Microsoft.Extensions.Logging.Console.JsonConsoleFormatterOptions, Microsoft.Extensions.Logging.Console, Version=10.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60]]",
+    "Implementation": "Microsoft.Extensions.Logging.ConsoleFormatterConfigureOptions",
+    "Lifetime": "Singleton"
+  },
+  {
+    "Service": "Microsoft.Extensions.Options.IOptionsChangeTokenSource\u00601[[Microsoft.Extensions.Logging.Console.JsonConsoleFormatterOptions, Microsoft.Extensions.Logging.Console, Version=10.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60]]",
+    "Implementation": "Microsoft.Extensions.Logging.ConsoleLoggerFormatterOptionsChangeTokenSource\u00602[[Microsoft.Extensions.Logging.Console.JsonConsoleFormatter, Microsoft.Extensions.Logging.Console, Version=10.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60],[Microsoft.Extensions.Logging.Console.JsonConsoleFormatterOptions, Microsoft.Extensions.Logging.Console, Version=10.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60]]",
+    "Lifetime": "Singleton"
+  },
+  {
+    "Service": "Microsoft.Extensions.Logging.Console.ConsoleFormatter",
+    "Implementation": "Microsoft.Extensions.Logging.Console.SystemdConsoleFormatter",
+    "Lifetime": "Singleton"
+  },
+  {
+    "Service": "Microsoft.Extensions.Options.IConfigureOptions\u00601[[Microsoft.Extensions.Logging.Console.ConsoleFormatterOptions, Microsoft.Extensions.Logging.Console, Version=10.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60]]",
+    "Implementation": "Microsoft.Extensions.Logging.ConsoleFormatterConfigureOptions",
+    "Lifetime": "Singleton"
+  },
+  {
+    "Service": "Microsoft.Extensions.Options.IOptionsChangeTokenSource\u00601[[Microsoft.Extensions.Logging.Console.ConsoleFormatterOptions, Microsoft.Extensions.Logging.Console, Version=10.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60]]",
+    "Implementation": "Microsoft.Extensions.Logging.ConsoleLoggerFormatterOptionsChangeTokenSource\u00602[[Microsoft.Extensions.Logging.Console.SystemdConsoleFormatter, Microsoft.Extensions.Logging.Console, Version=10.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60],[Microsoft.Extensions.Logging.Console.ConsoleFormatterOptions, Microsoft.Extensions.Logging.Console, Version=10.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60]]",
+    "Lifetime": "Singleton"
+  },
+  {
+    "Service": "Microsoft.Extensions.Logging.Console.ConsoleFormatter",
+    "Implementation": "Microsoft.Extensions.Logging.Console.SimpleConsoleFormatter",
+    "Lifetime": "Singleton"
+  },
+  {
+    "Service": "Microsoft.Extensions.Options.IConfigureOptions\u00601[[Microsoft.Extensions.Logging.Console.SimpleConsoleFormatterOptions, Microsoft.Extensions.Logging.Console, Version=10.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60]]",
+    "Implementation": "Microsoft.Extensions.Logging.ConsoleFormatterConfigureOptions",
+    "Lifetime": "Singleton"
+  },
+  {
+    "Service": "Microsoft.Extensions.Options.IOptionsChangeTokenSource\u00601[[Microsoft.Extensions.Logging.Console.SimpleConsoleFormatterOptions, Microsoft.Extensions.Logging.Console, Version=10.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60]]",
+    "Implementation": "Microsoft.Extensions.Logging.ConsoleLoggerFormatterOptionsChangeTokenSource\u00602[[Microsoft.Extensions.Logging.Console.SimpleConsoleFormatter, Microsoft.Extensions.Logging.Console, Version=10.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60],[Microsoft.Extensions.Logging.Console.SimpleConsoleFormatterOptions, Microsoft.Extensions.Logging.Console, Version=10.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60]]",
+    "Lifetime": "Singleton"
+  },
+  {
+    "Service": "Microsoft.Extensions.Logging.ILoggerProvider",
+    "Implementation": "Microsoft.Extensions.Logging.Console.ConsoleLoggerProvider",
+    "Lifetime": "Singleton"
+  },
+  {
+    "Service": "Microsoft.Extensions.Options.IConfigureOptions\u00601[[Microsoft.Extensions.Logging.Console.ConsoleLoggerOptions, Microsoft.Extensions.Logging.Console, Version=10.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60]]",
+    "Implementation": "Microsoft.Extensions.Logging.ConsoleLoggerConfigureOptions",
+    "Lifetime": "Singleton"
+  },
+  {
+    "Service": "Microsoft.Extensions.Options.IOptionsChangeTokenSource\u00601[[Microsoft.Extensions.Logging.Console.ConsoleLoggerOptions, Microsoft.Extensions.Logging.Console, Version=10.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60]]",
+    "Implementation": "Microsoft.Extensions.Logging.Configuration.LoggerProviderOptionsChangeTokenSource\u00602[[Microsoft.Extensions.Logging.Console.ConsoleLoggerOptions, Microsoft.Extensions.Logging.Console, Version=10.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60],[Microsoft.Extensions.Logging.Console.ConsoleLoggerProvider, Microsoft.Extensions.Logging.Console, Version=10.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60]]",
+    "Lifetime": "Singleton"
+  },
+  {
+    "Service": "Microsoft.Extensions.Logging.ILoggerProvider",
+    "Implementation": "Microsoft.Extensions.Logging.Debug.DebugLoggerProvider",
+    "Lifetime": "Singleton"
+  },
+  {
+    "Service": "Microsoft.Extensions.Logging.EventSource.LoggingEventSource",
+    "Implementation": "Microsoft.Extensions.Logging.EventSource.LoggingEventSource",
+    "Lifetime": "Singleton"
+  },
+  {
+    "Service": "Microsoft.Extensions.Logging.ILoggerProvider",
+    "Implementation": "Microsoft.Extensions.Logging.EventSource.EventSourceLoggerProvider",
+    "Lifetime": "Singleton"
+  },
+  {
+    "Service": "Microsoft.Extensions.Options.IConfigureOptions\u00601[[Microsoft.Extensions.Logging.LoggerFilterOptions, Microsoft.Extensions.Logging, Version=10.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60]]",
+    "Implementation": "Microsoft.Extensions.Logging.EventLogFiltersConfigureOptions",
+    "Lifetime": "Singleton"
+  },
+  {
+    "Service": "Microsoft.Extensions.Options.IOptionsChangeTokenSource\u00601[[Microsoft.Extensions.Logging.LoggerFilterOptions, Microsoft.Extensions.Logging, Version=10.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60]]",
+    "Implementation": "Microsoft.Extensions.Logging.EventLogFiltersConfigureOptionsChangeSource",
+    "Lifetime": "Singleton"
+  },
+  {
+    "Service": "Microsoft.Extensions.Logging.ILoggerProvider",
+    "Implementation": "Microsoft.Extensions.Logging.EventLog.EventLogLoggerProvider",
+    "Lifetime": "Singleton"
+  },
+  {
+    "Service": "Microsoft.Extensions.Options.IConfigureOptions\u00601[[Microsoft.Extensions.Logging.LoggerFactoryOptions, Microsoft.Extensions.Logging, Version=10.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60]]",
+    "Implementation": "Microsoft.Extensions.Options.ConfigureNamedOptions\u00601[[Microsoft.Extensions.Logging.LoggerFactoryOptions, Microsoft.Extensions.Logging, Version=10.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60]]",
+    "Lifetime": "Singleton"
+  },
+  {
+    "Service": "Microsoft.Extensions.Options.IConfigureOptions\u00601[[Microsoft.Extensions.Options.StartupValidatorOptions, Microsoft.Extensions.Options, Version=10.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60]]",
+    "Implementation": "Factory/Unknown",
+    "Lifetime": "Transient"
+  },
+  {
+    "Service": "Microsoft.Extensions.Options.IConfigureOptions\u00601[[Microsoft.Extensions.Diagnostics.Metrics.MetricsOptions, Microsoft.Extensions.Diagnostics.Abstractions, Version=10.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60]]",
+    "Implementation": "Microsoft.Extensions.Diagnostics.Metrics.Configuration.MetricsConfigureOptions",
+    "Lifetime": "Singleton"
+  },
+  {
+    "Service": "Microsoft.Extensions.Options.IOptionsChangeTokenSource\u00601[[Microsoft.Extensions.Diagnostics.Metrics.MetricsOptions, Microsoft.Extensions.Diagnostics.Abstractions, Version=10.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60]]",
+    "Implementation": "Microsoft.Extensions.Options.ConfigurationChangeTokenSource\u00601[[Microsoft.Extensions.Diagnostics.Metrics.MetricsOptions, Microsoft.Extensions.Diagnostics.Abstractions, Version=10.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60]]",
+    "Lifetime": "Singleton"
+  },
+  {
+    "Service": "Microsoft.Extensions.Diagnostics.Metrics.Configuration.MetricsConfiguration",
+    "Implementation": "Microsoft.Extensions.Diagnostics.Metrics.Configuration.MetricsConfiguration",
+    "Lifetime": "Singleton"
+  },
+  {
+    "Service": "Microsoft.AspNetCore.Hosting.IWebHostEnvironment",
+    "Implementation": "Microsoft.AspNetCore.Hosting.HostingEnvironment",
+    "Lifetime": "Singleton"
+  },
+  {
+    "Service": "Microsoft.AspNetCore.Hosting.IHostingEnvironment",
+    "Implementation": "Microsoft.AspNetCore.Hosting.HostingEnvironment",
+    "Lifetime": "Singleton"
+  },
+  {
+    "Service": "Microsoft.AspNetCore.Hosting.IApplicationLifetime",
+    "Implementation": "Microsoft.AspNetCore.Hosting.GenericWebHostApplicationLifetime",
+    "Lifetime": "Singleton"
+  },
+  {
+    "Service": "Microsoft.Extensions.Options.IConfigureOptions\u00601[[Microsoft.AspNetCore.Hosting.GenericWebHostServiceOptions, Microsoft.AspNetCore.Hosting, Version=10.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60]]",
+    "Implementation": "Microsoft.Extensions.Options.ConfigureNamedOptions\u00601[[Microsoft.AspNetCore.Hosting.GenericWebHostServiceOptions, Microsoft.AspNetCore.Hosting, Version=10.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60]]",
+    "Lifetime": "Singleton"
+  },
+  {
+    "Service": "System.Diagnostics.DiagnosticListener",
+    "Implementation": "Factory/Unknown",
+    "Lifetime": "Singleton"
+  },
+  {
+    "Service": "System.Diagnostics.DiagnosticSource",
+    "Implementation": "Factory/Unknown",
+    "Lifetime": "Singleton"
+  },
+  {
+    "Service": "System.Diagnostics.ActivitySource",
+    "Implementation": "Factory/Unknown",
+    "Lifetime": "Singleton"
+  },
+  {
+    "Service": "System.Diagnostics.DistributedContextPropagator",
+    "Implementation": "System.Diagnostics.W3CPropagator",
+    "Lifetime": "Singleton"
+  },
+  {
+    "Service": "Microsoft.AspNetCore.Http.IHttpContextFactory",
+    "Implementation": "Microsoft.AspNetCore.Http.DefaultHttpContextFactory",
+    "Lifetime": "Singleton"
+  },
+  {
+    "Service": "Microsoft.AspNetCore.Http.IMiddlewareFactory",
+    "Implementation": "Microsoft.AspNetCore.Http.MiddlewareFactory",
+    "Lifetime": "Scoped"
+  },
+  {
+    "Service": "Microsoft.AspNetCore.Hosting.Builder.IApplicationBuilderFactory",
+    "Implementation": "Microsoft.AspNetCore.Hosting.Builder.ApplicationBuilderFactory",
+    "Lifetime": "Singleton"
+  },
+  {
+    "Service": "Microsoft.Extensions.Options.IConfigureOptions\u00601[[Microsoft.Extensions.Options.StartupValidatorOptions, Microsoft.Extensions.Options, Version=10.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60]]",
+    "Implementation": "Factory/Unknown",
+    "Lifetime": "Transient"
+  },
+  {
+    "Service": "Microsoft.AspNetCore.Hosting.HostingMetrics",
+    "Implementation": "Microsoft.AspNetCore.Hosting.HostingMetrics",
+    "Lifetime": "Singleton"
+  },
+  {
+    "Service": "Microsoft.AspNetCore.Hosting.IStartupFilter",
+    "Implementation": "Microsoft.AspNetCore.Watch.BrowserRefresh.HostingStartup",
+    "Lifetime": "Singleton"
+  },
+  {
+    "Service": "Microsoft.AspNetCore.Mvc.Infrastructure.IActionDescriptorCollectionProvider",
+    "Implementation": "Microsoft.AspNetCore.Mvc.Infrastructure.DefaultActionDescriptorCollectionProvider",
+    "Lifetime": "Singleton"
+  },
+  {
+    "Service": "Microsoft.AspNetCore.Mvc.ApiExplorer.IApiDescriptionGroupCollectionProvider",
+    "Implementation": "Factory/Unknown",
+    "Lifetime": "Singleton"
+  },
+  {
+    "Service": "Microsoft.AspNetCore.Mvc.ApiExplorer.IApiDescriptionProvider",
+    "Implementation": "Microsoft.AspNetCore.Mvc.ApiExplorer.EndpointMetadataApiDescriptionProvider",
+    "Lifetime": "Transient"
+  },
+  {
+    "Service": "Microsoft.AspNetCore.Hosting.IStartupFilter",
+    "Implementation": "Microsoft.WebTools.ApiEndpointDiscovery.HostingStartup",
+    "Lifetime": "Singleton"
+  },
+  {
+    "Service": "Microsoft.AspNetCore.Connections.IConnectionListenerFactory",
+    "Implementation": "Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketTransportFactory",
+    "Lifetime": "Singleton"
+  },
+  {
+    "Service": "Microsoft.AspNetCore.Connections.IMemoryPoolFactory\u00601[[System.Byte, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+    "Implementation": "Microsoft.AspNetCore.Server.Kestrel.Internal.DefaultSimpleMemoryPoolFactory",
+    "Lifetime": "Singleton"
+  },
+  {
+    "Service": "Microsoft.Extensions.Options.IConfigureOptions\u00601[[Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketTransportOptions, Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets, Version=10.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60]]",
+    "Implementation": "Factory/Unknown",
+    "Lifetime": "Transient"
+  },
+  {
+    "Service": "Microsoft.Extensions.Options.IConfigureOptions\u00601[[Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions, Microsoft.AspNetCore.Server.Kestrel.Core, Version=10.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60]]",
+    "Implementation": "Microsoft.AspNetCore.Server.Kestrel.Core.Internal.KestrelServerOptionsSetup",
+    "Lifetime": "Transient"
+  },
+  {
+    "Service": "Microsoft.AspNetCore.Server.Kestrel.Core.IHttpsConfigurationService",
+    "Implementation": "Microsoft.AspNetCore.Server.Kestrel.Core.HttpsConfigurationService",
+    "Lifetime": "Singleton"
+  },
+  {
+    "Service": "Microsoft.AspNetCore.Hosting.Server.IServer",
+    "Implementation": "Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl",
+    "Lifetime": "Singleton"
+  },
+  {
+    "Service": "Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Infrastructure.KestrelMetrics",
+    "Implementation": "Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Infrastructure.KestrelMetrics",
+    "Lifetime": "Singleton"
+  },
+  {
+    "Service": "Microsoft.AspNetCore.Server.Kestrel.Core.Internal.PinnedBlockMemoryPoolFactory",
+    "Implementation": "Microsoft.AspNetCore.Server.Kestrel.Core.Internal.PinnedBlockMemoryPoolFactory",
+    "Lifetime": "Singleton"
+  },
+  {
+    "Service": "Microsoft.AspNetCore.MemoryPoolMetrics",
+    "Implementation": "Microsoft.AspNetCore.MemoryPoolMetrics",
+    "Lifetime": "Singleton"
+  },
+  {
+    "Service": "Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Infrastructure.IHeartbeatHandler",
+    "Implementation": "Factory/Unknown",
+    "Lifetime": "Singleton"
+  },
+  {
+    "Service": "Microsoft.AspNetCore.Connections.IMemoryPoolFactory\u00601[[System.Byte, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+    "Implementation": "Factory/Unknown",
+    "Lifetime": "Singleton"
+  },
+  {
+    "Service": "Microsoft.Extensions.ObjectPool.ObjectPoolProvider",
+    "Implementation": "Microsoft.Extensions.ObjectPool.DefaultObjectPoolProvider",
+    "Lifetime": "Singleton"
+  },
+  {
+    "Service": "Microsoft.AspNetCore.Connections.IConnectionListenerFactory",
+    "Implementation": "Microsoft.AspNetCore.Server.Kestrel.Transport.NamedPipes.Internal.NamedPipeTransportFactory",
+    "Lifetime": "Singleton"
+  },
+  {
+    "Service": "Microsoft.AspNetCore.MemoryPoolMetrics",
+    "Implementation": "Microsoft.AspNetCore.MemoryPoolMetrics",
+    "Lifetime": "Singleton"
+  },
+  {
+    "Service": "Microsoft.Extensions.Options.IConfigureOptions\u00601[[Microsoft.AspNetCore.Server.Kestrel.Transport.NamedPipes.NamedPipeTransportOptions, Microsoft.AspNetCore.Server.Kestrel.Transport.NamedPipes, Version=10.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60]]",
+    "Implementation": "Factory/Unknown",
+    "Lifetime": "Transient"
+  },
+  {
+    "Service": "Microsoft.AspNetCore.Server.Kestrel.Core.HttpsConfigurationService\u002BIInitializer",
+    "Implementation": "Microsoft.AspNetCore.Server.Kestrel.Core.HttpsConfigurationService\u002BInitializer",
+    "Lifetime": "Singleton"
+  },
+  {
+    "Service": "Microsoft.AspNetCore.Connections.IMultiplexedConnectionListenerFactory",
+    "Implementation": "Microsoft.AspNetCore.Server.Kestrel.Transport.Quic.QuicTransportFactory",
+    "Lifetime": "Singleton"
+  },
+  {
+    "Service": "Microsoft.Extensions.Options.IConfigureOptions\u00601[[Microsoft.AspNetCore.Server.Kestrel.Transport.Quic.QuicTransportOptions, Microsoft.AspNetCore.Server.Kestrel.Transport.Quic, Version=10.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60]]",
+    "Implementation": "Microsoft.Extensions.Options.ConfigureNamedOptions\u00601[[Microsoft.AspNetCore.Server.Kestrel.Transport.Quic.QuicTransportOptions, Microsoft.AspNetCore.Server.Kestrel.Transport.Quic, Version=10.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60]]",
+    "Lifetime": "Singleton"
+  },
+  {
+    "Service": "Microsoft.Extensions.Options.IConfigureOptions\u00601[[Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions, Microsoft.AspNetCore.Server.Kestrel.Core, Version=10.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60]]",
+    "Implementation": "Microsoft.Extensions.Options.ConfigureNamedOptions\u00601[[Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions, Microsoft.AspNetCore.Server.Kestrel.Core, Version=10.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60]]",
+    "Lifetime": "Singleton"
+  },
+  {
+    "Service": "Microsoft.Extensions.Options.IPostConfigureOptions\u00601[[Microsoft.AspNetCore.HostFiltering.HostFilteringOptions, Microsoft.AspNetCore.HostFiltering, Version=10.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60]]",
+    "Implementation": "Microsoft.Extensions.Options.PostConfigureOptions\u00601[[Microsoft.AspNetCore.HostFiltering.HostFilteringOptions, Microsoft.AspNetCore.HostFiltering, Version=10.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60]]",
+    "Lifetime": "Singleton"
+  },
+  {
+    "Service": "Microsoft.Extensions.Options.IOptionsChangeTokenSource\u00601[[Microsoft.AspNetCore.HostFiltering.HostFilteringOptions, Microsoft.AspNetCore.HostFiltering, Version=10.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60]]",
+    "Implementation": "Microsoft.Extensions.Options.ConfigurationChangeTokenSource\u00601[[Microsoft.AspNetCore.HostFiltering.HostFilteringOptions, Microsoft.AspNetCore.HostFiltering, Version=10.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60]]",
+    "Lifetime": "Singleton"
+  },
+  {
+    "Service": "Microsoft.AspNetCore.Hosting.IStartupFilter",
+    "Implementation": "Microsoft.AspNetCore.HostFilteringStartupFilter",
+    "Lifetime": "Transient"
+  },
+  {
+    "Service": "Microsoft.AspNetCore.Hosting.IStartupFilter",
+    "Implementation": "Microsoft.AspNetCore.ForwardedHeadersStartupFilter",
+    "Lifetime": "Transient"
+  },
+  {
+    "Service": "Microsoft.Extensions.Options.IConfigureOptions\u00601[[Microsoft.AspNetCore.Builder.ForwardedHeadersOptions, Microsoft.AspNetCore.HttpOverrides, Version=10.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60]]",
+    "Implementation": "Microsoft.AspNetCore.ForwardedHeadersOptionsSetup",
+    "Lifetime": "Transient"
+  },
+  {
+    "Service": "Microsoft.Extensions.Options.IConfigureOptions\u00601[[Microsoft.Extensions.Options.StartupValidatorOptions, Microsoft.Extensions.Options, Version=10.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60]]",
+    "Implementation": "Factory/Unknown",
+    "Lifetime": "Transient"
+  },
+  {
+    "Service": "Microsoft.AspNetCore.Routing.IInlineConstraintResolver",
+    "Implementation": "Microsoft.AspNetCore.Routing.DefaultInlineConstraintResolver",
+    "Lifetime": "Transient"
+  },
+  {
+    "Service": "Microsoft.Extensions.ObjectPool.ObjectPool\u00601[[Microsoft.AspNetCore.Routing.UriBuildingContext, Microsoft.AspNetCore.Routing, Version=10.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60]]",
+    "Implementation": "Factory/Unknown",
+    "Lifetime": "Singleton"
+  },
+  {
+    "Service": "Microsoft.AspNetCore.Routing.Tree.TreeRouteBuilder",
+    "Implementation": "Factory/Unknown",
+    "Lifetime": "Transient"
+  },
+  {
+    "Service": "Microsoft.AspNetCore.Routing.RoutingMarkerService",
+    "Implementation": "Microsoft.AspNetCore.Routing.RoutingMarkerService",
+    "Lifetime": "Singleton"
+  },
+  {
+    "Service": "Microsoft.Extensions.Options.IConfigureOptions\u00601[[Microsoft.AspNetCore.Routing.RouteOptions, Microsoft.AspNetCore.Routing, Version=10.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60]]",
+    "Implementation": "Factory/Unknown",
+    "Lifetime": "Transient"
+  },
+  {
+    "Service": "Microsoft.AspNetCore.Routing.EndpointDataSource",
+    "Implementation": "Factory/Unknown",
+    "Lifetime": "Singleton"
+  },
+  {
+    "Service": "Microsoft.AspNetCore.Routing.ParameterPolicyFactory",
+    "Implementation": "Microsoft.AspNetCore.Routing.DefaultParameterPolicyFactory",
+    "Lifetime": "Singleton"
+  },
+  {
+    "Service": "Microsoft.AspNetCore.Routing.Matching.MatcherFactory",
+    "Implementation": "Microsoft.AspNetCore.Routing.Matching.DfaMatcherFactory",
+    "Lifetime": "Singleton"
+  },
+  {
+    "Service": "Microsoft.AspNetCore.Routing.Matching.DfaMatcherBuilder",
+    "Implementation": "Microsoft.AspNetCore.Routing.Matching.DfaMatcherBuilder",
+    "Lifetime": "Transient"
+  },
+  {
+    "Service": "Microsoft.AspNetCore.Routing.Internal.DfaGraphWriter",
+    "Implementation": "Microsoft.AspNetCore.Routing.Internal.DfaGraphWriter",
+    "Lifetime": "Singleton"
+  },
+  {
+    "Service": "Microsoft.AspNetCore.Routing.Matching.DataSourceDependentMatcher\u002BLifetime",
+    "Implementation": "Microsoft.AspNetCore.Routing.Matching.DataSourceDependentMatcher\u002BLifetime",
+    "Lifetime": "Transient"
+  },
+  {
+    "Service": "Microsoft.AspNetCore.Routing.Matching.EndpointMetadataComparer",
+    "Implementation": "Factory/Unknown",
+    "Lifetime": "Singleton"
+  },
+  {
+    "Service": "Microsoft.AspNetCore.Routing.LinkGenerator",
+    "Implementation": "Microsoft.AspNetCore.Routing.DefaultLinkGenerator",
+    "Lifetime": "Singleton"
+  },
+  {
+    "Service": "Microsoft.AspNetCore.Routing.IEndpointAddressScheme\u00601[[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+    "Implementation": "Microsoft.AspNetCore.Routing.EndpointNameAddressScheme",
+    "Lifetime": "Singleton"
+  },
+  {
+    "Service": "Microsoft.AspNetCore.Routing.IEndpointAddressScheme\u00601[[Microsoft.AspNetCore.Routing.RouteValuesAddress, Microsoft.AspNetCore.Routing, Version=10.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60]]",
+    "Implementation": "Microsoft.AspNetCore.Routing.RouteValuesAddressScheme",
+    "Lifetime": "Singleton"
+  },
+  {
+    "Service": "Microsoft.AspNetCore.Routing.LinkParser",
+    "Implementation": "Microsoft.AspNetCore.Routing.DefaultLinkParser",
+    "Lifetime": "Singleton"
+  },
+  {
+    "Service": "Microsoft.AspNetCore.Routing.Matching.EndpointSelector",
+    "Implementation": "Microsoft.AspNetCore.Routing.Matching.DefaultEndpointSelector",
+    "Lifetime": "Singleton"
+  },
+  {
+    "Service": "Microsoft.AspNetCore.Routing.MatcherPolicy",
+    "Implementation": "Microsoft.AspNetCore.Routing.Matching.HttpMethodMatcherPolicy",
+    "Lifetime": "Singleton"
+  },
+  {
+    "Service": "Microsoft.AspNetCore.Routing.MatcherPolicy",
+    "Implementation": "Microsoft.AspNetCore.Routing.Matching.HostMatcherPolicy",
+    "Lifetime": "Singleton"
+  },
+  {
+    "Service": "Microsoft.AspNetCore.Routing.MatcherPolicy",
+    "Implementation": "Microsoft.AspNetCore.Routing.Matching.AcceptsMatcherPolicy",
+    "Lifetime": "Singleton"
+  },
+  {
+    "Service": "Microsoft.AspNetCore.Routing.MatcherPolicy",
+    "Implementation": "Microsoft.AspNetCore.Routing.Matching.ContentEncodingNegotiationMatcherPolicy",
+    "Lifetime": "Singleton"
+  },
+  {
+    "Service": "Microsoft.AspNetCore.Routing.Template.TemplateBinderFactory",
+    "Implementation": "Microsoft.AspNetCore.Routing.Template.DefaultTemplateBinderFactory",
+    "Lifetime": "Singleton"
+  },
+  {
+    "Service": "Microsoft.AspNetCore.Routing.Patterns.RoutePatternTransformer",
+    "Implementation": "Microsoft.AspNetCore.Routing.Patterns.DefaultRoutePatternTransformer",
+    "Lifetime": "Singleton"
+  },
+  {
+    "Service": "Microsoft.AspNetCore.Routing.RoutingMetrics",
+    "Implementation": "Microsoft.AspNetCore.Routing.RoutingMetrics",
+    "Lifetime": "Singleton"
+  },
+  {
+    "Service": "Microsoft.Extensions.Options.IConfigureOptions\u00601[[Microsoft.AspNetCore.Routing.RouteHandlerOptions, Microsoft.AspNetCore.Routing, Version=10.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60]]",
+    "Implementation": "Microsoft.AspNetCore.Routing.ConfigureRouteHandlerOptions",
+    "Lifetime": "Transient"
+  },
+  {
+    "Service": "Microsoft.Extensions.Options.IConfigureOptions\u00601[[Microsoft.AspNetCore.Routing.RouteOptions, Microsoft.AspNetCore.Routing, Version=10.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60]]",
+    "Implementation": "Microsoft.Extensions.DependencyInjection.RegexInlineRouteConstraintSetup",
+    "Lifetime": "Singleton"
+  },
+  {
+    "Service": "Microsoft.Extensions.Options.IConfigureOptions\u00601[[Microsoft.AspNetCore.Hosting.GenericWebHostServiceOptions, Microsoft.AspNetCore.Hosting, Version=10.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60]]",
+    "Implementation": "Microsoft.Extensions.Options.ConfigureNamedOptions\u00601[[Microsoft.AspNetCore.Hosting.GenericWebHostServiceOptions, Microsoft.AspNetCore.Hosting, Version=10.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60]]",
+    "Lifetime": "Singleton"
+  }
+]
