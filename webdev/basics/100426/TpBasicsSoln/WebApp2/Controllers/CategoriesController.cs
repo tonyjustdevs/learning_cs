@@ -11,7 +11,11 @@ namespace WebApp2.Controllers
 
         public IActionResult Edit(int id)
         {
-            return new ContentResult() { Content = $"ID supplied to URL: '{id.ToString()}'" };
+            //return new ContentResult() { Content = $"ID supplied to URL: '{id.ToString()}'" };
+
+            
+            return View();
+
         }
 
     }
