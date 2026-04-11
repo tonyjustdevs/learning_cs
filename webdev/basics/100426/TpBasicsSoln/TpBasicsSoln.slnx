@@ -1,3 +1,4 @@
 <Solution>
   <Project Path="TPWebApp1/TPWebApp1.csproj" />
+  <Project Path="WebApp2/WebApp2.csproj" Id="ea84f759-e544-4147-a8fe-896dfd55b725" />
 </Solution>
