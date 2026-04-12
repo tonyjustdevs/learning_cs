@@ -2,6 +2,6 @@
   <Folder Name="/Solution Items/">
     <File Path="todo.md" />
   </Folder>
-  <Project Path="TPWebApp1/TPWebApp1.csproj" />
-  <Project Path="WebApp2/WebApp2.csproj" Id="ea84f759-e544-4147-a8fe-896dfd55b725" />
+  <Project Path="LearningAsyncProject/LearningAsyncProject.csproj" Id="c35ea23a-049d-4aa2-9085-31a967f7e33d" />
+  <Project Path="TPWebApp3/TPWebApp3.csproj" Id="b3e6fccd-d030-4904-ac3f-02d83364c3f5" />
 </Solution>
