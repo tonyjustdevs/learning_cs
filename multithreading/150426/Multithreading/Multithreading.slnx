@@ -1,0 +1,7 @@
+<Solution>
+  <Project Path="SumApp/SumApp.csproj" />
+  <Project Path="SumApp2/SumApp2.csproj" Id="e4663e57-9420-48f5-999f-c910945f0b4d" />
+  <Project Path="SumApp3/SumApp3.csproj" Id="35b6edbf-8889-431d-9fb4-a8b8cc2ea177" />
+  <Project Path="ThreadsApp1/ThreadsApp1.csproj" Id="6241ed16-415f-4e7d-a9f7-64781ca3c33b" />
+  <Project Path="WinFormsApp1/WinFormsApp1.csproj" />
+</Solution>

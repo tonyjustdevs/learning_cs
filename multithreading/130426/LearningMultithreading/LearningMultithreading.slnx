@@ -1,5 +1,6 @@
 <Solution>
   <Project Path="BasicSyntax/BasicSyntax.csproj" />
   <Project Path="ThreadApp3/ThreadApp3.csproj" Id="b14faff6-ccd7-417a-ac2f-9ca0c39aa3a2" />
+  <Project Path="ThreadApp4/ThreadApp4.csproj" Id="933800da-6805-4aa0-8fba-9797668ac4ae" />
   <Project Path="ThreadsApp2/ThreadsApp2.csproj" Id="d3073c14-6558-4e2f-9f18-054e7b63aacf" />
 </Solution>
