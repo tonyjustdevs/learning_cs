@@ -41,3 +41,5 @@ Console.WriteLine($"task_int3: {task_int3.Result}");
 
 //https://learncsharpmastery.com/task-based-asynchronous-pattern/
 
+//1.change symbol status(full, closed, etc) for specific symbols across MT4 / 5
+//2.extract MT4 / 5 server journals

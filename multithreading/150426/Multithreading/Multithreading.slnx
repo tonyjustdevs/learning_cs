@@ -2,6 +2,8 @@
   <Project Path="SumApp/SumApp.csproj" />
   <Project Path="SumApp2/SumApp2.csproj" Id="e4663e57-9420-48f5-999f-c910945f0b4d" />
   <Project Path="SumApp3/SumApp3.csproj" Id="35b6edbf-8889-431d-9fb4-a8b8cc2ea177" />
+  <Project Path="TaskApp2/TaskApp2.csproj" Id="e0f22506-e0b0-43a3-aeef-e0e67343a17e" />
+  <Project Path="TaskApp3/TaskApp3.csproj" Id="99787343-e07e-4360-acdc-0101df4bad0b" />
   <Project Path="TasksApp/TasksApp.csproj" Id="62147ac7-cf01-4042-b701-7e6496acda36" />
   <Project Path="ThreadApp2/ThreadApp2.csproj" Id="62bc299c-e597-49b0-9eb0-c24f9ddb8cfd" />
   <Project Path="ThreadApp3/ThreadApp3.csproj" Id="78b0a23e-6b9c-41d6-96e9-0fb48bdf46fe" />
