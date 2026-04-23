@@ -10,5 +10,7 @@
   <Project Path="ThreadApp4/ThreadApp4.csproj" Id="539a6903-39d1-4dd4-9e80-bac433430691" />
   <Project Path="ThreadApp5/ThreadApp5.csproj" Id="e64a2519-0416-400b-aa86-64ccd84c51a3" />
   <Project Path="ThreadsApp1/ThreadsApp1.csproj" Id="6241ed16-415f-4e7d-a9f7-64781ca3c33b" />
+  <Project Path="WebServerApp1/WebServerApp1.csproj" Id="496858eb-e9c2-4d71-a572-249db85cc53a" />
   <Project Path="WinFormsApp1/WinFormsApp1.csproj" />
+  <Project Path="WinFormsApp2/WinFormsApp2.csproj" Id="373f4be9-ba45-47b4-bfcf-28bd03784b47" />
 </Solution>
