@@ -1,5 +1,6 @@
 <Solution>
   <Project Path="AsyncApp2/AsyncApp2.csproj" Id="8b71a212-1990-4618-9406-3f22aa376f1b" />
+  <Project Path="AsyncHttp3App/AsyncHttp3App.csproj" Id="df505354-3a85-46b6-ac56-860fb472b61c" />
   <Project Path="AsyncHttpGetApp/AsyncHttpGetApp.csproj" Id="3c3bbeec-32e7-4755-963f-a586ff35b46f" />
   <Project Path="BasicSyntax/BasicSyntax.csproj" />
   <Project Path="CounterLockApp1/CounterLockApp1.csproj" Id="006e7d53-43d9-4656-bb38-21ded97c8960" />
